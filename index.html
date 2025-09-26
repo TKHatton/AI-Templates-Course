@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Templates & Structured Output Mastery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="logo">AI Templates & Structured Output Mastery</h1>
+                <div class="header-actions">
+                    <button class="btn btn-secondary" onclick="exportProgress()">Export Progress</button>
+                    <button class="btn btn-secondary" onclick="resetProgress()">Reset All</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="progress-overview">
+                <h3>Your Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="overallProgress"></div>
+                </div>
+                <span class="progress-text" id="progressText">0% Complete</span>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="#introduction" onclick="showSection('introduction')" class="nav-link active">Introduction</a></li>
+                <li>
+                    <a href="#module1" onclick="showSection('module1')" class="nav-link">
+                        <span class="module-number">1</span>
+                        Understanding Actionable Information
+                        <span class="completion-indicator" id="module1-indicator"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#module2" onclick="showSection('module2')" class="nav-link">
+                        <span class="module-number">2</span>
+                        Building Your First Templates
+                        <span class="completion-indicator" id="module2-indicator"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#module3" onclick="showSection('module3')" class="nav-link">
+                        <span class="module-number">3</span>
+                        The Four Core Components
+                        <span class="completion-indicator" id="module3-indicator"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#module4" onclick="showSection('module4')" class="nav-link">
+                        <span class="module-number">4</span>
+                        Industry-Specific Applications
+                        <span class="completion-indicator" id="module4-indicator"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#module5" onclick="showSection('module5')" class="nav-link">
+                        <span class="module-number">5</span>
+                        Advanced Template Techniques
+                        <span class="completion-indicator" id="module5-indicator"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#module6" onclick="showSection('module6')" class="nav-link">
+                        <span class="module-number">6</span>
+                        System Design & Integration
+                        <span class="completion-indicator" id="module6-indicator"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#module7" onclick="showSection('module7')" class="nav-link">
+                        <span class="module-number">7</span>
+                        Polishing and Presenting Your Work
+                        <span class="completion-indicator" id="module7-indicator"></span>
+                    </a>
+                </li>
+                <li><a href="#templates" onclick="showSection('templates')" class="nav-link">My Templates</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Introduction Section -->
+            <section id="introduction" class="content-section active">
+                <div class="hero-section">
+                    <h1>AI Templates & Structured Output Mastery</h1>
+                    <p class="hero-subtitle">Master the art of creating templates that consistently deliver high-quality, actionable outputs from AI tools.</p>
+                </div>
+                
+                <div class="content-card">
+                    <h2>Welcome to Your Learning Journey</h2>
+                    <p>This comprehensive interactive workbook provides practical exercises, real-world examples, and progressive challenges to build your expertise from fundamental concepts to advanced implementation strategies.</p>
+                    
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <h3>🎯 Practical Exercises</h3>
+                            <p>Apply key concepts immediately with hands-on practice</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>🌍 Real-World Examples</h3>
+                            <p>See concepts in action across various industries and use cases</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>🏗️ Template Frameworks</h3>
+                            <p>Ready-to-use structures for your projects and professional context</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>📈 Progressive Challenges</h3>
+                            <p>Build skills systematically from fundamental to advanced levels</p>
+                        </div>
+                    </div>
+                    
+                    <div class="getting-started">
+                        <h3>How to Use This Interactive Workbook</h3>
+                        <ul>
+                            <li>Work through each module sequentially, as concepts build upon each other</li>
+                            <li>Complete all practice exercises before moving to the next section</li>
+                            <li>Your progress is automatically saved as you work</li>
+                            <li>Export your completed templates to build your personal library</li>
+                            <li>Test your templates with actual AI tools and refine based on results</li>
+                        </ul>
+                        
+                        <button class="btn btn-primary" onclick="showSection('module1')">Start Module 1 →</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Module 1 -->
+            <section id="module1" class="content-section">
+                <div class="module-header">
+                    <span class="module-badge">Module 1</span>
+                    <h1>Understanding Actionable Information</h1>
+                    <p>Learn to distinguish between vague and actionable information, master the Decision-First Approach, and develop systematic methods for transforming AI outputs into clear, implementable insights that drive results.</p>
+                </div>
+
+                <div class="lesson-container">
+                    <div class="lesson" id="lesson1-1">
+                        <h2>1.1 Identifying Actionable Information</h2>
+                        <div class="content-card">
+                            <div class="instructions">
+                                <strong>Instructions:</strong> Review each AI response below and determine whether it's actionable or vague. For vague responses, identify which elements are missing (specificity, context, or direction).
+                            </div>
+                            
+                            <div class="example-box">
+                                <h4>Example:</h4>
+                                <p><strong>AI Response:</strong> "Your marketing campaign is performing well."</p>
+                                <p><strong>Analysis:</strong> Vague. Missing all three elements:</p>
+                                <ul>
+                                    <li>Specificity: No concrete metrics or numbers</li>
+                                    <li>Context: No comparison to past performance or benchmarks</li>
+                                    <li>Direction: No recommendations for next steps</li>
+                                </ul>
+                            </div>
+
+                            <div class="exercise">
+                                <h4>Practice Exercise 1:</h4>
+                                <p><strong>AI Response:</strong> "Your website traffic increased by 23% this month compared to last month, with the blog section showing the highest growth at 45%. Based on this trend, you should prioritize creating more blog content in the categories that are performing best: 'AI Templates' and 'Productivity Tips'."</p>
+                                
+                                <div class="form-group">
+                                    <label>Assessment:</label>
+                                    <div class="radio-group">
+                                        <label><input type="radio" name="ex1_1_1" value="actionable" onchange="saveProgress()"> Actionable</label>
+                                        <label><input type="radio" name="ex1_1_1" value="vague" onchange="saveProgress()"> Vague</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="ex1_1_1_missing">Missing elements (if any):</label>
+                                    <textarea id="ex1_1_1_missing" placeholder="Identify any missing elements..." onchange="saveProgress()"></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="ex1_1_1_explanation">Explanation of your reasoning:</label>
+                                    <textarea id="ex1_1_1_explanation" placeholder="Explain your reasoning..." onchange="saveProgress()"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="exercise">
+                                <h4>Practice Exercise 2:</h4>
+                                <p><strong>AI Response:</strong> "Customer satisfaction has decreased slightly."</p>
+                                
+                                <div class="form-group">
+                                    <label>Assessment:</label>
+                                    <div class="radio-group">
+                                        <label><input type="radio" name="ex1_1_2" value="actionable" onchange="saveProgress()"> Actionable</label>
+                                        <label><input type="radio" name="ex1_1_2" value="vague" onchange="saveProgress()"> Vague</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="ex1_1_2_missing">Missing elements (if any):</label>
+                                    <textarea id="ex1_1_2_missing" placeholder="Identify any missing elements..." onchange="saveProgress()"></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="ex1_1_2_specific">What specific information would make this actionable:</label>
+                                    <textarea id="ex1_1_2_specific" placeholder="What would make this actionable..." onchange="saveProgress()"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="lesson-navigation">
+                                <button class="btn btn-secondary" onclick="showLesson('lesson1-2')">Next: Transforming Vague Information →</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lesson" id="lesson1-2" style="display: none;">
+                        <h2>1.2 Transforming Vague Information</h2>
+                        <div class="content-card">
+                            <div class="instructions">
+                                <strong>Instructions:</strong> For each vague statement below, rewrite it to include all three elements of actionable information: specificity, context, and direction.
+                            </div>
+                            
+                            <div class="example-box">
+                                <h4>Example:</h4>
+                                <p><strong>Vague:</strong> "Your blog is getting traffic."</p>
+                                <p><strong>Transformed to actionable:</strong> "Your blog traffic has increased by 35% this month (reaching 12,500 visitors), which exceeds the industry average growth rate of 15%. The 'AI Tools' category has shown the strongest performance with a 60% increase. Based on this data, allocate 40% of your content creation resources to AI-related topics for the next quarter, and consider creating a downloadable guide on AI tools to capture email leads."</p>
+                            </div>
+
+                            <div class="exercise">
+                                <h4>Practice Exercise 1:</h4>
+                                <p><strong>Vague:</strong> "Your podcast is growing."</p>
+                                
+                                <div class="form-group">
+                                    <label for="ex1_2_1">Transformed to actionable:</label>
+                                    <textarea id="ex1_2_1" placeholder="Rewrite this to be actionable..." onchange="saveProgress()"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="exercise">
+                                <h4>Practice Exercise 2:</h4>
+                                <p><strong>Vague:</strong> "Customer churn is a problem."</p>
+                                
+                                <div class="form-group">
+                                    <label for="ex1_2_2">Transformed to actionable:</label>
+                                    <textarea id="ex1_2_2" placeholder="Rewrite this to be actionable..." onchange="saveProgress()"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="lesson-navigation">
+                                <button class="btn btn-secondary" onclick="showLesson('lesson1-1')">← Previous</button>
+                                <button class="btn btn-secondary" onclick="showLesson('lesson1-3')">Next: Decision-First Approach →</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lesson" id="lesson1-3" style="display: none;">
+                        <h2>1.3 The Decision-First Approach</h2>
+                        <div class="content-card">
+                            <div class="instructions">
+                                <strong>Instructions:</strong> Transform each vague request into a Decision-First prompt by identifying the specific decision to be made and the information needed to make it effectively.
+                            </div>
+                            
+                            <div class="example-box">
+                                <h4>Example:</h4>
+                                <p><strong>Vague Request:</strong> "Tell me about our email marketing."</p>
+                                <p><strong>Decision to be made:</strong> Whether to change our email frequency or keep the current schedule.</p>
+                                <p><strong>Decision-First Prompt:</strong> "I need to decide whether to increase our email frequency from weekly to twice-weekly or maintain our current schedule. Please analyze our email marketing data to show: 1. Open rates and click-through rates by day of week and time of day 2. Comparison of engagement metrics between weeks when we sent one email versus weeks when we sent multiple emails 3. Subscriber growth and unsubscribe rates over the past 6 months 4. Industry benchmarks for email frequency in the SaaS sector 5. Specific recommendation on optimal email frequency based on our audience engagement patterns"</p>
+                            </div>
+
+                            <div class="exercise">
+                                <h4>Practice Exercise 1:</h4>
+                                <p><strong>Vague Request:</strong> "Tell me about our website performance."</p>
+                                
+                                <div class="form-group">
+                                    <label for="ex1_3_1_decision">Decision to be made:</label>
+                                    <textarea id="ex1_3_1_decision" placeholder="What decision needs to be made..." onchange="saveProgress()"></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="ex1_3_1_prompt">Decision-First Prompt:</label>
+                                    <textarea id="ex1_3_1_prompt" placeholder="Write your decision-first prompt..." onchange="saveProgress()"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="lesson-navigation">
+                                <button class="btn btn-secondary" onclick="showLesson('lesson1-2')">← Previous</button>
+                                <button class="btn btn-secondary" onclick="showSection('module2')">Complete Module 1 →</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- My Templates Section -->
+            <section id="templates" class="content-section">
+                <div class="module-header">
+                    <h1>My Template Library</h1>
+                    <p>Your personal collection of templates created throughout the course.</p>
+                </div>
+                
+                <div class="content-card">
+                    <div class="templates-header">
+                        <h2>Saved Templates</h2>
+                        <button class="btn btn-primary" onclick="exportTemplates()">Export All Templates</button>
+                    </div>
+                    
+                    <div id="templatesList" class="templates-list">
+                        <div class="empty-state">
+                            <p>You haven't created any templates yet. Complete the exercises to build your template library!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Placeholder for other modules -->
+            <section id="module2" class="content-section">
+                <div class="module-header">
+                    <span class="module-badge">Module 2</span>
+                    <h1>Building Your First Templates</h1>
+                    <p>Master the four key components of effective templates, learn to identify and fill gaps in your prompts, and develop a systematic testing framework to ensure consistent, high-quality results.</p>
+                </div>
+                <div class="content-card">
+                    <p>Module 2 content will be implemented here...</p>
+                    <button class="btn btn-secondary" onclick="showSection('module3')">Continue to Module 3 →</button>
+                </div>
+            </section>
+
+            <section id="module3" class="content-section">
+                <div class="module-header">
+                    <span class="module-badge">Module 3</span>
+                    <h1>The Four Core Components</h1>
+                    <p>Master the essential components of building robust, scalable template systems.</p>
+                </div>
+                <div class="content-card">
+                    <p>Module 3 content will be implemented here...</p>
+                </div>
+            </section>
+
+            <section id="module4" class="content-section">
+                <div class="module-header">
+                    <span class="module-badge">Module 4</span>
+                    <h1>Industry-Specific Applications</h1>
+                    <p>Apply your template-building skills to real-world scenarios.</p>
+                </div>
+                <div class="content-card">
+                    <p>Module 4 content will be implemented here...</p>
+                </div>
+            </section>
+
+            <section id="module5" class="content-section">
+                <div class="module-header">
+                    <span class="module-badge">Module 5</span>
+                    <h1>Advanced Template Techniques</h1>
+                    <p>Elevate your skills with dynamic, multi-step templates.</p>
+                </div>
+                <div class="content-card">
+                    <p>Module 5 content will be implemented here...</p>
+                </div>
+            </section>
+
+            <section id="module6" class="content-section">
+                <div class="module-header">
+                    <span class="module-badge">Module 6</span>
+                    <h1>System Design & Integration</h1>
+                    <p>Learn to design integrated template systems.</p>
+                </div>
+                <div class="content-card">
+                    <p>Module 6 content will be implemented here...</p>
+                </div>
+            </section>
+
+            <section id="module7" class="content-section">
+                <div class="module-header">
+                    <span class="module-badge">Module 7</span>
+                    <h1>Polishing and Presenting Your Work</h1>
+                    <p>Learn to document and organize your templates professionally.</p>
+                </div>
+                <div class="content-card">
+                    <p>Module 7 content will be implemented here...</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
