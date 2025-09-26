@@ -560,3 +560,35 @@ textarea:focus {
 ::-webkit-scrollbar-thumb:hover {
     background: #a1a1a1;
 }
+
+
+/* Resource Box */
+.resource-box {
+    background: #e6fffa;
+    border: 1px solid #4fd1c7;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.resource-box h4 {
+    color: #234e52;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.resource-box p {
+    margin-bottom: 0.5rem;
+    color: #2d3748;
+}
+
+/* Template Example Box */
+.template-example {
+    background: #f7fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem 0;
+    font-style: italic;
+    color: #4a5568;
+}

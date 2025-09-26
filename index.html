@@ -148,6 +148,13 @@
                                 <strong>Instructions:</strong> Review each AI response below and determine whether it's actionable or vague. For vague responses, identify which elements are missing (specificity, context, or direction).
                             </div>
                             
+                            <div class="resource-box">
+                                <h4>📚 Key Concept: The Three Elements of Actionable Information</h4>
+                                <p><strong>Specificity:</strong> Concrete metrics, numbers, or clear descriptions</p>
+                                <p><strong>Context:</strong> Comparison to benchmarks, past performance, or industry standards</p>
+                                <p><strong>Direction:</strong> Clear recommendations for next steps or actions to take</p>
+                            </div>
+                            
                             <div class="example-box">
                                 <h4>Example:</h4>
                                 <p><strong>AI Response:</strong> "Your marketing campaign is performing well."</p>
@@ -258,6 +265,12 @@
                                 <strong>Instructions:</strong> Transform each vague request into a Decision-First prompt by identifying the specific decision to be made and the information needed to make it effectively.
                             </div>
                             
+                            <div class="resource-box">
+                                <h4>💡 Decision-First Framework</h4>
+                                <p>Instead of asking "Tell me about X," ask "I need to decide Y. Please analyze X to show me Z."</p>
+                                <p>This approach ensures every AI response connects directly to a decision you need to make.</p>
+                            </div>
+                            
                             <div class="example-box">
                                 <h4>Example:</h4>
                                 <p><strong>Vague Request:</strong> "Tell me about our email marketing."</p>
@@ -289,6 +302,275 @@
                 </div>
             </section>
 
+            <!-- Module 2 -->
+            <section id="module2" class="content-section">
+                <div class="module-header">
+                    <span class="module-badge">Module 2</span>
+                    <h1>Building Your First Templates</h1>
+                    <p>Master the four key components of effective templates, learn to identify and fill gaps in your prompts, and develop a systematic testing framework to ensure consistent, high-quality results.</p>
+                </div>
+
+                <div class="lesson-container">
+                    <div class="lesson" id="lesson2-1">
+                        <h2>2.1 The Four Template Components</h2>
+                        <div class="content-card">
+                            <div class="instructions">
+                                <strong>Instructions:</strong> Learn to identify and build the four essential components that make templates effective and reusable.
+                            </div>
+                            
+                            <div class="resource-box">
+                                <h4>🏗️ The Four Template Components</h4>
+                                <p><strong>1. Context:</strong> Who you are, what you do, your situation</p>
+                                <p><strong>2. Purpose:</strong> The specific goal or decision you need to make</p>
+                                <p><strong>3. Structure:</strong> How you want the output organized</p>
+                                <p><strong>4. Parameters:</strong> The specific data, constraints, or variables</p>
+                            </div>
+                            
+                            <div class="example-box">
+                                <h4>Example: Business Review Template</h4>
+                                <p><strong>Context:</strong> "I'm a small business owner running an e-commerce store selling handmade jewelry."</p>
+                                <p><strong>Purpose:</strong> "I need to review my monthly performance to identify what's working and what needs adjustment."</p>
+                                <p><strong>Structure:</strong> "Please organize the analysis into: 1. Revenue trends 2. Top performing products 3. Customer acquisition channels 4. Key challenges 5. Recommended actions for next month"</p>
+                                <p><strong>Parameters:</strong> "Monthly revenue: $15,000, Orders: 120, Top products: Silver rings (40% of sales), Traffic sources: Instagram (60%), Google (25%), Email (15%)"</p>
+                            </div>
+
+                            <div class="exercise">
+                                <h4>Practice Exercise 1: Identify Components</h4>
+                                <p>Read this template and identify each component:</p>
+                                <div class="template-example">
+                                    <p>"I'm a fitness coach who works with busy professionals. I need to create a 4-week workout plan for a client who wants to lose 15 pounds and can only work out 3 times per week for 30 minutes. Please structure this as: 1. Weekly overview 2. Daily workout details 3. Progression plan 4. Nutrition guidelines. Client details: 35 years old, beginner level, has dumbbells and resistance bands, works from home."</p>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="ex2_1_1_context">Context:</label>
+                                    <textarea id="ex2_1_1_context" placeholder="Identify the context..." onchange="saveProgress()"></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="ex2_1_1_purpose">Purpose:</label>
+                                    <textarea id="ex2_1_1_purpose" placeholder="Identify the purpose..." onchange="saveProgress()"></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="ex2_1_1_structure">Structure:</label>
+                                    <textarea id="ex2_1_1_structure" placeholder="Identify the structure..." onchange="saveProgress()"></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="ex2_1_1_parameters">Parameters:</label>
+                                    <textarea id="ex2_1_1_parameters" placeholder="Identify the parameters..." onchange="saveProgress()"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="lesson-navigation">
+                                <button class="btn btn-secondary" onclick="showLesson('lesson2-2')">Next: Identifying Template Gaps →</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lesson" id="lesson2-2" style="display: none;">
+                        <h2>2.2 Identifying and Filling Template Gaps</h2>
+                        <div class="content-card">
+                            <div class="instructions">
+                                <strong>Instructions:</strong> Learn to spot missing components in templates and transform weak prompts into powerful, comprehensive templates.
+                            </div>
+                            
+                            <div class="resource-box">
+                                <h4>🔍 Common Template Gaps</h4>
+                                <p><strong>Missing Context:</strong> AI doesn't know your role, industry, or constraints</p>
+                                <p><strong>Vague Purpose:</strong> No clear goal or decision to be made</p>
+                                <p><strong>No Structure:</strong> Output format not specified</p>
+                                <p><strong>Incomplete Parameters:</strong> Missing key data or variables</p>
+                            </div>
+                            
+                            <div class="example-box">
+                                <h4>Example: Gap Analysis</h4>
+                                <p><strong>Weak Template:</strong> "Help me with my social media strategy."</p>
+                                <p><strong>Missing:</strong> Context (who are you?), Purpose (what decision?), Structure (how organized?), Parameters (what data?)</p>
+                                <p><strong>Strong Template:</strong> "I'm a freelance graphic designer targeting small businesses. I need to decide which social media platforms to focus on for the next quarter to generate more leads. Please analyze my options and provide: 1. Platform comparison (reach, engagement, cost) 2. Content strategy for each 3. Resource requirements 4. Expected ROI 5. Recommendation with reasoning. My current followers: Instagram (500), LinkedIn (200), Facebook (100). Budget: $300/month."</p>
+                            </div>
+
+                            <div class="exercise">
+                                <h4>Practice Exercise 1: Fix This Template</h4>
+                                <p><strong>Weak Template:</strong> "I need help with my email marketing. Give me some ideas."</p>
+                                
+                                <div class="form-group">
+                                    <label for="ex2_2_1_gaps">What's missing from this template?</label>
+                                    <textarea id="ex2_2_1_gaps" placeholder="Identify the gaps..." onchange="saveProgress()"></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="ex2_2_1_improved">Write an improved version:</label>
+                                    <textarea id="ex2_2_1_improved" placeholder="Create a complete template..." onchange="saveProgress()"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="exercise">
+                                <h4>Practice Exercise 2: Build From Scratch</h4>
+                                <p>Create a complete template for analyzing website performance. Include all four components.</p>
+                                
+                                <div class="form-group">
+                                    <label for="ex2_2_2_template">Your Complete Template:</label>
+                                    <textarea id="ex2_2_2_template" placeholder="Build your template with Context, Purpose, Structure, and Parameters..." onchange="saveProgress()"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="lesson-navigation">
+                                <button class="btn btn-secondary" onclick="showLesson('lesson2-1')">← Previous</button>
+                                <button class="btn btn-secondary" onclick="showLesson('lesson2-3')">Next: Template Testing →</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lesson" id="lesson2-3" style="display: none;">
+                        <h2>2.3 Template Testing Framework</h2>
+                        <div class="content-card">
+                            <div class="instructions">
+                                <strong>Instructions:</strong> Learn to test and refine your templates to ensure they consistently produce actionable results.
+                            </div>
+                            
+                            <div class="resource-box">
+                                <h4>🧪 The Template Testing Process</h4>
+                                <p><strong>1. Decision Test:</strong> Does the output help you make a specific decision?</p>
+                                <p><strong>2. Action Test:</strong> Can you take concrete steps based on the response?</p>
+                                <p><strong>3. Consistency Test:</strong> Does it work reliably across different scenarios?</p>
+                                <p><strong>4. Completeness Test:</strong> Are all necessary elements included?</p>
+                            </div>
+                            
+                            <div class="example-box">
+                                <h4>Example: Testing a Content Strategy Template</h4>
+                                <p><strong>Template Output:</strong> "Focus on video content, post 3x per week, use trending hashtags."</p>
+                                <p><strong>Decision Test:</strong> ❌ Fails - Which platform? What type of videos?</p>
+                                <p><strong>Action Test:</strong> ❌ Fails - No specific steps or timeline</p>
+                                <p><strong>Refinement Needed:</strong> Add platform specification, content types, production timeline, and success metrics</p>
+                            </div>
+
+                            <div class="exercise">
+                                <h4>Practice Exercise 1: Test This Template</h4>
+                                <div class="template-example">
+                                    <p><strong>Template:</strong> "I'm a small business owner. Help me improve my customer service. Give me a plan with steps to follow and ways to measure success."</p>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="ex2_3_1_decision">Decision Test - What decision does this support?</label>
+                                    <textarea id="ex2_3_1_decision" placeholder="Analyze the decision clarity..." onchange="saveProgress()"></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="ex2_3_1_action">Action Test - What specific actions can be taken?</label>
+                                    <textarea id="ex2_3_1_action" placeholder="Evaluate actionability..." onchange="saveProgress()"></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="ex2_3_1_improvements">What improvements would you make?</label>
+                                    <textarea id="ex2_3_1_improvements" placeholder="Suggest specific improvements..." onchange="saveProgress()"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="exercise">
+                                <h4>Practice Exercise 2: Create and Test Your Own Template</h4>
+                                <p>Choose a task from your work or personal life and create a complete template, then test it.</p>
+                                
+                                <div class="form-group">
+                                    <label for="ex2_3_2_task">What task will your template address?</label>
+                                    <textarea id="ex2_3_2_task" placeholder="Describe the task..." onchange="saveProgress()"></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="ex2_3_2_template">Your Complete Template:</label>
+                                    <textarea id="ex2_3_2_template" placeholder="Write your template..." onchange="saveProgress()"></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="ex2_3_2_test">Test Results and Refinements:</label>
+                                    <textarea id="ex2_3_2_test" placeholder="Test your template and note improvements..." onchange="saveProgress()"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="lesson-navigation">
+                                <button class="btn btn-secondary" onclick="showLesson('lesson2-2')">← Previous</button>
+                                <button class="btn btn-secondary" onclick="showSection('module3')">Complete Module 2 →</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Module 3 -->
+            <section id="module3" class="content-section">
+                <div class="module-header">
+                    <span class="module-badge">Module 3</span>
+                    <h1>The Four Core Components</h1>
+                    <p>Master the essential components of building robust, scalable template systems: Data Collection, Categorization, Action, and Quality Control.</p>
+                </div>
+                
+                <div class="content-card">
+                    <h2>Coming Soon</h2>
+                    <p>Module 3 content is being developed. This will cover advanced template system components including data collection methods, categorization frameworks, action orientation, and quality control mechanisms.</p>
+                    <button class="btn btn-secondary" onclick="showSection('module4')">Continue to Module 4 →</button>
+                </div>
+            </section>
+
+            <!-- Module 4 -->
+            <section id="module4" class="content-section">
+                <div class="module-header">
+                    <span class="module-badge">Module 4</span>
+                    <h1>Industry-Specific Applications</h1>
+                    <p>Apply your template-building skills to real-world, industry-specific scenarios and create tailored solutions for common business challenges.</p>
+                </div>
+                
+                <div class="content-card">
+                    <h2>Coming Soon</h2>
+                    <p>Module 4 content is being developed. This will cover industry-specific template applications for business performance, content creation, and professional services.</p>
+                    <button class="btn btn-secondary" onclick="showSection('module5')">Continue to Module 5 →</button>
+                </div>
+            </section>
+
+            <!-- Module 5 -->
+            <section id="module5" class="content-section">
+                <div class="module-header">
+                    <span class="module-badge">Module 5</span>
+                    <h1>Advanced Template Techniques</h1>
+                    <p>Elevate your skills by learning to build dynamic, multi-step templates that handle complex scenarios, comparisons, and advanced categorization.</p>
+                </div>
+                
+                <div class="content-card">
+                    <h2>Coming Soon</h2>
+                    <p>Module 5 content is being developed. This will cover advanced techniques including scenario planning, comparative analysis, and multi-step template systems.</p>
+                    <button class="btn btn-secondary" onclick="showSection('module6')">Continue to Module 6 →</button>
+                </div>
+            </section>
+
+            <!-- Module 6 -->
+            <section id="module6" class="content-section">
+                <div class="module-header">
+                    <span class="module-badge">Module 6</span>
+                    <h1>System Design & Integration</h1>
+                    <p>Learn to design and build integrated template systems that automate complex workflows, ensure consistency, and scale with your needs.</p>
+                </div>
+                
+                <div class="content-card">
+                    <h2>Coming Soon</h2>
+                    <p>Module 6 content is being developed. This will cover system design principles, template integration, and workflow automation.</p>
+                    <button class="btn btn-secondary" onclick="showSection('module7')">Continue to Module 7 →</button>
+                </div>
+            </section>
+
+            <!-- Module 7 -->
+            <section id="module7" class="content-section">
+                <div class="module-header">
+                    <span class="module-badge">Module 7</span>
+                    <h1>Polishing and Presenting Your Work</h1>
+                    <p>Learn to document, present, and organize your templates to create a professional, scalable, and easy-to-use system.</p>
+                </div>
+                
+                <div class="content-card">
+                    <h2>Coming Soon</h2>
+                    <p>Module 7 content is being developed. This will cover template documentation, presentation techniques, and library organization.</p>
+                    <button class="btn btn-secondary" onclick="showSection('templates')">View My Templates →</button>
+                </div>
+            </section>
+
             <!-- My Templates Section -->
             <section id="templates" class="content-section">
                 <div class="module-header">
@@ -307,74 +589,6 @@
                             <p>You haven't created any templates yet. Complete the exercises to build your template library!</p>
                         </div>
                     </div>
-                </div>
-            </section>
-
-            <!-- Placeholder for other modules -->
-            <section id="module2" class="content-section">
-                <div class="module-header">
-                    <span class="module-badge">Module 2</span>
-                    <h1>Building Your First Templates</h1>
-                    <p>Master the four key components of effective templates, learn to identify and fill gaps in your prompts, and develop a systematic testing framework to ensure consistent, high-quality results.</p>
-                </div>
-                <div class="content-card">
-                    <p>Module 2 content will be implemented here...</p>
-                    <button class="btn btn-secondary" onclick="showSection('module3')">Continue to Module 3 →</button>
-                </div>
-            </section>
-
-            <section id="module3" class="content-section">
-                <div class="module-header">
-                    <span class="module-badge">Module 3</span>
-                    <h1>The Four Core Components</h1>
-                    <p>Master the essential components of building robust, scalable template systems.</p>
-                </div>
-                <div class="content-card">
-                    <p>Module 3 content will be implemented here...</p>
-                </div>
-            </section>
-
-            <section id="module4" class="content-section">
-                <div class="module-header">
-                    <span class="module-badge">Module 4</span>
-                    <h1>Industry-Specific Applications</h1>
-                    <p>Apply your template-building skills to real-world scenarios.</p>
-                </div>
-                <div class="content-card">
-                    <p>Module 4 content will be implemented here...</p>
-                </div>
-            </section>
-
-            <section id="module5" class="content-section">
-                <div class="module-header">
-                    <span class="module-badge">Module 5</span>
-                    <h1>Advanced Template Techniques</h1>
-                    <p>Elevate your skills with dynamic, multi-step templates.</p>
-                </div>
-                <div class="content-card">
-                    <p>Module 5 content will be implemented here...</p>
-                </div>
-            </section>
-
-            <section id="module6" class="content-section">
-                <div class="module-header">
-                    <span class="module-badge">Module 6</span>
-                    <h1>System Design & Integration</h1>
-                    <p>Learn to design integrated template systems.</p>
-                </div>
-                <div class="content-card">
-                    <p>Module 6 content will be implemented here...</p>
-                </div>
-            </section>
-
-            <section id="module7" class="content-section">
-                <div class="module-header">
-                    <span class="module-badge">Module 7</span>
-                    <h1>Polishing and Presenting Your Work</h1>
-                    <p>Learn to document and organize your templates professionally.</p>
-                </div>
-                <div class="content-card">
-                    <p>Module 7 content will be implemented here...</p>
                 </div>
             </section>
         </main>
