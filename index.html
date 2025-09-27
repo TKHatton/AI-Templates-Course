@@ -6,10 +6,10 @@
     <title>AI Templates & Structured Output Mastery Course</title>
     
     <!-- Favicon placeholders -->
-    <link rel="icon" type="image/x-icon" href="/favicon.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="src/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="src/favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="src/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="src/favicon.png">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,11 +27,9 @@
         <header class="header">
             <div class="header-content">
                 <div class="brand-section">
-                    <div class="logo-placeholder">
-                        <img src="/logo-placeholder.png" alt="SHE IS AI Logo" class="brand-logo">
-                    </div>
-                    <div class="brand-text">
-                        <h1 class="logo">AI Templates & Structured Output Mastery Course</h1>
+                   <div class="hero-image-placeholder">
+                    <img src="src/hero-image-placeholder.png" alt="Course Hero" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                </div>                  <h1 class="logo">AI Templates & Structured Output Mastery Course</h1>
                         <div class="brand-tagline">Created by Lenise Kenney</div>
                     </div>
                 </div>
@@ -676,40 +674,40 @@
                 </div>
                 
                 <div class="content-card">
-                    <div class="templates-header">
-                        <h2>Saved Templates</h2>
-                        <div class="template-info">
-                            <p>Your personal template collection grows as you complete exercises and use the Template Builder.</p>
+                    <div class="template-library-content">
+                    <h2>Saved Templates</h2>
+                    <p class="template-library-description">Your personal template collection grows as you complete exercises and use the Template Builder.</p>
+                    
+                    <div id="saved-templates">
+                        <!-- Templates will be populated here -->
+                    </div>
+                    
+                    <h2>Starter Templates</h2>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">📊</div>
+                            <h3>Business Performance Review</h3>
+                            <p>Monthly analysis template for small businesses with KPI tracking and actionable insights</p>
+                            <button class="btn btn-sm" onclick="useTemplate('business-review')">USE TEMPLATE</button>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">📝</div>
+                            <h3>Content Strategy Planning</h3>
+                            <p>Plan and organize your content marketing efforts with strategic frameworks</p>
+                            <button class="btn btn-sm" onclick="useTemplate('content-strategy')">USE TEMPLATE</button>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">🔍</div>
+                            <h3>Competitive Analysis</h3>
+                            <p>Analyze competitors and market positioning with structured evaluation criteria</p>
+                            <button class="btn btn-sm" onclick="useTemplate('competitive-analysis')">USE TEMPLATE</button>
                         </div>
                     </div>
                     
-                    <!-- Starter Templates -->
-                    <div class="starter-templates">
-                        <h3>Starter Templates</h3>
-                        <div class="template-grid">
-                            <div class="template-card">
-                                <h4>Business Performance Review</h4>
-                                <p>Monthly analysis template for small businesses</p>
-                                <button class="btn btn-secondary" onclick="useStarterTemplate('business-review')">Use Template</button>
-                            </div>
-                            <div class="template-card">
-                                <h4>Content Strategy Planning</h4>
-                                <p>Plan and organize your content marketing efforts</p>
-                                <button class="btn btn-secondary" onclick="useStarterTemplate('content-strategy')">Use Template</button>
-                            </div>
-                            <div class="template-card">
-                                <h4>Competitive Analysis</h4>
-                                <p>Analyze competitors and market positioning</p>
-                                <button class="btn btn-secondary" onclick="useStarterTemplate('competitive-analysis')">Use Template</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div id="templatesList" class="templates-list">
-                        <div class="empty-state">
-                            <p>You haven't created any custom templates yet. Use the Template Builder or complete exercises to build your library!</p>
-                        </div>
-                    </div>
+                    <p class="template-note">You haven't created any custom templates yet. Use the Template Builder or complete exercises to build your library!</p>
+                </div>
                 </div>
             </section>
 
@@ -730,70 +728,133 @@
                     
                     <div id="concepts-tab" class="resource-tab-content active">
                         <h2>Key Concepts by Module</h2>
-                        <div class="concepts-grid">
-                            <div class="concept-card">
-                                <h3>Module 1: Actionable Information</h3>
-                                <ul>
-                                    <li><strong>Decision-First Approach:</strong> Start with the decision you need to make</li>
-                                    <li><strong>Actionable vs. Vague:</strong> Specific, measurable, implementable outputs</li>
-                                    <li><strong>Three Elements:</strong> Specificity, Context, Direction</li>
-                                    <li><strong>Quality Indicators:</strong> Numbers, comparisons, recommendations</li>
-                                </ul>
+                        <div class="features-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">1</div>
+                                <h3>Actionable Information</h3>
+                                <p><strong>Decision-First Approach:</strong> Start with the decision you need to make</p>
+                                <p><strong>Quality Indicators:</strong> Numbers, comparisons, recommendations</p>
                             </div>
-                            <div class="concept-card">
-                                <h3>Module 2: Template Components</h3>
-                                <ul>
-                                    <li><strong>Context:</strong> Your role, situation, and background</li>
-                                    <li><strong>Purpose:</strong> What you want to achieve</li>
-                                    <li><strong>Structure:</strong> How you want the output organized</li>
-                                    <li><strong>Parameters:</strong> Specific data and constraints</li>
-                                </ul>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">2</div>
+                                <h3>Template Components</h3>
+                                <p><strong>Four Core Elements:</strong> Context, Purpose, Structure, Parameters</p>
+                                <p><strong>Foundation:</strong> Every effective template must include all four components</p>
                             </div>
-                            <div class="concept-card">
-                                <h3>Module 3: Core Components Deep Dive</h3>
-                                <ul>
-                                    <li><strong>Structured Output:</strong> Organized, consistent formatting</li>
-                                    <li><strong>Thematic Organization:</strong> Logical grouping of information</li>
-                                    <li><strong>Action Frameworks:</strong> Clear next steps with timelines</li>
-                                </ul>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">3</div>
+                                <h3>Core Components Deep Dive</h3>
+                                <p><strong>Structured Output:</strong> Organized, consistent formatting</p>
+                                <p><strong>Action Frameworks:</strong> Clear next steps with timelines</p>
                             </div>
-                            <div class="concept-card">
-                                <h3>Module 4: Industry Applications</h3>
-                                <ul>
-                                    <li><strong>Business Templates:</strong> KPI analysis and performance metrics</li>
-                                    <li><strong>Content Strategy:</strong> Social media and content optimization</li>
-                                    <li><strong>Industry Adaptation:</strong> Sector-specific terminology and requirements</li>
-                                </ul>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">4</div>
+                                <h3>Industry Applications</h3>
+                                <p><strong>Business Templates:</strong> KPI analysis and performance metrics</p>
+                                <p><strong>Industry Adaptation:</strong> Sector-specific terminology and requirements</p>
                             </div>
-                            <div class="concept-card">
-                                <h3>Module 5: Advanced Techniques</h3>
-                                <ul>
-                                    <li><strong>Scenario Planning:</strong> Multiple future scenarios and outcomes</li>
-                                    <li><strong>Comparative Analysis:</strong> Weighted criteria and scoring systems</li>
-                                    <li><strong>Multi-Level Categorization:</strong> Complex information organization</li>
-                                </ul>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">5</div>
+                                <h3>Advanced Techniques</h3>
+                                <p><strong>Scenario Planning:</strong> Multiple future scenarios and outcomes</p>
+                                <p><strong>Comparative Analysis:</strong> Weighted criteria and scoring systems</p>
                             </div>
-                            <div class="concept-card">
-                                <h3>Module 6: System Design</h3>
-                                <ul>
-                                    <li><strong>Template Systems:</strong> Interconnected workflow design</li>
-                                    <li><strong>Integration Points:</strong> Connecting with existing tools</li>
-                                    <li><strong>Quality Assurance:</strong> Testing and optimization strategies</li>
-                                </ul>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">6</div>
+                                <h3>System Design</h3>
+                                <p><strong>Template Systems:</strong> Interconnected workflow design</p>
+                                <p><strong>Integration Points:</strong> Connecting with existing tools</p>
                             </div>
-                            <div class="concept-card">
-                                <h3>Module 7: Professional Presentation</h3>
-                                <ul>
-                                    <li><strong>Documentation:</strong> Comprehensive user guides and examples</li>
-                                    <li><strong>Presentation:</strong> Stakeholder communication and training</li>
-                                    <li><strong>Organization:</strong> Library management and version control</li>
-                                </ul>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">7</div>
+                                <h3>Professional Presentation</h3>
+                                <p><strong>Documentation:</strong> Comprehensive user guides and examples</p>
+                                <p><strong>Organization:</strong> Library management and version control</p>
                             </div>
                         </div>
                     </div>
                     
                     <div id="templates-tab" class="resource-tab-content">
                         <h2>Professional Template Collection</h2>
+                        <p>Complete templates from the course presentation, organized by module.</p>
+                        
+                        <div class="template-examples">
+                            <div class="template-example-card">
+                                <h3>Module 1: Decision-First Template</h3>
+                                <div class="template-content">
+                                    <p><strong>CONTEXT:</strong> I'm a small business owner who needs to make a decision about expanding my team.</p>
+                                    <p><strong>PURPOSE:</strong> I need to analyze whether hiring a new employee is financially viable and strategically sound.</p>
+                                    <p><strong>STRUCTURE:</strong> Provide analysis in: 1) Financial Impact 2) Workload Analysis 3) Risk Assessment 4) Recommendation with timeline</p>
+                                    <p><strong>PARAMETERS:</strong> Current revenue: $50K/month, Current team: 3 people, Potential salary: $4K/month, Growth target: 25% increase</p>
+                                </div>
+                            </div>
+                            
+                            <div class="template-example-card">
+                                <h3>Module 2: Fitness Coach Template</h3>
+                                <div class="template-content">
+                                    <p><strong>CONTEXT:</strong> I'm a fitness coach who works with busy professionals who have limited time for exercise.</p>
+                                    <p><strong>PURPOSE:</strong> I need to create personalized workout plans that fit into hectic schedules while delivering results.</p>
+                                    <p><strong>STRUCTURE:</strong> Format as: 1) Assessment 2) 3 workout options (15min, 30min, 45min) 3) Nutrition guidelines 4) Progress tracking</p>
+                                    <p><strong>PARAMETERS:</strong> Client availability: [X] minutes/day, Fitness level: [beginner/intermediate/advanced], Equipment: [home/gym/none]</p>
+                                </div>
+                            </div>
+                            
+                            <div class="template-example-card">
+                                <h3>Module 3: Content Performance Analysis</h3>
+                                <div class="template-content">
+                                    <p><strong>CONTEXT:</strong> I'm a content manager analyzing monthly performance across multiple social media platforms.</p>
+                                    <p><strong>PURPOSE:</strong> I need to identify top-performing content types and optimize our content strategy for next month.</p>
+                                    <p><strong>STRUCTURE:</strong> Organize as: 1) Performance Summary 2) Top Content Analysis 3) Audience Insights 4) Optimization Recommendations</p>
+                                    <p><strong>PARAMETERS:</strong> Platforms: Instagram, LinkedIn, TikTok. Metrics: engagement rate, reach, saves, shares. Time period: [month/year]</p>
+                                </div>
+                            </div>
+                            
+                            <div class="template-example-card">
+                                <h3>Module 4: Business KPI Dashboard</h3>
+                                <div class="template-content">
+                                    <p><strong>CONTEXT:</strong> I'm a business analyst creating monthly performance reports for executive leadership.</p>
+                                    <p><strong>PURPOSE:</strong> I need to present key business metrics in a clear, actionable format that drives strategic decisions.</p>
+                                    <p><strong>STRUCTURE:</strong> Format as: 1) Executive Summary 2) Revenue Analysis 3) Customer Metrics 4) Operational KPIs 5) Action Items</p>
+                                    <p><strong>PARAMETERS:</strong> Revenue: $[amount], Customer count: [number], Key metrics: [list], Comparison period: previous month/year</p>
+                                </div>
+                            </div>
+                            
+                            <div class="template-example-card">
+                                <h3>Module 5: Scenario Planning Template</h3>
+                                <div class="template-content">
+                                    <p><strong>CONTEXT:</strong> I'm a strategic planner evaluating potential market expansion opportunities for our company.</p>
+                                    <p><strong>PURPOSE:</strong> I need to analyze multiple scenarios to determine the best expansion strategy with risk mitigation.</p>
+                                    <p><strong>STRUCTURE:</strong> Present as: 1) Scenario Overview 2) Best Case Analysis 3) Worst Case Analysis 4) Most Likely Case 5) Risk Mitigation 6) Recommendation</p>
+                                    <p><strong>PARAMETERS:</strong> Investment budget: $[amount], Timeline: [months], Market size: [data], Competition level: [high/medium/low]</p>
+                                </div>
+                            </div>
+                            
+                            <div class="template-example-card">
+                                <h3>Module 6: System Integration Template</h3>
+                                <div class="template-content">
+                                    <p><strong>CONTEXT:</strong> I'm a project manager implementing a new CRM system that needs to integrate with existing tools.</p>
+                                    <p><strong>PURPOSE:</strong> I need to plan the integration process, identify potential issues, and ensure smooth data flow between systems.</p>
+                                    <p><strong>STRUCTURE:</strong> Organize as: 1) Current System Audit 2) Integration Requirements 3) Data Mapping 4) Testing Plan 5) Implementation Timeline</p>
+                                    <p><strong>PARAMETERS:</strong> Current tools: [list], Data volume: [amount], Team size: [number], Go-live date: [date]</p>
+                                </div>
+                            </div>
+                            
+                            <div class="template-example-card">
+                                <h3>Module 7: Template Documentation</h3>
+                                <div class="template-content">
+                                    <p><strong>CONTEXT:</strong> I'm a team lead creating documentation for our new template library to ensure consistent usage across the organization.</p>
+                                    <p><strong>PURPOSE:</strong> I need to create comprehensive guides that help team members understand when and how to use each template effectively.</p>
+                                    <p><strong>STRUCTURE:</strong> Format as: 1) Template Overview 2) Use Cases 3) Step-by-Step Instructions 4) Examples 5) Troubleshooting 6) Best Practices</p>
+                                    <p><strong>PARAMETERS:</strong> Template count: [number], Team size: [number], Skill levels: [beginner/intermediate/advanced], Update frequency: [schedule]</p>
+                                </div>
+                            </div>
+                        </div>
                         <div class="template-library-grid">
                             <div class="library-category">
                                 <h3>Business Analysis</h3>
