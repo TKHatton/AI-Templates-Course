@@ -1,3 +1,6 @@
+// Development Mode Toggle - Set to false for production
+const DEVELOPMENT_MODE = true; // Change to false to hide reset button and dev features
+
 // Application State
 let appState = {
     currentSection: 'introduction',
@@ -2027,19 +2030,111 @@ function updateModuleCompletionIndicators() {
 }
 
 function resetProgress() {
-    if (confirm('Are you sure you want to reset all progress? This cannot be undone.')) {
+    if (confirm('⚠️ RESET ALL PROGRESS\n\nThis will permanently delete:\n• All your completed exercises\n• All saved templates\n• All course progress\n• All custom work\n\nThis action cannot be undone. Are you absolutely sure?')) {
+        // Clear localStorage completely
         localStorage.removeItem('aiTemplatesProgress');
+        
+        // Reset application state completely
         appState = {
             currentSection: 'introduction',
             currentQuestion: 1,
             progress: {},
             templates: [],
-            answers: appState.answers,
-            starterTemplates: appState.starterTemplates
+            answers: {
+                // Restore original answers
+                m1q1: 'actionable',
+                m1q2: ['specificity', 'context', 'direction'],
+                m1q3: ['specific numbers', 'comparison', 'recommendation'],
+                m1q4: ['decision', 'analyze', 'specific'],
+                m2q1: 'fitness coach who works with busy professionals',
+                m2q2: ['context', 'purpose', 'structure', 'parameters'],
+                m2q3: ['context', 'purpose', 'structure', 'parameters'],
+                m3q1: 'structured',
+                m3q2: 'thematic',
+                m3q3: ['specific action', 'timeline', 'metric'],
+                m4q1: ['context', 'purpose', 'structure', 'parameters'],
+                m4q2: ['engagement', 'reach', 'conversion', 'growth'],
+                m4q3: ['industry', 'task', 'template'],
+                m5q1: ['scenario', 'planning', 'action'],
+                m5q2: ['criteria', 'comparison', 'evaluation'],
+                m5q3: ['categorization', 'multi-level', 'organization'],
+                m6q1: ['system', 'integration', 'workflow'],
+                m6q2: ['integration', 'data flow', 'connection'],
+                m6q3: ['testing', 'metrics', 'optimization'],
+                m7q1: ['documentation', 'instructions', 'examples'],
+                m7q2: ['presentation', 'training', 'outline'],
+                m7q3: ['organization', 'structure', 'scalability']
+            },
+            starterTemplates: {
+                'business-review': {
+                    name: 'Business Performance Review',
+                    content: `CONTEXT: I'm a [business type] owner/manager who needs to review monthly performance to make data-driven decisions.
+
+PURPOSE: I need to analyze our monthly performance to identify what's working, what needs improvement, and determine our priorities for next month.
+
+STRUCTURE: Please organize the analysis into:
+1. Executive Summary (key highlights and overall health)
+2. Revenue Analysis (trends, comparisons, top performers)
+3. Customer Metrics (acquisition, retention, satisfaction)
+4. Operational Insights (efficiency, challenges, opportunities)
+5. Action Plan (top 3 priorities for next month with specific steps)
+
+PARAMETERS:
+- Monthly revenue: $[amount]
+- Number of customers: [number]
+- Top products/services: [list]
+- Key metrics: [list specific KPIs]
+- Previous month comparison: [data]
+- Industry benchmarks: [if available]`
+                },
+                'content-strategy': {
+                    name: 'Content Strategy Planning',
+                    content: `CONTEXT: I'm a [role] responsible for content marketing for a [business type] targeting [audience].
+
+PURPOSE: I need to develop a content strategy for [time period] that will [specific goal: increase engagement, drive leads, build authority, etc.].
+
+STRUCTURE: Please provide:
+1. Content Themes (3-5 main topics aligned with business goals)
+2. Content Calendar (posting frequency and platform distribution)
+3. Content Types (mix of formats: blog, video, social, email)
+4. Success Metrics (KPIs to track progress)
+5. Resource Requirements (time, tools, budget needed)
+
+PARAMETERS:
+- Target audience: [demographics and psychographics]
+- Current content performance: [metrics]
+- Available resources: [team size, budget, tools]
+- Business goals: [specific objectives]
+- Competitor analysis: [key insights]
+- Brand voice: [tone and style guidelines]`
+                },
+                'competitive-analysis': {
+                    name: 'Competitive Analysis',
+                    content: `CONTEXT: I'm a [role] at a [company type] and need to understand our competitive landscape to inform strategic decisions.
+
+PURPOSE: I need to analyze our top [number] competitors to identify opportunities, threats, and areas for differentiation.
+
+STRUCTURE: Please organize the analysis into:
+1. Competitor Overview (who they are, market position)
+2. Product/Service Comparison (features, pricing, positioning)
+3. Marketing Strategy Analysis (channels, messaging, content)
+4. Strengths and Weaknesses (what they do well/poorly)
+5. Opportunities and Threats (gaps we can exploit, risks to address)
+6. Strategic Recommendations (specific actions we should take)
+
+PARAMETERS:
+- Our company: [description and current position]
+- Competitors to analyze: [list of 3-5 main competitors]
+- Key comparison criteria: [features, pricing, market share, etc.]
+- Our unique value proposition: [what sets us apart]
+- Market segment focus: [specific customer segment]
+- Time frame for analysis: [current state vs. trends]`
+                }
+            }
         };
         
         // Clear all form fields
-        document.querySelectorAll('input, textarea').forEach(element => {
+        document.querySelectorAll('input, textarea, select').forEach(element => {
             if (element.type === 'radio' || element.type === 'checkbox') {
                 element.checked = false;
             } else {
@@ -2047,33 +2142,98 @@ function resetProgress() {
             }
         });
         
-        // Reset all next buttons
-        document.querySelectorAll('.next-btn').forEach(btn => {
+        // Reset all next buttons to disabled state
+        document.querySelectorAll('.next-btn, .btn[onclick*="nextQuestion"]').forEach(btn => {
             btn.disabled = true;
         });
         
-        // Hide all feedback
+        // Hide all feedback messages
         document.querySelectorAll('.feedback').forEach(feedback => {
             feedback.style.display = 'none';
+            feedback.className = 'feedback'; // Reset feedback classes
         });
         
+        // Reset all questions to first question in each module
+        document.querySelectorAll('.question').forEach(question => {
+            question.classList.remove('active');
+        });
+        
+        // Show first question in each module
+        for (let i = 1; i <= 7; i++) {
+            const firstQuestion = document.getElementById(`m${i}q1`);
+            if (firstQuestion) {
+                firstQuestion.classList.add('active');
+            }
+        }
+        
+        // Reset template builder
+        document.querySelectorAll('.wizard-step').forEach(step => step.classList.remove('active'));
+        const firstStep = document.getElementById('step1');
+        if (firstStep) {
+            firstStep.classList.add('active');
+        }
+        
+        // Clear generated template
+        const generatedTemplate = document.getElementById('generated-template');
+        if (generatedTemplate) {
+            generatedTemplate.textContent = '';
+        }
+        
+        // Update displays
         updateProgressDisplay();
+        updateTemplatesList();
         showSection('introduction');
+        
+        // Re-initialize starter templates
         initializeStarterTemplates();
+        
+        // Show success message
+        showNotification('✅ All progress has been reset! You can start the course fresh.', 'success');
     }
 }
 
 // Export Functions
 function exportProgress() {
-    const dataStr = JSON.stringify(appState, null, 2);
-    const dataBlob = new Blob([dataStr], {type: 'application/json'});
-    
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(dataBlob);
-    link.download = `ai-templates-progress-${new Date().toISOString().split('T')[0]}.json`;
-    link.click();
-    
-    showNotification('Progress exported successfully!', 'success');
+    try {
+        const progressData = {
+            exportDate: new Date().toISOString(),
+            courseProgress: appState.progress,
+            completedModules: Object.keys(appState.progress).length,
+            totalTemplates: appState.templates.length,
+            currentSection: appState.currentSection,
+            templates: appState.templates,
+            userAnswers: Object.keys(appState.progress).reduce((acc, key) => {
+                if (appState.progress[key]) {
+                    acc[key] = appState.progress[key];
+                }
+                return acc;
+            }, {})
+        };
+        
+        const dataStr = JSON.stringify(progressData, null, 2);
+        const dataBlob = new Blob([dataStr], {type: 'application/json'});
+        
+        // Create download link
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(dataBlob);
+        link.download = `ai-templates-progress-${new Date().toISOString().split('T')[0]}.json`;
+        
+        // Add to DOM temporarily and trigger download
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        // Clean up the blob URL
+        setTimeout(() => {
+            URL.revokeObjectURL(link.href);
+        }, 100);
+        
+        showNotification('📊 Progress exported successfully!', 'success');
+        
+    } catch (error) {
+        console.error('Export progress error:', error);
+        showNotification('❌ Error exporting progress. Please try again.', 'error');
+    }
 }
 
 function exportTemplates() {
@@ -2422,3 +2582,593 @@ function saveTemplate(name, content, category = 'General') {
     
     return template; // Return the template object
 }
+
+// Development Mode Functions
+function initializeDevelopmentMode() {
+    if (DEVELOPMENT_MODE) {
+        // Show development-only elements
+        document.querySelectorAll('.dev-only').forEach(element => {
+            element.style.display = '';
+        });
+        console.log('🔧 Development mode enabled');
+    } else {
+        // Hide development-only elements
+        document.querySelectorAll('.dev-only').forEach(element => {
+            element.style.display = 'none';
+        });
+    }
+}
+
+// Resource Guide Functions
+function showResourceTab(tabName) {
+    // Hide all tab contents
+    document.querySelectorAll('.resource-tab-content').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    
+    // Remove active class from all tab buttons
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    // Show selected tab content
+    document.getElementById(`${tabName}-tab`).classList.add('active');
+    
+    // Add active class to clicked button
+    event.target.classList.add('active');
+}
+
+function exportResourceGuide() {
+    showNotification('Generating comprehensive resource guide...', 'info');
+    
+    try {
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        
+        // Title page
+        pdf.setFontSize(24);
+        pdf.setFont(undefined, 'bold');
+        pdf.text('AI Templates & Structured Output', 20, 30);
+        pdf.text('Resource Guide', 20, 45);
+        
+        pdf.setFontSize(12);
+        pdf.setFont(undefined, 'normal');
+        pdf.text(`Generated on: ${new Date().toLocaleDateString()}`, 20, 60);
+        
+        let yPosition = 80;
+        
+        // Key Concepts Section
+        pdf.setFontSize(18);
+        pdf.setFont(undefined, 'bold');
+        pdf.text('Key Concepts', 20, yPosition);
+        yPosition += 15;
+        
+        const concepts = [
+            {
+                title: 'Module 1: Actionable Information',
+                points: [
+                    'Decision-First Approach: Start with the decision you need to make',
+                    'Actionable vs. Vague: Specific, measurable, implementable outputs',
+                    'Three Elements: Specificity, Context, Direction',
+                    'Quality Indicators: Numbers, comparisons, recommendations'
+                ]
+            },
+            {
+                title: 'Module 2: Template Components',
+                points: [
+                    'Context: Your role, situation, and background',
+                    'Purpose: What you want to achieve',
+                    'Structure: How you want the output organized',
+                    'Parameters: Specific data and constraints'
+                ]
+            }
+        ];
+        
+        concepts.forEach(concept => {
+            if (yPosition > 250) {
+                pdf.addPage();
+                yPosition = 20;
+            }
+            
+            pdf.setFontSize(14);
+            pdf.setFont(undefined, 'bold');
+            pdf.text(concept.title, 20, yPosition);
+            yPosition += 10;
+            
+            pdf.setFontSize(11);
+            pdf.setFont(undefined, 'normal');
+            concept.points.forEach(point => {
+                const lines = pdf.splitTextToSize(`• ${point}`, 170);
+                pdf.text(lines, 25, yPosition);
+                yPosition += lines.length * 5 + 3;
+            });
+            yPosition += 10;
+        });
+        
+        pdf.save('ai-templates-resource-guide.pdf');
+        showNotification('📚 Resource guide exported successfully!', 'success');
+        
+    } catch (error) {
+        console.error('Resource guide export error:', error);
+        showNotification('Error exporting resource guide. Please try again.', 'error');
+    }
+}
+
+function useResourceTemplate(templateType) {
+    const templates = {
+        'business-performance': {
+            name: 'Business Performance Review Template',
+            content: `CONTEXT: I'm a [business type] owner/manager who needs to review monthly performance to make data-driven decisions.
+
+PURPOSE: I need to analyze our monthly performance to identify what's working, what needs improvement, and determine our priorities for next month.
+
+STRUCTURE: Please organize the analysis into:
+1. Executive Summary (key highlights and overall health)
+2. Revenue Analysis (trends, comparisons, top performers)
+3. Customer Metrics (acquisition, retention, satisfaction)
+4. Operational Insights (efficiency, challenges, opportunities)
+5. Action Plan (top 3 priorities for next month with specific steps)
+
+PARAMETERS:
+- Monthly revenue: $[amount]
+- Number of customers: [number]
+- Top products/services: [list]
+- Key metrics: [list specific KPIs]
+- Previous month comparison: [data]
+- Industry benchmarks: [if available]`
+        },
+        'competitive-analysis': {
+            name: 'Competitive Analysis Template',
+            content: `CONTEXT: I'm a [role] at a [company type] and need to understand our competitive landscape to inform strategic decisions.
+
+PURPOSE: I need to analyze our top [number] competitors to identify opportunities, threats, and areas for differentiation.
+
+STRUCTURE: Please organize the analysis into:
+1. Competitor Overview (who they are, market position)
+2. Product/Service Comparison (features, pricing, positioning)
+3. Marketing Strategy Analysis (channels, messaging, content)
+4. Strengths and Weaknesses (what they do well/poorly)
+5. Opportunities and Threats (gaps we can exploit, risks to address)
+6. Strategic Recommendations (specific actions we should take)
+
+PARAMETERS:
+- Our company: [description and current position]
+- Competitors to analyze: [list of 3-5 main competitors]
+- Key comparison criteria: [features, pricing, market share, etc.]
+- Our unique value proposition: [what sets us apart]
+- Market segment focus: [specific customer segment]
+- Time frame for analysis: [current state vs. trends]`
+        },
+        'content-planning': {
+            name: 'Content Strategy Planning Template',
+            content: `CONTEXT: I'm a [role] responsible for content marketing for a [business type] targeting [audience].
+
+PURPOSE: I need to develop a content strategy for [time period] that will [specific goal: increase engagement, drive leads, build authority, etc.].
+
+STRUCTURE: Please provide:
+1. Content Themes (3-5 main topics aligned with business goals)
+2. Content Calendar (posting frequency and platform distribution)
+3. Content Types (mix of formats: blog, video, social, email)
+4. Success Metrics (KPIs to track progress)
+5. Resource Requirements (time, tools, budget needed)
+
+PARAMETERS:
+- Target audience: [demographics and psychographics]
+- Current content performance: [metrics]
+- Available resources: [team size, budget, tools]
+- Business goals: [specific objectives]
+- Competitor analysis: [key insights]
+- Brand voice: [tone and style guidelines]`
+        }
+    };
+    
+    const template = templates[templateType];
+    if (template) {
+        const templateObj = saveTemplate(template.name, template.content, 'Resource Library');
+        showNotification(`✅ ${template.name} added to your template library!`, 'success');
+        showSection('templates');
+    }
+}
+
+// Final Project Functions
+function populateTemplateSelection() {
+    const templateSelection = document.getElementById('template-selection');
+    if (!templateSelection) return;
+    
+    if (appState.templates.length === 0) {
+        templateSelection.innerHTML = '<p class="empty-state">No templates available. Create some templates first!</p>';
+        return;
+    }
+    
+    templateSelection.innerHTML = appState.templates.map(template => `
+        <div class="template-checkbox">
+            <input type="checkbox" id="template-${template.id}" value="${template.id}">
+            <label for="template-${template.id}">
+                <strong>${template.name}</strong>
+                <span class="template-category">${template.category}</span>
+            </label>
+        </div>
+    `).join('');
+}
+
+function submitFinalProject() {
+    const projectTitle = document.getElementById('project-title').value;
+    const projectDescription = document.getElementById('project-description').value;
+    const useCaseDocs = document.getElementById('use-case-docs').value;
+    const testingResults = document.getElementById('testing-results').value;
+    
+    // Get selected templates
+    const selectedTemplates = Array.from(document.querySelectorAll('#template-selection input:checked'))
+        .map(checkbox => {
+            const templateId = parseInt(checkbox.value);
+            return appState.templates.find(t => t.id === templateId);
+        });
+    
+    // Validation
+    if (!projectTitle || !projectDescription || selectedTemplates.length < 3) {
+        showNotification('❌ Please complete all required fields and select at least 3 templates.', 'error');
+        return;
+    }
+    
+    if (!useCaseDocs || !testingResults) {
+        showNotification('❌ Please provide use case documentation and testing results.', 'error');
+        return;
+    }
+    
+    showNotification('🔄 Submitting project for assessment...', 'info');
+    
+    // Simulate assessment process
+    setTimeout(() => {
+        const assessment = assessFinalProject({
+            title: projectTitle,
+            description: projectDescription,
+            templates: selectedTemplates,
+            useCaseDocs: useCaseDocs,
+            testingResults: testingResults
+        });
+        
+        displayAssessmentResults(assessment);
+    }, 2000);
+}
+
+function assessFinalProject(project) {
+    let totalScore = 0;
+    const maxScore = 100;
+    const feedback = [];
+    
+    // Template Quality Assessment (40 points)
+    let templateScore = 0;
+    const templateAnalysis = project.templates.map(template => {
+        const analysis = analyzeTemplate(template);
+        templateScore += analysis.score;
+        return analysis;
+    });
+    
+    const avgTemplateScore = templateScore / project.templates.length;
+    totalScore += Math.min(40, avgTemplateScore * 4); // Scale to 40 points
+    
+    if (avgTemplateScore >= 8) {
+        feedback.push('✅ Excellent template quality - all 4 components well implemented');
+    } else if (avgTemplateScore >= 6) {
+        feedback.push('⚠️ Good template structure - some components could be strengthened');
+    } else {
+        feedback.push('❌ Templates need improvement - focus on the 4-component framework');
+    }
+    
+    // Documentation Quality (30 points)
+    const docScore = assessDocumentation(project.useCaseDocs);
+    totalScore += docScore;
+    
+    if (docScore >= 25) {
+        feedback.push('✅ Comprehensive use case documentation');
+    } else if (docScore >= 20) {
+        feedback.push('⚠️ Good documentation - could include more specific examples');
+    } else {
+        feedback.push('❌ Documentation needs more detail and specific use cases');
+    }
+    
+    // Testing Evidence (30 points)
+    const testingScore = assessTesting(project.testingResults);
+    totalScore += testingScore;
+    
+    if (testingScore >= 25) {
+        feedback.push('✅ Excellent evidence of testing and iteration');
+    } else if (testingScore >= 20) {
+        feedback.push('⚠️ Good testing approach - could show more iteration examples');
+    } else {
+        feedback.push('❌ Need more evidence of template testing and refinement');
+    }
+    
+    // Overall assessment
+    const grade = totalScore >= 80 ? 'Excellent' : 
+                  totalScore >= 70 ? 'Good' : 
+                  totalScore >= 60 ? 'Satisfactory' : 'Needs Improvement';
+    
+    const passed = totalScore >= 70;
+    
+    return {
+        totalScore: Math.round(totalScore),
+        maxScore: maxScore,
+        grade: grade,
+        passed: passed,
+        feedback: feedback,
+        templateAnalysis: templateAnalysis,
+        breakdown: {
+            templates: Math.round(avgTemplateScore * 4),
+            documentation: docScore,
+            testing: testingScore
+        }
+    };
+}
+
+function analyzeTemplate(template) {
+    const content = template.content.toLowerCase();
+    let score = 0;
+    const issues = [];
+    
+    // Check for 4 components
+    const hasContext = content.includes('context:') || content.includes('i\'m a') || content.includes('role');
+    const hasPurpose = content.includes('purpose:') || content.includes('need to') || content.includes('goal');
+    const hasStructure = content.includes('structure:') || content.includes('organize') || content.includes('format');
+    const hasParameters = content.includes('parameters:') || content.includes('specific') || content.includes('data');
+    
+    if (hasContext) score += 2.5; else issues.push('Missing clear context');
+    if (hasPurpose) score += 2.5; else issues.push('Missing clear purpose');
+    if (hasStructure) score += 2.5; else issues.push('Missing output structure');
+    if (hasParameters) score += 2.5; else issues.push('Missing specific parameters');
+    
+    return {
+        score: score,
+        issues: issues,
+        hasAllComponents: hasContext && hasPurpose && hasStructure && hasParameters
+    };
+}
+
+function assessDocumentation(docs) {
+    const wordCount = docs.split(' ').length;
+    const hasAudience = docs.toLowerCase().includes('audience') || docs.toLowerCase().includes('target');
+    const hasOutcomes = docs.toLowerCase().includes('outcome') || docs.toLowerCase().includes('benefit');
+    const hasExamples = docs.toLowerCase().includes('example') || docs.toLowerCase().includes('case');
+    
+    let score = 0;
+    if (wordCount >= 200) score += 10;
+    else if (wordCount >= 100) score += 5;
+    
+    if (hasAudience) score += 7;
+    if (hasOutcomes) score += 7;
+    if (hasExamples) score += 6;
+    
+    return Math.min(30, score);
+}
+
+function assessTesting(testing) {
+    const wordCount = testing.split(' ').length;
+    const hasBeforeAfter = testing.toLowerCase().includes('before') && testing.toLowerCase().includes('after');
+    const hasIteration = testing.toLowerCase().includes('iteration') || testing.toLowerCase().includes('improve');
+    const hasMetrics = testing.toLowerCase().includes('metric') || testing.toLowerCase().includes('result');
+    
+    let score = 0;
+    if (wordCount >= 200) score += 10;
+    else if (wordCount >= 100) score += 5;
+    
+    if (hasBeforeAfter) score += 8;
+    if (hasIteration) score += 7;
+    if (hasMetrics) score += 5;
+    
+    return Math.min(30, score);
+}
+
+function displayAssessmentResults(assessment) {
+    const resultsSection = document.getElementById('assessment-results');
+    const overallScore = document.getElementById('overall-score');
+    const scoreBreakdown = document.getElementById('score-breakdown');
+    const detailedFeedback = document.getElementById('detailed-feedback');
+    const certificateSection = document.getElementById('certificate-section');
+    
+    // Show results section
+    resultsSection.style.display = 'block';
+    
+    // Display overall score
+    overallScore.textContent = `${assessment.totalScore}/${assessment.maxScore}`;
+    overallScore.className = `score-number ${assessment.passed ? 'passing' : 'failing'}`;
+    
+    // Display score breakdown
+    scoreBreakdown.innerHTML = `
+        <div class="score-item">
+            <span class="score-label">Template Quality:</span>
+            <span class="score-value">${assessment.breakdown.templates}/40</span>
+        </div>
+        <div class="score-item">
+            <span class="score-label">Documentation:</span>
+            <span class="score-value">${assessment.breakdown.documentation}/30</span>
+        </div>
+        <div class="score-item">
+            <span class="score-label">Testing Evidence:</span>
+            <span class="score-value">${assessment.breakdown.testing}/30</span>
+        </div>
+        <div class="score-item grade">
+            <span class="score-label">Grade:</span>
+            <span class="score-value">${assessment.grade}</span>
+        </div>
+    `;
+    
+    // Display detailed feedback
+    detailedFeedback.innerHTML = `
+        <h3>Detailed Feedback</h3>
+        <div class="feedback-list">
+            ${assessment.feedback.map(item => `<div class="feedback-item">${item}</div>`).join('')}
+        </div>
+    `;
+    
+    // Show certificate section if passed
+    if (assessment.passed) {
+        certificateSection.style.display = 'block';
+    }
+    
+    // Scroll to results
+    resultsSection.scrollIntoView({ behavior: 'smooth' });
+    
+    showNotification(`🎯 Assessment complete! Score: ${assessment.totalScore}/${assessment.maxScore}`, 
+                    assessment.passed ? 'success' : 'warning');
+}
+
+function generateCertificate() {
+    showNotification('🏆 Generating your SHE IS AI completion certificate...', 'info');
+    
+    try {
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF('l', 'mm', 'a4'); // Landscape orientation
+        
+        // SHE IS AI Brand Colors
+        const primaryRed = [221, 41, 47];
+        const secondaryRed = [255, 80, 80];
+        const accentTeal = [69, 255, 202];
+        const brandWhite = [255, 255, 255];
+        const brandBlack = [0, 0, 0];
+        
+        // Certificate background with gradient effect
+        pdf.setFillColor(...brandWhite);
+        pdf.rect(0, 0, 297, 210, 'F');
+        
+        // SHE IS AI Brand Border
+        pdf.setDrawColor(...primaryRed);
+        pdf.setLineWidth(4);
+        pdf.rect(15, 15, 267, 180);
+        
+        // Inner accent border
+        pdf.setDrawColor(...accentTeal);
+        pdf.setLineWidth(2);
+        pdf.rect(25, 25, 247, 160);
+        
+        // SHE IS AI Logo Placeholder Area
+        pdf.setFillColor(...primaryRed);
+        pdf.circle(60, 50, 20, 'F');
+        pdf.setTextColor(...brandWhite);
+        pdf.setFontSize(12);
+        pdf.setFont(undefined, 'bold');
+        pdf.text('SHE IS', 60, 48, { align: 'center' });
+        pdf.text('AI', 60, 54, { align: 'center' });
+        
+        // Certificate Title
+        pdf.setFontSize(36);
+        pdf.setFont(undefined, 'bold');
+        pdf.setTextColor(...primaryRed);
+        pdf.text('CERTIFICATE OF COMPLETION', 148.5, 70, { align: 'center' });
+        
+        // Course Title
+        pdf.setFontSize(20);
+        pdf.setFont(undefined, 'bold');
+        pdf.setTextColor(...brandBlack);
+        pdf.text('AI TEMPLATES & STRUCTURED OUTPUT', 148.5, 90, { align: 'center' });
+        pdf.text('MASTERY COURSE', 148.5, 105, { align: 'center' });
+        
+        // Recipient Section
+        pdf.setFontSize(16);
+        pdf.setFont(undefined, 'normal');
+        pdf.setTextColor(...brandBlack);
+        pdf.text('This certifies that', 148.5, 125, { align: 'center' });
+        
+        // Name placeholder with underline
+        pdf.setFontSize(28);
+        pdf.setFont(undefined, 'bold');
+        pdf.setTextColor(...primaryRed);
+        pdf.text('[PARTICIPANT NAME]', 148.5, 145, { align: 'center' });
+        pdf.setDrawColor(...primaryRed);
+        pdf.setLineWidth(1);
+        pdf.line(100, 150, 197, 150);
+        
+        // Achievement text
+        pdf.setFontSize(14);
+        pdf.setFont(undefined, 'normal');
+        pdf.setTextColor(...brandBlack);
+        pdf.text('has successfully demonstrated mastery in creating effective', 148.5, 160, { align: 'center' });
+        pdf.text('AI templates and structured outputs for professional applications', 148.5, 170, { align: 'center' });
+        
+        // Date and Credentials
+        pdf.setFontSize(12);
+        pdf.setTextColor(...brandBlack);
+        pdf.text(`Date: ${new Date().toLocaleDateString()}`, 40, 190);
+        
+        // SHE IS AI Branding
+        pdf.setFont(undefined, 'bold');
+        pdf.setTextColor(...primaryRed);
+        pdf.text('Powered by SHE IS AI', 220, 190);
+        
+        // Course Creator Attribution
+        pdf.setFontSize(10);
+        pdf.setTextColor(...brandBlack);
+        pdf.text('Course Created by [Your Name]', 148.5, 200, { align: 'center' });
+        
+        // Decorative elements
+        pdf.setFillColor(...accentTeal);
+        pdf.circle(40, 180, 3, 'F');
+        pdf.circle(257, 180, 3, 'F');
+        pdf.circle(40, 40, 3, 'F');
+        pdf.circle(257, 40, 3, 'F');
+        
+        pdf.save('she-is-ai-templates-certificate.pdf');
+        showNotification('🎉 SHE IS AI Certificate generated successfully!', 'success');
+        
+    } catch (error) {
+        console.error('Certificate generation error:', error);
+        showNotification('Error generating certificate. Please try again.', 'error');
+    }
+}
+
+function saveDraft() {
+    const draftData = {
+        title: document.getElementById('project-title').value,
+        description: document.getElementById('project-description').value,
+        useCaseDocs: document.getElementById('use-case-docs').value,
+        testingResults: document.getElementById('testing-results').value,
+        selectedTemplates: Array.from(document.querySelectorAll('#template-selection input:checked'))
+            .map(cb => cb.value),
+        savedAt: new Date().toISOString()
+    };
+    
+    localStorage.setItem('finalProjectDraft', JSON.stringify(draftData));
+    showNotification('💾 Draft saved successfully!', 'success');
+}
+
+function loadDraft() {
+    const draft = localStorage.getItem('finalProjectDraft');
+    if (draft) {
+        const draftData = JSON.parse(draft);
+        
+        document.getElementById('project-title').value = draftData.title || '';
+        document.getElementById('project-description').value = draftData.description || '';
+        document.getElementById('use-case-docs').value = draftData.useCaseDocs || '';
+        document.getElementById('testing-results').value = draftData.testingResults || '';
+        
+        // Restore selected templates
+        if (draftData.selectedTemplates) {
+            draftData.selectedTemplates.forEach(templateId => {
+                const checkbox = document.getElementById(`template-${templateId}`);
+                if (checkbox) checkbox.checked = true;
+            });
+        }
+    }
+}
+
+// Initialize new features when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    initializeDevelopmentMode();
+    
+    // Initialize final project section when shown
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                const target = mutation.target;
+                if (target.id === 'final-project' && target.classList.contains('active')) {
+                    populateTemplateSelection();
+                    loadDraft();
+                }
+            }
+        });
+    });
+    
+    const finalProjectSection = document.getElementById('final-project');
+    if (finalProjectSection) {
+        observer.observe(finalProjectSection, { attributes: true });
+    }
+});

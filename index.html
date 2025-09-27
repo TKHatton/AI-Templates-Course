@@ -4,120 +4,180 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Templates & Structured Output Mastery Course</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Favicon placeholders -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <!-- PDF Export Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="app-container">
-        <!-- Header -->
         <header class="header">
             <div class="header-content">
-                <h1 class="logo">AI Templates & Structured Output Mastery</h1>
+                <div class="brand-section">
+                    <div class="logo-placeholder">
+                        <img src="/logo-placeholder.png" alt="SHE IS AI Logo" class="brand-logo">
+                    </div>
+                    <div class="brand-text">
+                        <h1 class="logo">AI Templates & Structured Output Mastery Course</h1>
+                        <div class="brand-tagline">Created by Lenice Kenny</div>
+                    </div>
+                </div>
                 <div class="header-actions">
-                    <button class="btn btn-secondary" onclick="exportProgress()">Export Progress</button>
-                    <button class="btn btn-secondary" onclick="resetProgress()">Reset All</button>
+                    <button class="btn btn-outline" onclick="showSection('resource-guide')">Course Resources</button>
+                    <button class="btn btn-outline" onclick="resetProgress()" id="resetBtn" style="display: none;">Reset All</button>
                 </div>
             </div>
         </header>
 
-        <!-- Sidebar Navigation -->
-        <nav class="sidebar">
+        <aside class="sidebar">
             <div class="progress-overview">
                 <h3>Your Progress</h3>
                 <div class="progress-bar">
-                    <div class="progress-fill" id="overallProgress"></div>
+                    <div class="progress-fill" id="progressFill"></div>
                 </div>
-                <span class="progress-text" id="progressText">0% Complete</span>
+                <div class="progress-text" id="progressText">0% Complete</div>
             </div>
-            
-            <ul class="nav-menu">
-                <li><a href="#introduction" onclick="showSection('introduction')" class="nav-link active">Introduction</a></li>
-                <li>
-                    <a href="#module1" onclick="showSection('module1')" class="nav-link">
-                        <span class="module-number">1</span>
-                        Understanding Actionable Information
-                        <span class="completion-indicator" id="module1-indicator"></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#module2" onclick="showSection('module2')" class="nav-link">
-                        <span class="module-number">2</span>
-                        Building Your First Templates
-                        <span class="completion-indicator" id="module2-indicator"></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#module3" onclick="showSection('module3')" class="nav-link">
-                        <span class="module-number">3</span>
-                        The Four Core Components
-                        <span class="completion-indicator" id="module3-indicator"></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#module4" onclick="showSection('module4')" class="nav-link">
-                        <span class="module-number">4</span>
-                        Industry-Specific Applications
-                        <span class="completion-indicator" id="module4-indicator"></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#module5" onclick="showSection('module5')" class="nav-link">
-                        <span class="module-number">5</span>
-                        Advanced Template Techniques
-                        <span class="completion-indicator" id="module5-indicator"></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#module6" onclick="showSection('module6')" class="nav-link">
-                        <span class="module-number">6</span>
-                        System Design & Integration
-                        <span class="completion-indicator" id="module6-indicator"></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#module7" onclick="showSection('module7')" class="nav-link">
-                        <span class="module-number">7</span>
-                        Polishing and Presenting Your Work
-                        <span class="completion-indicator" id="module7-indicator"></span>
-                    </a>
-                </li>
-                <li><a href="#template-builder" onclick="showSection('template-builder')" class="nav-link">Template Builder</a></li>
-                <li><a href="#templates" onclick="showSection('templates')" class="nav-link">My Templates</a></li>
-            </ul>
-        </nav>
 
-        <!-- Main Content -->
+            <nav>
+                <ul class="nav-menu">
+                    <li>
+                        <a href="#" class="nav-link active" onclick="showSection('introduction')">
+                            <span class="module-number">📚</span>
+                            <span>Introduction</span>
+                            <span class="completion-indicator" id="intro-indicator"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link" onclick="showSection('module1')">
+                            <span class="module-number">1</span>
+                            <span>Understanding Actionable Information</span>
+                            <span class="completion-indicator" id="module1-indicator"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link" onclick="showSection('module2')">
+                            <span class="module-number">2</span>
+                            <span>Building Your First Templates</span>
+                            <span class="completion-indicator" id="module2-indicator"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link" onclick="showSection('module3')">
+                            <span class="module-number">3</span>
+                            <span>The Four Core Components</span>
+                            <span class="completion-indicator" id="module3-indicator"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link" onclick="showSection('module4')">
+                            <span class="module-number">4</span>
+                            <span>Industry-Specific Applications</span>
+                            <span class="completion-indicator" id="module4-indicator"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link" onclick="showSection('module5')">
+                            <span class="module-number">5</span>
+                            <span>Advanced Template Techniques</span>
+                            <span class="completion-indicator" id="module5-indicator"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link" onclick="showSection('module6')">
+                            <span class="module-number">6</span>
+                            <span>System Design & Integration</span>
+                            <span class="completion-indicator" id="module6-indicator"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link" onclick="showSection('module7')">
+                            <span class="module-number">7</span>
+                            <span>Polishing and Presenting Your Work</span>
+                            <span class="completion-indicator" id="module7-indicator"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link" onclick="showSection('template-builder')">
+                            <span class="module-number">🏗️</span>
+                            <span>Template Builder</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link" onclick="showSection('templates')">
+                            <span class="module-number">📋</span>
+                            <span>My Templates</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link" onclick="showSection('resource-guide')">
+                            <span class="module-number">📚</span>
+                            <span>Resource Guide</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link" onclick="showSection('final-project')">
+                            <span class="module-number">🎯</span>
+                            <span>Final Project</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
         <main class="main-content">
             <!-- Introduction Section -->
             <section id="introduction" class="content-section active">
                 <div class="hero-section">
-                    <h1>AI Templates & Structured Output Mastery</h1>
-                    <p class="hero-subtitle">Master the art of creating templates that consistently deliver high-quality, actionable outputs from AI tools.</p>
+                    <div class="hero-brand">
+                        <div class="hero-image-placeholder">
+                            <img src="/hero-image-placeholder.png" alt="Course Hero" class="hero-image">
+                        </div>
+                        <h1>AI Templates & Structured Output Mastery Course</h1>
+                        <p class="hero-subtitle">Master the art of creating templates that consistently deliver high-quality, actionable outputs from AI tools.</p>
+                        <p class="hero-attribution">Created by Lenice Kenny | Powered by SHE IS AI</p>
+                    </div>
                 </div>
-                
+
                 <div class="content-card">
                     <h2>Welcome to Your Learning Journey</h2>
                     <p>This comprehensive interactive workbook provides practical exercises, real-world examples, and progressive challenges to build your expertise from fundamental concepts to advanced implementation strategies.</p>
                     
                     <div class="features-grid">
                         <div class="feature-card">
-                            <h3>🎯 Practical Exercises</h3>
-                            <p>Apply key concepts immediately with hands-on practice</p>
+                            <div class="feature-icon">🎯</div>
+                            <h3>Practical Exercises</h3>
+                            <p>Apply key concepts immediately with hands-on practice that builds real-world skills and confidence.</p>
                         </div>
+                        
                         <div class="feature-card">
-                            <h3>🌍 Real-World Examples</h3>
-                            <p>See concepts in action across various industries and use cases</p>
+                            <div class="feature-icon">🌍</div>
+                            <h3>Real-World Examples</h3>
+                            <p>See concepts in action across various industries and use cases with detailed walkthroughs.</p>
                         </div>
+                        
                         <div class="feature-card">
-                            <h3>🏗️ Template Frameworks</h3>
-                            <p>Ready-to-use structures for your projects and professional context</p>
+                            <div class="feature-icon">📋</div>
+                            <h3>Template Frameworks</h3>
+                            <p>Ready-to-use structures for your projects and professional contexts that you can customize.</p>
                         </div>
+                        
                         <div class="feature-card">
-                            <h3>📈 Progressive Challenges</h3>
-                            <p>Build skills systematically from fundamental to advanced levels</p>
+                            <div class="feature-icon">📈</div>
+                            <h3>Progressive Challenges</h3>
+                            <p>Build skills systematically from fundamental to advanced levels with guided progression.</p>
                         </div>
                     </div>
                     
@@ -131,7 +191,9 @@
                             <li>Export your completed templates to build your personal library</li>
                         </ul>
                         
-                        <button class="btn btn-primary" onclick="showSection('module1')">Start Module 1 →</button>
+                        <div class="cta-section" style="text-align: center; margin-top: 2rem;">
+                            <button class="btn btn-primary" onclick="showSection('module1')">Start Module 1 →</button>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -143,106 +205,76 @@
                     <h1>Understanding Actionable Information</h1>
                     <p>Learn to distinguish between vague and actionable information, master the Decision-First Approach, and develop systematic methods for transforming AI outputs into clear, implementable insights that drive results.</p>
                 </div>
-
-                <div class="question-container">
-                    <div class="question-progress">
-                        <span id="module1-progress">Question 1 of 4</span>
-                    </div>
-
-                    <!-- Question 1 -->
-                    <div class="question active" id="m1q1">
-                        <h2>1.1 Identifying Actionable Information</h2>
-                        <div class="content-card">
-                            <div class="resource-box">
-                                <h4>📚 Key Concept: The Three Elements of Actionable Information</h4>
-                                <p><strong>Specificity:</strong> Concrete metrics, numbers, or clear descriptions</p>
-                                <p><strong>Context:</strong> Comparison to benchmarks, past performance, or industry standards</p>
-                                <p><strong>Direction:</strong> Clear recommendations for next steps or actions to take</p>
+                
+                <div class="content-card">
+                    <div class="question-container">
+                        <div class="question-progress" id="module1-progress">Question 1 of 4</div>
+                        
+                        <div class="question active" id="module1-q1">
+                            <h3>1. What is the Decision-First Approach?</h3>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="module1-q1" value="a">
+                                    <span>Starting with data collection before defining objectives</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="module1-q1" value="b">
+                                    <span>Identifying the specific decision you need to make before gathering information</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="module1-q1" value="c">
+                                    <span>Making quick decisions without thorough analysis</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="module1-q1" value="d">
+                                    <span>Prioritizing speed over accuracy in decision-making</span>
+                                </label>
                             </div>
-                            
-                            <div class="question-content">
-                                <p><strong>AI Response:</strong> "Your website traffic increased by 23% this month compared to last month, with the blog section showing the highest growth at 45%. Based on this trend, you should prioritize creating more blog content in the categories that are performing best: 'AI Templates' and 'Productivity Tips'."</p>
-                                
-                                <div class="form-group">
-                                    <label>Is this response actionable or vague?</label>
-                                    <div class="radio-group">
-                                        <label><input type="radio" name="m1q1" value="actionable" onchange="checkAnswer('m1q1', 'actionable')"> Actionable</label>
-                                        <label><input type="radio" name="m1q1" value="vague" onchange="checkAnswer('m1q1', 'actionable')"> Vague</label>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="feedback" id="m1q1-feedback" style="display: none;"></div>
-                            <button class="btn btn-primary next-btn" id="m1q1-next" onclick="nextQuestion('module1', 1)" disabled>Next Question →</button>
+                            <div class="feedback" id="module1-q1-feedback"></div>
+                            <button class="btn btn-primary" onclick="checkAnswer('module1', 1)" disabled id="module1-q1-btn">Next Question</button>
                         </div>
-                    </div>
 
-                    <!-- Question 2 -->
-                    <div class="question" id="m1q2">
-                        <h2>1.2 Identifying Missing Elements</h2>
-                        <div class="content-card">
-                            <div class="question-content">
-                                <p><strong>AI Response:</strong> "Customer satisfaction has decreased slightly."</p>
-                                
-                                <div class="form-group">
-                                    <label>What elements are missing from this response? (Select all that apply)</label>
-                                    <div class="checkbox-group">
-                                        <label><input type="checkbox" name="m1q2" value="specificity" onchange="checkMultipleAnswer('m1q2', ['specificity', 'context', 'direction'])"> Specificity (how much decrease?)</label>
-                                        <label><input type="checkbox" name="m1q2" value="context" onchange="checkMultipleAnswer('m1q2', ['specificity', 'context', 'direction'])"> Context (compared to what?)</label>
-                                        <label><input type="checkbox" name="m1q2" value="direction" onchange="checkMultipleAnswer('m1q2', ['specificity', 'context', 'direction'])"> Direction (what should be done?)</label>
-                                        <label><input type="checkbox" name="m1q2" value="none" onchange="checkMultipleAnswer('m1q2', ['specificity', 'context', 'direction'])"> Nothing is missing</label>
-                                    </div>
-                                </div>
+                        <div class="question" id="module1-q2">
+                            <h3>2. Which of the following is an example of actionable information?</h3>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="module1-q2" value="a">
+                                    <span>"Sales are down this quarter"</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="module1-q2" value="b">
+                                    <span>"Sales decreased 15% compared to Q2, primarily in the Northeast region. Recommend increasing marketing spend by $10K in that region and launching a customer retention campaign by month-end."</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="module1-q2" value="c">
+                                    <span>"We need to improve our marketing"</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="module1-q2" value="d">
+                                    <span>"Customers seem unhappy"</span>
+                                </label>
                             </div>
-                            
-                            <div class="feedback" id="m1q2-feedback" style="display: none;"></div>
-                            <button class="btn btn-primary next-btn" id="m1q2-next" onclick="nextQuestion('module1', 2)" disabled>Next Question →</button>
+                            <div class="feedback" id="module1-q2-feedback"></div>
+                            <button class="btn btn-primary" onclick="checkAnswer('module1', 2)" disabled id="module1-q2-btn">Next Question</button>
                         </div>
-                    </div>
 
-                    <!-- Question 3 -->
-                    <div class="question" id="m1q3">
-                        <h2>1.3 Transforming Vague Information</h2>
-                        <div class="content-card">
-                            <div class="question-content">
-                                <p><strong>Vague Statement:</strong> "Your podcast is growing."</p>
-                                
-                                <div class="form-group">
-                                    <label for="m1q3-answer">Rewrite this to include specificity, context, and direction:</label>
-                                    <textarea id="m1q3-answer" placeholder="Transform this vague statement into actionable information..." onchange="checkTextAnswer('m1q3', ['specific numbers', 'comparison', 'recommendation'])"></textarea>
-                                </div>
+                        <div class="question" id="module1-q3">
+                            <h3>3. Describe a situation where you received vague information and explain how you would transform it into actionable information using the Decision-First Approach.</h3>
+                            <div class="form-group">
+                                <textarea id="module1-q3-answer" placeholder="Describe your situation and transformation approach..." rows="6"></textarea>
                             </div>
-                            
-                            <div class="feedback" id="m1q3-feedback" style="display: none;"></div>
-                            <button class="btn btn-primary next-btn" id="m1q3-next" onclick="nextQuestion('module1', 3)" disabled>Next Question →</button>
+                            <div class="feedback" id="module1-q3-feedback"></div>
+                            <button class="btn btn-primary" onclick="checkAnswer('module1', 3)" disabled id="module1-q3-btn">Next Question</button>
                         </div>
-                    </div>
 
-                    <!-- Question 4 -->
-                    <div class="question" id="m1q4">
-                        <h2>1.4 Decision-First Approach</h2>
-                        <div class="content-card">
-                            <div class="resource-box">
-                                <h4>💡 Decision-First Framework</h4>
-                                <p>Instead of asking "Tell me about X," ask "I need to decide Y. Please analyze X to show me Z."</p>
+                        <div class="question" id="module1-q4">
+                            <h3>4. Create a template that transforms vague business requests into actionable information using the Decision-First Approach.</h3>
+                            <div class="form-group">
+                                <label for="module1-q4-answer">Your Template:</label>
+                                <textarea id="module1-q4-answer" placeholder="Create a template that includes context, decision identification, information requirements, and action steps..." rows="8"></textarea>
                             </div>
-                            
-                            <div class="question-content">
-                                <p><strong>Vague Request:</strong> "Tell me about our website performance."</p>
-                                
-                                <div class="form-group">
-                                    <label for="m1q4-decision">What specific decision needs to be made?</label>
-                                    <textarea id="m1q4-decision" placeholder="Identify the decision..." onchange="checkDecisionAnswer('m1q4')"></textarea>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="m1q4-prompt">Write a Decision-First prompt:</label>
-                                    <textarea id="m1q4-prompt" placeholder="I need to decide... Please analyze... to show me..." onchange="checkDecisionAnswer('m1q4')"></textarea>
-                                </div>
-                            </div>
-                            
-                            <div class="feedback" id="m1q4-feedback" style="display: none;"></div>
-                            <button class="btn btn-primary next-btn" id="m1q4-next" onclick="showSection('module2')" disabled>Complete Module 1 →</button>
+                            <div class="feedback" id="module1-q4-feedback"></div>
+                            <button class="btn btn-primary" onclick="checkAnswer('module1', 4)" disabled id="module1-q4-btn">Complete Module 1</button>
                         </div>
                     </div>
                 </div>
@@ -253,81 +285,62 @@
                 <div class="module-header">
                     <span class="module-badge">Module 2</span>
                     <h1>Building Your First Templates</h1>
-                    <p>Master the four key components of effective templates, learn to identify and fill gaps in your prompts, and develop a systematic testing framework to ensure consistent, high-quality results.</p>
+                    <p>Master the four essential components of effective templates and learn systematic approaches to identify gaps, test performance, and refine your templates for consistent, high-quality results.</p>
                 </div>
-
-                <div class="question-container">
-                    <div class="question-progress">
-                        <span id="module2-progress">Question 1 of 3</span>
-                    </div>
-
-                    <!-- Question 1 -->
-                    <div class="question active" id="m2q1">
-                        <h2>2.1 The Four Template Components</h2>
-                        <div class="content-card">
-                            <div class="resource-box">
-                                <h4>🏗️ The Four Template Components</h4>
-                                <p><strong>1. Context:</strong> Who you are, what you do, your situation</p>
-                                <p><strong>2. Purpose:</strong> The specific goal or decision you need to make</p>
-                                <p><strong>3. Structure:</strong> How you want the output organized</p>
-                                <p><strong>4. Parameters:</strong> The specific data, constraints, or variables</p>
+                
+                <div class="content-card">
+                    <div class="question-container">
+                        <div class="question-progress" id="module2-progress">Question 1 of 3</div>
+                        
+                        <div class="question active" id="module2-q1">
+                            <h3>1. Create a Context section for a business performance analysis template. Include your role, industry, and relevant constraints.</h3>
+                            <div class="form-group">
+                                <textarea id="module2-q1-answer" placeholder="Define the context for your business performance analysis template..." rows="6"></textarea>
                             </div>
-                            
-                            <div class="question-content">
-                                <p>Read this template and identify the Context component:</p>
-                                <div class="template-example">
-                                    <p>"I'm a fitness coach who works with busy professionals. I need to create a 4-week workout plan for a client who wants to lose 15 pounds and can only work out 3 times per week for 30 minutes. Please structure this as: 1. Weekly overview 2. Daily workout details 3. Progression plan 4. Nutrition guidelines. Client details: 35 years old, beginner level, has dumbbells and resistance bands, works from home."</p>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="m2q1-answer">What is the Context in this template?</label>
-                                    <textarea id="m2q1-answer" placeholder="Identify the context component..." onchange="checkTemplateComponent('m2q1', 'fitness coach who works with busy professionals')"></textarea>
-                                </div>
-                            </div>
-                            
-                            <div class="feedback" id="m2q1-feedback" style="display: none;"></div>
-                            <button class="btn btn-primary next-btn" id="m2q1-next" onclick="nextQuestion('module2', 1)" disabled>Next Question →</button>
+                            <div class="feedback" id="module2-q1-feedback"></div>
+                            <button class="btn btn-primary" onclick="checkAnswer('module2', 1)" disabled id="module2-q1-btn">Next Question</button>
                         </div>
-                    </div>
 
-                    <!-- Question 2 -->
-                    <div class="question" id="m2q2">
-                        <h2>2.2 Identifying Template Gaps</h2>
-                        <div class="content-card">
-                            <div class="question-content">
-                                <p><strong>Weak Template:</strong> "Help me with my social media strategy."</p>
-                                
-                                <div class="form-group">
-                                    <label>What components are missing? (Select all that apply)</label>
-                                    <div class="checkbox-group">
-                                        <label><input type="checkbox" name="m2q2" value="context" onchange="checkMultipleAnswer('m2q2', ['context', 'purpose', 'structure', 'parameters'])"> Context (who are you?)</label>
-                                        <label><input type="checkbox" name="m2q2" value="purpose" onchange="checkMultipleAnswer('m2q2', ['context', 'purpose', 'structure', 'parameters'])"> Purpose (what decision?)</label>
-                                        <label><input type="checkbox" name="m2q2" value="structure" onchange="checkMultipleAnswer('m2q2', ['context', 'purpose', 'structure', 'parameters'])"> Structure (how organized?)</label>
-                                        <label><input type="checkbox" name="m2q2" value="parameters" onchange="checkMultipleAnswer('m2q2', ['context', 'purpose', 'structure', 'parameters'])"> Parameters (what data?)</label>
-                                    </div>
-                                </div>
+                        <div class="question" id="module2-q2">
+                            <h3>2. What are the four core components that every effective template must include?</h3>
+                            <div class="checkbox-group">
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="module2-q2" value="context">
+                                    <span>Context - Your role, situation, and background</span>
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="module2-q2" value="purpose">
+                                    <span>Purpose - What you want to achieve</span>
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="module2-q2" value="structure">
+                                    <span>Structure - How you want the output organized</span>
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="module2-q2" value="parameters">
+                                    <span>Parameters - Specific data and constraints</span>
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="module2-q2" value="timeline">
+                                    <span>Timeline - When the task should be completed</span>
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="module2-q2" value="budget">
+                                    <span>Budget - Financial constraints and resources</span>
+                                </label>
                             </div>
-                            
-                            <div class="feedback" id="m2q2-feedback" style="display: none;"></div>
-                            <button class="btn btn-primary next-btn" id="m2q2-next" onclick="nextQuestion('module2', 2)" disabled>Next Question →</button>
+                            <div class="feedback" id="module2-q2-feedback"></div>
+                            <button class="btn btn-primary" onclick="checkAnswer('module2', 2)" disabled id="module2-q2-btn">Next Question</button>
                         </div>
-                    </div>
 
-                    <!-- Question 3 -->
-                    <div class="question" id="m2q3">
-                        <h2>2.3 Building a Complete Template</h2>
-                        <div class="content-card">
-                            <div class="question-content">
-                                <p>Create a complete template for analyzing email marketing performance. Include all four components.</p>
-                                
-                                <div class="form-group">
-                                    <label for="m2q3-answer">Your Complete Template:</label>
-                                    <textarea id="m2q3-answer" placeholder="Write a template with Context, Purpose, Structure, and Parameters..." onchange="checkCompleteTemplate('m2q3')"></textarea>
-                                </div>
+                        <div class="question" id="module2-q3">
+                            <h3>3. Build a complete template for analyzing monthly business performance. Include all four core components and ensure it produces actionable insights.</h3>
+                            <div class="form-group">
+                                <label for="module2-q3-answer">Complete Business Performance Template:</label>
+                                <textarea id="module2-q3-answer" placeholder="Create a comprehensive template with Context, Purpose, Structure, and Parameters..." rows="10"></textarea>
                             </div>
-                            
-                            <div class="feedback" id="m2q3-feedback" style="display: none;"></div>
-                            <button class="btn btn-primary next-btn" id="m2q3-next" onclick="showSection('module3')" disabled>Complete Module 2 →</button>
+                            <div class="feedback" id="module2-q3-feedback"></div>
+                            <button class="btn btn-primary" onclick="checkAnswer('module2', 3)" disabled id="module2-q3-btn">Complete Module 2</button>
                         </div>
                     </div>
                 </div>
@@ -338,80 +351,54 @@
                 <div class="module-header">
                     <span class="module-badge">Module 3</span>
                     <h1>The Four Core Components</h1>
-                    <p>Master the essential components of building robust, scalable template systems: Data Collection, Categorization, Action, and Quality Control.</p>
+                    <p>Deep dive into each component of effective templates. Learn advanced techniques for crafting precise context, clear purpose statements, structured outputs, and comprehensive parameters that consistently deliver professional results.</p>
                 </div>
-
-                <div class="question-container">
-                    <div class="question-progress">
-                        <span id="module3-progress">Question 1 of 3</span>
-                    </div>
-
-                    <!-- Question 1 -->
-                    <div class="question active" id="m3q1">
-                        <h2>3.1 Data Collection Methods</h2>
-                        <div class="content-card">
-                            <div class="resource-box">
-                                <h4>📊 Data Collection Methods</h4>
-                                <p><strong>Structured Queries:</strong> Specific questions that gather targeted information</p>
-                                <p><strong>Direct Input:</strong> Raw data you provide to be analyzed</p>
-                                <p><strong>Comparative Analysis:</strong> Side-by-side evaluation of options</p>
+                
+                <div class="content-card">
+                    <div class="question-container">
+                        <div class="question-progress" id="module3-progress">Question 1 of 3</div>
+                        
+                        <div class="question active" id="module3-q1">
+                            <h3>1. Which component ensures your AI understands your specific situation and constraints?</h3>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="module3-q1" value="a">
+                                    <span>Purpose</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="module3-q1" value="b">
+                                    <span>Structure</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="module3-q1" value="c">
+                                    <span>Context</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="module3-q1" value="d">
+                                    <span>Parameters</span>
+                                </label>
                             </div>
-                            
-                            <div class="question-content">
-                                <p><strong>Scenario:</strong> You need to analyze your top 5 competitors in the project management software space.</p>
-                                
-                                <div class="form-group">
-                                    <label>What's the best data collection method for this scenario?</label>
-                                    <div class="radio-group">
-                                        <label><input type="radio" name="m3q1" value="structured" onchange="checkAnswer('m3q1', 'structured')"> Structured Queries</label>
-                                        <label><input type="radio" name="m3q1" value="direct" onchange="checkAnswer('m3q1', 'structured')"> Direct Input</label>
-                                        <label><input type="radio" name="m3q1" value="comparative" onchange="checkAnswer('m3q1', 'structured')"> Comparative Analysis</label>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="feedback" id="m3q1-feedback" style="display: none;"></div>
-                            <button class="btn btn-primary next-btn" id="m3q1-next" onclick="nextQuestion('module3', 1)" disabled>Next Question →</button>
+                            <div class="feedback" id="module3-q1-feedback"></div>
+                            <button class="btn btn-primary" onclick="checkAnswer('module3', 1)" disabled id="module3-q1-btn">Next Question</button>
                         </div>
-                    </div>
 
-                    <!-- Question 2 -->
-                    <div class="question" id="m3q2">
-                        <h2>3.2 Categorization Frameworks</h2>
-                        <div class="content-card">
-                            <div class="question-content">
-                                <p><strong>Scenario:</strong> You have 50 customer feedback comments that need to be organized for analysis.</p>
-                                
-                                <div class="form-group">
-                                    <label>What categorization framework would work best?</label>
-                                    <div class="radio-group">
-                                        <label><input type="radio" name="m3q2" value="thematic" onchange="checkAnswer('m3q2', 'thematic')"> Thematic (by topic/subject)</label>
-                                        <label><input type="radio" name="m3q2" value="urgency" onchange="checkAnswer('m3q2', 'thematic')"> Urgency/Importance Matrix</label>
-                                        <label><input type="radio" name="m3q2" value="chronological" onchange="checkAnswer('m3q2', 'thematic')"> Chronological (by date)</label>
-                                    </div>
-                                </div>
+                        <div class="question" id="module3-q2">
+                            <h3>2. Create a Structure section that organizes output into clear, actionable categories for a competitive analysis report.</h3>
+                            <div class="form-group">
+                                <textarea id="module3-q2-answer" placeholder="Define how you want the competitive analysis organized and formatted..." rows="6"></textarea>
                             </div>
-                            
-                            <div class="feedback" id="m3q2-feedback" style="display: none;"></div>
-                            <button class="btn btn-primary next-btn" id="m3q2-next" onclick="nextQuestion('module3', 2)" disabled>Next Question →</button>
+                            <div class="feedback" id="module3-q2-feedback"></div>
+                            <button class="btn btn-primary" onclick="checkAnswer('module3', 2)" disabled id="module3-q2-btn">Next Question</button>
                         </div>
-                    </div>
 
-                    <!-- Question 3 -->
-                    <div class="question" id="m3q3">
-                        <h2>3.3 Action Frameworks</h2>
-                        <div class="content-card">
-                            <div class="question-content">
-                                <p><strong>Insight:</strong> "Your blog traffic increased 40% but bounce rate is 85%"</p>
-                                
-                                <div class="form-group">
-                                    <label for="m3q3-answer">Write a specific action framework for this insight:</label>
-                                    <textarea id="m3q3-answer" placeholder="Create actionable next steps..." onchange="checkActionFramework('m3q3')"></textarea>
-                                </div>
+                        <div class="question" id="module3-q3">
+                            <h3>3. Design an action framework that transforms analysis into specific, time-bound recommendations with clear accountability.</h3>
+                            <div class="form-group">
+                                <label for="module3-q3-answer">Action Framework Template:</label>
+                                <textarea id="module3-q3-answer" placeholder="Create a framework that converts insights into actionable steps with timelines and responsibilities..." rows="8"></textarea>
                             </div>
-                            
-                            <div class="feedback" id="m3q3-feedback" style="display: none;"></div>
-                            <button class="btn btn-primary next-btn" id="m3q3-next" onclick="showSection('module4')" disabled>Complete Module 3 →</button>
+                            <div class="feedback" id="module3-q3-feedback"></div>
+                            <button class="btn btn-primary" onclick="checkAnswer('module3', 3)" disabled id="module3-q3-btn">Complete Module 3</button>
                         </div>
                     </div>
                 </div>
@@ -422,95 +409,49 @@
                 <div class="module-header">
                     <span class="module-badge">Module 4</span>
                     <h1>Industry-Specific Applications</h1>
-                    <p>Apply your template-building skills to real-world, industry-specific scenarios and create tailored solutions for common business challenges.</p>
+                    <p>Adapt your template skills to specific industries and use cases. Learn to create specialized templates for business analysis, content strategy, and other professional contexts with industry-appropriate terminology and metrics.</p>
                 </div>
-
-                <div class="question-container">
-                    <div class="question-progress">
-                        <span id="module4-progress">Question 1 of 3</span>
-                    </div>
-
-                    <!-- Question 1 -->
-                    <div class="question active" id="m4q1">
-                        <h2>4.1 Business Performance Template</h2>
-                        <div class="content-card">
-                            <div class="resource-box">
-                                <h4>📈 Business Performance Analysis</h4>
-                                <p>Create templates that provide actionable insights for business decision-making</p>
-                                <p><strong>Key Elements:</strong> Revenue trends, customer metrics, operational efficiency, action plans</p>
+                
+                <div class="content-card">
+                    <div class="question-container">
+                        <div class="question-progress" id="module4-progress">Question 1 of 3</div>
+                        
+                        <div class="question active" id="module4-q1">
+                            <h3>1. Create a business performance template that includes industry-specific KPIs and actionable recommendations.</h3>
+                            <div class="form-group">
+                                <label for="module4-q1-answer">Business Performance Template:</label>
+                                <textarea id="module4-q1-answer" placeholder="Design a template for business performance analysis with specific KPIs and recommendation framework..." rows="8"></textarea>
                             </div>
-                            
-                            <div class="example-box">
-                                <h4>Example Template Structure:</h4>
-                                <p><strong>CONTEXT:</strong> I'm a small business owner who needs weekly performance insights to make data-driven decisions.</p>
-                                <p><strong>PURPOSE:</strong> Analyze weekly performance to identify trends, issues, and opportunities for the upcoming week.</p>
-                                <p><strong>STRUCTURE:</strong> 1. Executive Summary 2. Revenue Analysis 3. Customer Metrics 4. Operational Efficiency 5. Action Plan</p>
-                                <p><strong>PARAMETERS:</strong> Week number, revenue, customer count, costs, top products</p>
-                            </div>
-                            
-                            <div class="question-content">
-                                <p>Customize this business performance template for your industry or business type:</p>
-                                
-                                <div class="form-group">
-                                    <label for="m4q1-answer">Your Customized Business Performance Template:</label>
-                                    <textarea id="m4q1-answer" placeholder="Adapt the template for your specific business context..." onchange="checkBusinessTemplate('m4q1')"></textarea>
-                                </div>
-                            </div>
-                            
-                            <div class="feedback" id="m4q1-feedback" style="display: none;"></div>
-                            <button class="btn btn-primary next-btn" id="m4q1-next" onclick="nextQuestion('module4', 1)" disabled>Next Question →</button>
+                            <div class="feedback" id="module4-q1-feedback"></div>
+                            <button class="btn btn-primary" onclick="checkAnswer('module4', 1)" disabled id="module4-q1-btn">Next Question</button>
                         </div>
-                    </div>
 
-                    <!-- Question 2 -->
-                    <div class="question" id="m4q2">
-                        <h2>4.2 Content Creator Performance Template</h2>
-                        <div class="content-card">
-                            <div class="resource-box">
-                                <h4>🎥 Content Performance Tracking</h4>
-                                <p>Track and optimize content performance across multiple platforms</p>
-                                <p><strong>Key Metrics:</strong> Engagement rates, reach, conversions, audience growth</p>
+                        <div class="question" id="module4-q2">
+                            <h3>2. Develop a content strategy template for social media performance analysis and optimization.</h3>
+                            <div class="form-group">
+                                <label for="module4-q2-answer">Content Strategy Template:</label>
+                                <textarea id="module4-q2-answer" placeholder="Create a template for analyzing and optimizing social media content performance..." rows="8"></textarea>
                             </div>
-                            
-                            <div class="question-content">
-                                <p>Create a template for tracking content creator performance across platforms (YouTube, Instagram, Blog, etc.):</p>
-                                
-                                <div class="form-group">
-                                    <label for="m4q2-answer">Your Content Creator Performance Template:</label>
-                                    <textarea id="m4q2-answer" placeholder="Design a template for content performance analysis..." onchange="checkContentTemplate('m4q2')"></textarea>
-                                </div>
-                            </div>
-                            
-                            <div class="feedback" id="m4q2-feedback" style="display: none;"></div>
-                            <button class="btn btn-primary next-btn" id="m4q2-next" onclick="nextQuestion('module4', 2)" disabled>Next Question →</button>
+                            <div class="feedback" id="module4-q2-feedback"></div>
+                            <button class="btn btn-primary" onclick="checkAnswer('module4', 2)" disabled id="module4-q2-btn">Next Question</button>
                         </div>
-                    </div>
 
-                    <!-- Question 3 -->
-                    <div class="question" id="m4q3">
-                        <h2>4.3 Industry-Specific Template Development</h2>
-                        <div class="content-card">
-                            <div class="question-content">
-                                <p>Choose an industry you're familiar with and develop a template for a common task within that industry.</p>
-                                
-                                <div class="form-group">
-                                    <label for="m4q3-industry">Industry:</label>
-                                    <input type="text" id="m4q3-industry" placeholder="e.g., Healthcare, Education, Real Estate..." onchange="checkIndustryTemplate('m4q3')">
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="m4q3-task">Common Task:</label>
-                                    <input type="text" id="m4q3-task" placeholder="e.g., Patient intake, Lesson planning, Property evaluation..." onchange="checkIndustryTemplate('m4q3')">
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="m4q3-template">Your Industry-Specific Template:</label>
-                                    <textarea id="m4q3-template" placeholder="Create a complete template for your chosen industry task..." onchange="checkIndustryTemplate('m4q3')"></textarea>
-                                </div>
+                        <div class="question" id="module4-q3">
+                            <h3>3. Choose an industry and create a specialized template that addresses specific challenges and requirements for that sector.</h3>
+                            <div class="form-group">
+                                <label for="module4-q3-industry">Selected Industry:</label>
+                                <input type="text" id="module4-q3-industry" placeholder="e.g., Healthcare, Finance, Education, etc.">
                             </div>
-                            
-                            <div class="feedback" id="m4q3-feedback" style="display: none;"></div>
-                            <button class="btn btn-primary next-btn" id="m4q3-next" onclick="showSection('module5')" disabled>Complete Module 4 →</button>
+                            <div class="form-group">
+                                <label for="module4-q3-challenge">Industry Challenge:</label>
+                                <textarea id="module4-q3-challenge" placeholder="Describe the specific challenge this template addresses..." rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="module4-q3-template">Industry-Specific Template:</label>
+                                <textarea id="module4-q3-template" placeholder="Create your specialized template with industry terminology and requirements..." rows="8"></textarea>
+                            </div>
+                            <div class="feedback" id="module4-q3-feedback"></div>
+                            <button class="btn btn-primary" onclick="checkAnswer('module4', 3)" disabled id="module4-q3-btn">Complete Module 4</button>
                         </div>
                     </div>
                 </div>
@@ -521,84 +462,41 @@
                 <div class="module-header">
                     <span class="module-badge">Module 5</span>
                     <h1>Advanced Template Techniques</h1>
-                    <p>Elevate your skills by learning to build dynamic, multi-step templates that handle complex scenarios, comparisons, and advanced categorization.</p>
+                    <p>Master sophisticated template strategies including scenario planning, comparative analysis, and multi-level categorization systems. Learn to create templates that handle complex decision-making and strategic planning scenarios.</p>
                 </div>
-
-                <div class="question-container">
-                    <div class="question-progress">
-                        <span id="module5-progress">Question 1 of 3</span>
-                    </div>
-
-                    <!-- Question 1 -->
-                    <div class="question active" id="m5q1">
-                        <h2>5.1 Scenario Planning Templates</h2>
-                        <div class="content-card">
-                            <div class="resource-box">
-                                <h4>🎯 Scenario Planning</h4>
-                                <p>Create templates that help prepare for multiple potential futures</p>
-                                <p><strong>Key Elements:</strong> Best case, worst case, most likely scenarios with action plans</p>
+                
+                <div class="content-card">
+                    <div class="question-container">
+                        <div class="question-progress" id="module5-progress">Question 1 of 3</div>
+                        
+                        <div class="question active" id="module5-q1">
+                            <h3>1. Design a scenario planning template that evaluates multiple future scenarios with different assumptions and outcomes.</h3>
+                            <div class="form-group">
+                                <label for="module5-q1-answer">Scenario Planning Template:</label>
+                                <textarea id="module5-q1-answer" placeholder="Create a template for scenario planning with multiple scenarios, assumptions, and outcome analysis..." rows="10"></textarea>
                             </div>
-                            
-                            <div class="example-box">
-                                <h4>Example: Retail Business Supply Chain Disruption</h4>
-                                <p><strong>Scenario 1:</strong> Minor delays (2-3 weeks) - Increase inventory buffer, communicate with customers</p>
-                                <p><strong>Scenario 2:</strong> Major disruption (1-2 months) - Find alternative suppliers, adjust product mix</p>
-                                <p><strong>Scenario 3:</strong> Complete shutdown (3+ months) - Pivot to different products, explore new markets</p>
-                            </div>
-                            
-                            <div class="question-content">
-                                <p>Create a scenario planning template for a business challenge you might face:</p>
-                                
-                                <div class="form-group">
-                                    <label for="m5q1-answer">Your Scenario Planning Template:</label>
-                                    <textarea id="m5q1-answer" placeholder="Create a template that addresses multiple potential scenarios..." onchange="checkScenarioTemplate('m5q1')"></textarea>
-                                </div>
-                            </div>
-                            
-                            <div class="feedback" id="m5q1-feedback" style="display: none;"></div>
-                            <button class="btn btn-primary next-btn" id="m5q1-next" onclick="nextQuestion('module5', 1)" disabled>Next Question →</button>
+                            <div class="feedback" id="module5-q1-feedback"></div>
+                            <button class="btn btn-primary" onclick="checkAnswer('module5', 1)" disabled id="module5-q1-btn">Next Question</button>
                         </div>
-                    </div>
 
-                    <!-- Question 2 -->
-                    <div class="question" id="m5q2">
-                        <h2>5.2 Comparative Analysis Templates</h2>
-                        <div class="content-card">
-                            <div class="resource-box">
-                                <h4>⚖️ Comparative Analysis</h4>
-                                <p>Systematically compare options to make informed decisions</p>
-                                <p><strong>Framework:</strong> Criteria definition, scoring system, weighted evaluation</p>
+                        <div class="question" id="module5-q2">
+                            <h3>2. Create a comparative analysis template that systematically evaluates options using weighted criteria and scoring systems.</h3>
+                            <div class="form-group">
+                                <label for="module5-q2-answer">Comparative Analysis Template:</label>
+                                <textarea id="module5-q2-answer" placeholder="Design a template for comparing options with criteria, weights, and scoring methodology..." rows="10"></textarea>
                             </div>
-                            
-                            <div class="question-content">
-                                <p>Design a template for comparing three software tools for a specific purpose (e.g., project management, email marketing, CRM):</p>
-                                
-                                <div class="form-group">
-                                    <label for="m5q2-answer">Your Comparative Analysis Template:</label>
-                                    <textarea id="m5q2-answer" placeholder="Create a template for systematic comparison of options..." onchange="checkComparativeTemplate('m5q2')"></textarea>
-                                </div>
-                            </div>
-                            
-                            <div class="feedback" id="m5q2-feedback" style="display: none;"></div>
-                            <button class="btn btn-primary next-btn" id="m5q2-next" onclick="nextQuestion('module5', 2)" disabled>Next Question →</button>
+                            <div class="feedback" id="module5-q2-feedback"></div>
+                            <button class="btn btn-primary" onclick="checkAnswer('module5', 2)" disabled id="module5-q2-btn">Next Question</button>
                         </div>
-                    </div>
 
-                    <!-- Question 3 -->
-                    <div class="question" id="m5q3">
-                        <h2>5.3 Advanced Categorization Techniques</h2>
-                        <div class="content-card">
-                            <div class="question-content">
-                                <p>You have 100 customer support tickets. Create a template that uses multi-level categorization (e.g., by department, then by issue type, then by urgency):</p>
-                                
-                                <div class="form-group">
-                                    <label for="m5q3-answer">Your Multi-Level Categorization Template:</label>
-                                    <textarea id="m5q3-answer" placeholder="Design a template for complex categorization..." onchange="checkCategorizationTemplate('m5q3')"></textarea>
-                                </div>
+                        <div class="question" id="module5-q3">
+                            <h3>3. Develop a multi-level categorization system that organizes complex information across multiple dimensions for strategic analysis.</h3>
+                            <div class="form-group">
+                                <label for="module5-q3-answer">Multi-Level Categorization Template:</label>
+                                <textarea id="module5-q3-answer" placeholder="Create a template with sophisticated categorization across multiple dimensions..." rows="10"></textarea>
                             </div>
-                            
-                            <div class="feedback" id="m5q3-feedback" style="display: none;"></div>
-                            <button class="btn btn-primary next-btn" id="m5q3-next" onclick="showSection('module6')" disabled>Complete Module 5 →</button>
+                            <div class="feedback" id="module5-q3-feedback"></div>
+                            <button class="btn btn-primary" onclick="checkAnswer('module5', 3)" disabled id="module5-q3-btn">Complete Module 5</button>
                         </div>
                     </div>
                 </div>
@@ -609,84 +507,41 @@
                 <div class="module-header">
                     <span class="module-badge">Module 6</span>
                     <h1>System Design & Integration</h1>
-                    <p>Learn to design and build integrated template systems that automate complex workflows, ensure consistency, and scale with your needs.</p>
+                    <p>Learn to create interconnected template systems where outputs from one template feed into another. Master integration points, data flow design, and systematic approaches to building scalable template workflows.</p>
                 </div>
-
-                <div class="question-container">
-                    <div class="question-progress">
-                        <span id="module6-progress">Question 1 of 3</span>
-                    </div>
-
-                    <!-- Question 1 -->
-                    <div class="question active" id="m6q1">
-                        <h2>6.1 Template System Design</h2>
-                        <div class="content-card">
-                            <div class="resource-box">
-                                <h4>🔗 Template Systems</h4>
-                                <p>Design interconnected templates that work together as a complete workflow</p>
-                                <p><strong>Example:</strong> Content Marketing System - Strategy → Calendar → Brief → Review → Performance</p>
+                
+                <div class="content-card">
+                    <div class="question-container">
+                        <div class="question-progress" id="module6-progress">Question 1 of 3</div>
+                        
+                        <div class="question active" id="module6-q1">
+                            <h3>1. Design a template system where the output of one template serves as input for another, creating a workflow for complex analysis.</h3>
+                            <div class="form-group">
+                                <label for="module6-q1-answer">Template System Design:</label>
+                                <textarea id="module6-q1-answer" placeholder="Describe your interconnected template system with input/output flow..." rows="10"></textarea>
                             </div>
-                            
-                            <div class="question-content">
-                                <p>Design a template system for a business process like content marketing, lead generation, or project management. Include at least 3 interconnected templates:</p>
-                                
-                                <div class="form-group">
-                                    <label for="m6q1-process">Business Process:</label>
-                                    <input type="text" id="m6q1-process" placeholder="e.g., Content Marketing, Lead Generation..." onchange="checkSystemDesign('m6q1')">
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="m6q1-system">Your Template System Design:</label>
-                                    <textarea id="m6q1-system" placeholder="Describe your interconnected template system..." onchange="checkSystemDesign('m6q1')"></textarea>
-                                </div>
-                            </div>
-                            
-                            <div class="feedback" id="m6q1-feedback" style="display: none;"></div>
-                            <button class="btn btn-primary next-btn" id="m6q1-next" onclick="nextQuestion('module6', 1)" disabled>Next Question →</button>
+                            <div class="feedback" id="module6-q1-feedback"></div>
+                            <button class="btn btn-primary" onclick="checkAnswer('module6', 1)" disabled id="module6-q1-btn">Next Question</button>
                         </div>
-                    </div>
 
-                    <!-- Question 2 -->
-                    <div class="question" id="m6q2">
-                        <h2>6.2 Template Integration Points</h2>
-                        <div class="content-card">
-                            <div class="example-box">
-                                <h4>Example: Content Marketing Integration Points</h4>
-                                <p><strong>Strategy → Calendar:</strong> Strategic themes become content categories</p>
-                                <p><strong>Calendar → Brief:</strong> Calendar items generate brief templates</p>
-                                <p><strong>Brief → Review:</strong> Brief requirements become evaluation criteria</p>
-                                <p><strong>Review → Performance:</strong> Quality scores inform performance expectations</p>
+                        <div class="question" id="module6-q2">
+                            <h3>2. Create an integration plan that shows how your templates connect with existing tools and data sources in a business environment.</h3>
+                            <div class="form-group">
+                                <label for="module6-q2-answer">Integration Plan:</label>
+                                <textarea id="module6-q2-answer" placeholder="Detail how templates integrate with existing business tools and data sources..." rows="10"></textarea>
                             </div>
-                            
-                            <div class="question-content">
-                                <p>For the template system you designed in 6.1, identify and describe the key integration points between templates:</p>
-                                
-                                <div class="form-group">
-                                    <label for="m6q2-answer">Integration Points:</label>
-                                    <textarea id="m6q2-answer" placeholder="Describe how your templates connect and share data..." onchange="checkIntegrationPoints('m6q2')"></textarea>
-                                </div>
-                            </div>
-                            
-                            <div class="feedback" id="m6q2-feedback" style="display: none;"></div>
-                            <button class="btn btn-primary next-btn" id="m6q2-next" onclick="nextQuestion('module6', 2)" disabled>Next Question →</button>
+                            <div class="feedback" id="module6-q2-feedback"></div>
+                            <button class="btn btn-primary" onclick="checkAnswer('module6', 2)" disabled id="module6-q2-btn">Next Question</button>
                         </div>
-                    </div>
 
-                    <!-- Question 3 -->
-                    <div class="question" id="m6q3">
-                        <h2>6.3 System Testing and Optimization</h2>
-                        <div class="content-card">
-                            <div class="question-content">
-                                <p>Describe how you would test and optimize the template system you designed. What metrics would you track?</p>
-                                
-                                <div class="form-group">
-                                    <label for="m6q3-answer">Testing and Optimization Plan:</label>
-                                    <textarea id="m6q3-answer" placeholder="Describe your testing approach and key metrics..." onchange="checkTestingPlan('m6q3')"></textarea>
-                                </div>
+                        <div class="question" id="module6-q3">
+                            <h3>3. Develop a testing and quality assurance plan for your template system, including error handling and performance optimization.</h3>
+                            <div class="form-group">
+                                <label for="module6-q3-answer">Testing & QA Plan:</label>
+                                <textarea id="module6-q3-answer" placeholder="Create a comprehensive testing plan with error handling and optimization strategies..." rows="10"></textarea>
                             </div>
-                            
-                            <div class="feedback" id="m6q3-feedback" style="display: none;"></div>
-                            <button class="btn btn-primary next-btn" id="m6q3-next" onclick="showSection('module7')" disabled>Complete Module 6 →</button>
+                            <div class="feedback" id="module6-q3-feedback"></div>
+                            <button class="btn btn-primary" onclick="checkAnswer('module6', 3)" disabled id="module6-q3-btn">Complete Module 6</button>
                         </div>
                     </div>
                 </div>
@@ -697,71 +552,41 @@
                 <div class="module-header">
                     <span class="module-badge">Module 7</span>
                     <h1>Polishing and Presenting Your Work</h1>
-                    <p>Learn to document, present, and organize your templates to create a professional, scalable, and easy-to-use system.</p>
+                    <p>Transform your templates into professional, shareable resources. Learn documentation best practices, presentation strategies, and organizational systems that make your templates valuable assets for teams and organizations.</p>
                 </div>
-
-                <div class="question-container">
-                    <div class="question-progress">
-                        <span id="module7-progress">Question 1 of 3</span>
-                    </div>
-
-                    <!-- Question 1 -->
-                    <div class="question active" id="m7q1">
-                        <h2>7.1 Template Documentation</h2>
-                        <div class="content-card">
-                            <div class="resource-box">
-                                <h4>📝 Documentation Best Practices</h4>
-                                <p>Good documentation makes templates easy to understand, use, and maintain</p>
-                                <p><strong>Include:</strong> Purpose, instructions, examples, troubleshooting</p>
+                
+                <div class="content-card">
+                    <div class="question-container">
+                        <div class="question-progress" id="module7-progress">Question 1 of 3</div>
+                        
+                        <div class="question active" id="module7-q1">
+                            <h3>1. Create comprehensive documentation for one of your templates, including purpose, instructions, examples, and troubleshooting guidance.</h3>
+                            <div class="form-group">
+                                <label for="module7-q1-answer">Template Documentation:</label>
+                                <textarea id="module7-q1-answer" placeholder="Write complete documentation with purpose, instructions, examples, and troubleshooting..." rows="12"></textarea>
                             </div>
-                            
-                            <div class="question-content">
-                                <p>Create a documentation template for the templates you've built. This should help others (or your future self) understand and use your templates effectively:</p>
-                                
-                                <div class="form-group">
-                                    <label for="m7q1-answer">Your Documentation Template:</label>
-                                    <textarea id="m7q1-answer" placeholder="Design a template for documenting other templates..." onchange="checkDocumentationTemplate('m7q1')"></textarea>
-                                </div>
-                            </div>
-                            
-                            <div class="feedback" id="m7q1-feedback" style="display: none;"></div>
-                            <button class="btn btn-primary next-btn" id="m7q1-next" onclick="nextQuestion('module7', 1)" disabled>Next Question →</button>
+                            <div class="feedback" id="module7-q1-feedback"></div>
+                            <button class="btn btn-primary" onclick="checkAnswer('module7', 1)" disabled id="module7-q1-btn">Next Question</button>
                         </div>
-                    </div>
 
-                    <!-- Question 2 -->
-                    <div class="question" id="m7q2">
-                        <h2>7.2 Presentation and Training Materials</h2>
-                        <div class="content-card">
-                            <div class="question-content">
-                                <p>Outline a short presentation or training session to teach others how to use one of the template systems you designed in a previous module:</p>
-                                
-                                <div class="form-group">
-                                    <label for="m7q2-answer">Presentation Outline:</label>
-                                    <textarea id="m7q2-answer" placeholder="Create an outline for teaching others to use your templates..." onchange="checkPresentationOutline('m7q2')"></textarea>
-                                </div>
+                        <div class="question" id="module7-q2">
+                            <h3>2. Design a presentation strategy for introducing your template system to stakeholders, including demonstration and training components.</h3>
+                            <div class="form-group">
+                                <label for="module7-q2-answer">Presentation Strategy:</label>
+                                <textarea id="module7-q2-answer" placeholder="Outline your strategy for presenting templates to stakeholders with demos and training..." rows="10"></textarea>
                             </div>
-                            
-                            <div class="feedback" id="m7q2-feedback" style="display: none;"></div>
-                            <button class="btn btn-primary next-btn" id="m7q2-next" onclick="nextQuestion('module7', 2)" disabled>Next Question →</button>
+                            <div class="feedback" id="module7-q2-feedback"></div>
+                            <button class="btn btn-primary" onclick="checkAnswer('module7', 2)" disabled id="module7-q2-btn">Next Question</button>
                         </div>
-                    </div>
 
-                    <!-- Question 3 -->
-                    <div class="question" id="m7q3">
-                        <h2>7.3 Template Library Organization</h2>
-                        <div class="content-card">
-                            <div class="question-content">
-                                <p>Describe a system for organizing a library of templates for a team or company. How would you structure it for easy access and scalability?</p>
-                                
-                                <div class="form-group">
-                                    <label for="m7q3-answer">Template Library Organization System:</label>
-                                    <textarea id="m7q3-answer" placeholder="Design an organizational system for template libraries..." onchange="checkOrganizationSystem('m7q3')"></textarea>
-                                </div>
+                        <div class="question" id="module7-q3">
+                            <h3>3. Develop an organizational system for managing your template library, including categorization, version control, and access management.</h3>
+                            <div class="form-group">
+                                <label for="module7-q3-answer">Template Library Organization System:</label>
+                                <textarea id="module7-q3-answer" placeholder="Create a system for organizing, categorizing, and managing your template library..." rows="10"></textarea>
                             </div>
-                            
-                            <div class="feedback" id="m7q3-feedback" style="display: none;"></div>
-                            <button class="btn btn-primary next-btn" id="m7q3-next" onclick="showSection('template-builder')" disabled>Complete Course! →</button>
+                            <div class="feedback" id="module7-q3-feedback"></div>
+                            <button class="btn btn-primary" onclick="checkAnswer('module7', 3)" disabled id="module7-q3-btn">Complete Module 7</button>
                         </div>
                     </div>
                 </div>
@@ -770,46 +595,73 @@
             <!-- Template Builder Section -->
             <section id="template-builder" class="content-section">
                 <div class="module-header">
-                    <h1>Template Builder</h1>
-                    <p>Create your own custom templates using our guided process.</p>
+                    <h1>🏗️ Template Builder</h1>
+                    <p>Create your own custom templates using our guided wizard. Build professional templates that consistently deliver high-quality results.</p>
                 </div>
                 
                 <div class="content-card">
-                    <div class="template-builder-wizard">
-                        <div class="wizard-step active" id="step1">
-                            <h3>Step 1: What decision do you need to make?</h3>
-                            <textarea id="builder-decision" placeholder="Describe the specific decision you need to make..."></textarea>
-                            <button class="btn btn-primary" onclick="nextBuilderStep(2)">Next →</button>
+                    <div class="template-builder">
+                        <div class="wizard-steps">
+                            <div class="wizard-step-indicator active" id="step-1">1</div>
+                            <div class="wizard-step-indicator" id="step-2">2</div>
+                            <div class="wizard-step-indicator" id="step-3">3</div>
+                            <div class="wizard-step-indicator" id="step-4">4</div>
                         </div>
-                        
-                        <div class="wizard-step" id="step2">
-                            <h3>Step 2: What's your context?</h3>
-                            <textarea id="builder-context" placeholder="Who are you? What's your role/situation?"></textarea>
-                            <button class="btn btn-secondary" onclick="nextBuilderStep(1)">← Back</button>
-                            <button class="btn btn-primary" onclick="nextBuilderStep(3)">Next →</button>
+
+                        <div class="wizard-step active" id="wizard-step-1">
+                            <h3>Step 1: Define Context</h3>
+                            <p>Describe your role, situation, and relevant background information.</p>
+                            <div class="form-group">
+                                <label for="template-context">Context</label>
+                                <textarea id="template-context" placeholder="I am a [role] working in [industry/situation]. My constraints include..." rows="4"></textarea>
+                            </div>
+                            <button class="btn btn-primary" onclick="nextWizardStep(2)">Next: Purpose →</button>
                         </div>
-                        
-                        <div class="wizard-step" id="step3">
-                            <h3>Step 3: How do you want the output structured?</h3>
-                            <textarea id="builder-structure" placeholder="Describe the format and organization you want..."></textarea>
-                            <button class="btn btn-secondary" onclick="nextBuilderStep(2)">← Back</button>
-                            <button class="btn btn-primary" onclick="nextBuilderStep(4)">Next →</button>
+
+                        <div class="wizard-step" id="wizard-step-2">
+                            <h3>Step 2: Define Purpose</h3>
+                            <p>Clearly state what you want to achieve with this template.</p>
+                            <div class="form-group">
+                                <label for="template-purpose">Purpose</label>
+                                <textarea id="template-purpose" placeholder="I need to [specific objective] in order to [desired outcome]..." rows="4"></textarea>
+                            </div>
+                            <button class="btn btn-outline" onclick="nextWizardStep(1)">← Back</button>
+                            <button class="btn btn-primary" onclick="nextWizardStep(3)">Next: Structure →</button>
                         </div>
-                        
-                        <div class="wizard-step" id="step4">
-                            <h3>Step 4: What data/parameters are involved?</h3>
-                            <textarea id="builder-parameters" placeholder="List the specific data, constraints, or variables..."></textarea>
-                            <button class="btn btn-secondary" onclick="nextBuilderStep(3)">← Back</button>
-                            <button class="btn btn-primary" onclick="generateTemplate()">Generate Template →</button>
+
+                        <div class="wizard-step" id="wizard-step-3">
+                            <h3>Step 3: Define Structure</h3>
+                            <p>Specify how you want the output organized and formatted.</p>
+                            <div class="form-group">
+                                <label for="template-structure">Structure</label>
+                                <textarea id="template-structure" placeholder="Format the output as: 1. [Section] 2. [Section] 3. [Section]..." rows="4"></textarea>
+                            </div>
+                            <button class="btn btn-outline" onclick="nextWizardStep(2)">← Back</button>
+                            <button class="btn btn-primary" onclick="nextWizardStep(4)">Next: Parameters →</button>
                         </div>
-                        
-                        <div class="wizard-step" id="step5">
+
+                        <div class="wizard-step" id="wizard-step-4">
+                            <h3>Step 4: Define Parameters</h3>
+                            <p>Provide specific data, constraints, and requirements.</p>
+                            <div class="form-group">
+                                <label for="template-parameters">Parameters</label>
+                                <textarea id="template-parameters" placeholder="Use the following data: [specific information]. Constraints: [limitations]. Requirements: [specifications]..." rows="4"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="template-name">Template Name</label>
+                                <input type="text" id="template-name" placeholder="Give your template a descriptive name">
+                            </div>
+                            <button class="btn btn-outline" onclick="nextWizardStep(3)">← Back</button>
+                            <button class="btn btn-primary" onclick="generateTemplate()">Generate Template</button>
+                        </div>
+
+                        <div class="template-preview" id="template-preview" style="display: none;">
                             <h3>Your Generated Template</h3>
-                            <div class="generated-template" id="generated-template"></div>
+                            <div class="generated-template" id="generated-template-content"></div>
                             <div class="template-actions">
-                                <input type="text" id="template-name" placeholder="Template name..." />
-                                <button class="btn btn-primary" onclick="saveGeneratedTemplate()">Save Template</button>
-                                <button class="btn btn-secondary" onclick="nextBuilderStep(1)">Start Over</button>
+                                <button class="btn btn-primary" onclick="saveTemplate()">💾 Save Template</button>
+                                <button class="btn btn-secondary" onclick="exportTemplateAsPDF()">📄 Export as PDF</button>
+                                <button class="btn btn-outline" onclick="resetTemplateBuilder()">🔄 Create Another</button>
                             </div>
                         </div>
                     </div>
@@ -826,10 +678,8 @@
                 <div class="content-card">
                     <div class="templates-header">
                         <h2>Saved Templates</h2>
-                        <div class="export-buttons">
-                            <button class="btn btn-primary" onclick="exportTemplatesAsPDF()">📄 Export as PDF</button>
-                            <button class="btn btn-secondary" onclick="exportTemplatesAsImages()">🖼️ Export as Images</button>
-                            <button class="btn btn-outline" onclick="exportTemplates()">📝 Export as Markdown</button>
+                        <div class="template-info">
+                            <p>Your personal template collection grows as you complete exercises and use the Template Builder.</p>
                         </div>
                     </div>
                     
@@ -858,6 +708,275 @@
                     <div id="templatesList" class="templates-list">
                         <div class="empty-state">
                             <p>You haven't created any custom templates yet. Use the Template Builder or complete exercises to build your library!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Resource Guide Section -->
+            <section id="resource-guide" class="content-section">
+                <div class="module-header">
+                    <h1>📚 Resource Guide</h1>
+                    <p>Your comprehensive reference for all key concepts, templates, and frameworks from the course.</p>
+                </div>
+                
+                <div class="content-card">
+                    <div class="resource-tabs">
+                        <button class="tab-btn active" onclick="showResourceTab('concepts')">Key Concepts</button>
+                        <button class="tab-btn" onclick="showResourceTab('templates')">Template Library</button>
+                        <button class="tab-btn" onclick="showResourceTab('frameworks')">Frameworks</button>
+                        <button class="tab-btn" onclick="showResourceTab('examples')">Examples</button>
+                    </div>
+                    
+                    <div id="concepts-tab" class="resource-tab-content active">
+                        <h2>Key Concepts by Module</h2>
+                        <div class="concepts-grid">
+                            <div class="concept-card">
+                                <h3>Module 1: Actionable Information</h3>
+                                <ul>
+                                    <li><strong>Decision-First Approach:</strong> Start with the decision you need to make</li>
+                                    <li><strong>Actionable vs. Vague:</strong> Specific, measurable, implementable outputs</li>
+                                    <li><strong>Three Elements:</strong> Specificity, Context, Direction</li>
+                                    <li><strong>Quality Indicators:</strong> Numbers, comparisons, recommendations</li>
+                                </ul>
+                            </div>
+                            <div class="concept-card">
+                                <h3>Module 2: Template Components</h3>
+                                <ul>
+                                    <li><strong>Context:</strong> Your role, situation, and background</li>
+                                    <li><strong>Purpose:</strong> What you want to achieve</li>
+                                    <li><strong>Structure:</strong> How you want the output organized</li>
+                                    <li><strong>Parameters:</strong> Specific data and constraints</li>
+                                </ul>
+                            </div>
+                            <div class="concept-card">
+                                <h3>Module 3: Core Components Deep Dive</h3>
+                                <ul>
+                                    <li><strong>Structured Output:</strong> Organized, consistent formatting</li>
+                                    <li><strong>Thematic Organization:</strong> Logical grouping of information</li>
+                                    <li><strong>Action Frameworks:</strong> Clear next steps with timelines</li>
+                                </ul>
+                            </div>
+                            <div class="concept-card">
+                                <h3>Module 4: Industry Applications</h3>
+                                <ul>
+                                    <li><strong>Business Templates:</strong> KPI analysis and performance metrics</li>
+                                    <li><strong>Content Strategy:</strong> Social media and content optimization</li>
+                                    <li><strong>Industry Adaptation:</strong> Sector-specific terminology and requirements</li>
+                                </ul>
+                            </div>
+                            <div class="concept-card">
+                                <h3>Module 5: Advanced Techniques</h3>
+                                <ul>
+                                    <li><strong>Scenario Planning:</strong> Multiple future scenarios and outcomes</li>
+                                    <li><strong>Comparative Analysis:</strong> Weighted criteria and scoring systems</li>
+                                    <li><strong>Multi-Level Categorization:</strong> Complex information organization</li>
+                                </ul>
+                            </div>
+                            <div class="concept-card">
+                                <h3>Module 6: System Design</h3>
+                                <ul>
+                                    <li><strong>Template Systems:</strong> Interconnected workflow design</li>
+                                    <li><strong>Integration Points:</strong> Connecting with existing tools</li>
+                                    <li><strong>Quality Assurance:</strong> Testing and optimization strategies</li>
+                                </ul>
+                            </div>
+                            <div class="concept-card">
+                                <h3>Module 7: Professional Presentation</h3>
+                                <ul>
+                                    <li><strong>Documentation:</strong> Comprehensive user guides and examples</li>
+                                    <li><strong>Presentation:</strong> Stakeholder communication and training</li>
+                                    <li><strong>Organization:</strong> Library management and version control</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="templates-tab" class="resource-tab-content">
+                        <h2>Professional Template Collection</h2>
+                        <div class="template-library-grid">
+                            <div class="library-category">
+                                <h3>Business Analysis</h3>
+                                <div class="template-preview">
+                                    <h4>Performance Review Template</h4>
+                                    <p>Monthly business performance analysis with actionable insights</p>
+                                    <button class="btn btn-sm btn-outline" onclick="useResourceTemplate('business-performance')">Use Template</button>
+                                </div>
+                                <div class="template-preview">
+                                    <h4>Competitive Analysis Template</h4>
+                                    <p>Comprehensive competitor evaluation framework</p>
+                                    <button class="btn btn-sm btn-outline" onclick="useResourceTemplate('competitive-analysis')">Use Template</button>
+                                </div>
+                            </div>
+                            <div class="library-category">
+                                <h3>Content Strategy</h3>
+                                <div class="template-preview">
+                                    <h4>Content Planning Template</h4>
+                                    <p>Strategic content development and calendar planning</p>
+                                    <button class="btn btn-sm btn-outline" onclick="useResourceTemplate('content-planning')">Use Template</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="frameworks-tab" class="resource-tab-content">
+                        <h2>Decision-Making Frameworks</h2>
+                        <div class="framework-list">
+                            <div class="framework-item">
+                                <h3>The 4-Component Template Framework</h3>
+                                <div class="framework-steps">
+                                    <div class="step">1. <strong>Context:</strong> Define your role and situation</div>
+                                    <div class="step">2. <strong>Purpose:</strong> Clarify your objective</div>
+                                    <div class="step">3. <strong>Structure:</strong> Specify output format</div>
+                                    <div class="step">4. <strong>Parameters:</strong> Provide specific data</div>
+                                </div>
+                            </div>
+                            <div class="framework-item">
+                                <h3>Decision-First Approach</h3>
+                                <div class="framework-steps">
+                                    <div class="step">1. <strong>Identify Decision:</strong> What needs to be decided?</div>
+                                    <div class="step">2. <strong>Gather Information:</strong> What data is needed?</div>
+                                    <div class="step">3. <strong>Analyze Options:</strong> What are the alternatives?</div>
+                                    <div class="step">4. <strong>Make Choice:</strong> Select the best option</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="examples-tab" class="resource-tab-content">
+                        <h2>Real-World Examples</h2>
+                        <div class="examples-grid">
+                            <div class="example-card">
+                                <h3>Business Performance Analysis</h3>
+                                <p><strong>Scenario:</strong> Monthly review for a small retail business</p>
+                                <div class="example-content">
+                                    <h4>Template Used:</h4>
+                                    <p>Business Performance Review with KPI tracking and actionable recommendations</p>
+                                    <h4>Key Results:</h4>
+                                    <ul>
+                                        <li>Identified 15% decline in Northeast region</li>
+                                        <li>Recommended $10K marketing budget reallocation</li>
+                                        <li>Proposed customer retention campaign</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="example-card">
+                                <h3>Content Strategy Optimization</h3>
+                                <p><strong>Scenario:</strong> Social media performance analysis for a tech startup</p>
+                                <div class="example-content">
+                                    <h4>Template Used:</h4>
+                                    <p>Content Strategy Planning with engagement metrics and optimization framework</p>
+                                    <h4>Key Results:</h4>
+                                    <ul>
+                                        <li>Increased engagement rate by 40%</li>
+                                        <li>Optimized posting schedule for target audience</li>
+                                        <li>Developed content calendar for next quarter</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Final Project Section -->
+            <section id="final-project" class="content-section">
+                <div class="module-header">
+                    <h1>🎯 Final Project</h1>
+                    <p>Demonstrate your mastery by creating a comprehensive template portfolio that showcases your skills and understanding of advanced template design principles.</p>
+                </div>
+                
+                <div class="content-card">
+                    <h2>Project Requirements</h2>
+                    <p>Create a professional template portfolio that demonstrates your mastery of all course concepts. Your portfolio should include templates for different use cases and industries, showing progression from basic to advanced techniques.</p>
+                    
+                    <div class="requirements-grid">
+                        <div class="requirement-card">
+                            <h3>📋 Template Portfolio</h3>
+                            <p>Create 5-7 professional templates covering different industries and use cases</p>
+                            <ul>
+                                <li>Business analysis templates</li>
+                                <li>Content strategy templates</li>
+                                <li>Industry-specific applications</li>
+                                <li>Advanced technique demonstrations</li>
+                            </ul>
+                        </div>
+                        <div class="requirement-card">
+                            <h3>📖 Documentation</h3>
+                            <p>Provide comprehensive documentation for each template</p>
+                            <ul>
+                                <li>Purpose and use cases</li>
+                                <li>Step-by-step instructions</li>
+                                <li>Example outputs</li>
+                                <li>Troubleshooting guide</li>
+                            </ul>
+                        </div>
+                        <div class="requirement-card">
+                            <h3>🧪 Testing Results</h3>
+                            <p>Show evidence of template testing and refinement</p>
+                            <ul>
+                                <li>Before/after examples</li>
+                                <li>Iteration improvements</li>
+                                <li>Performance metrics</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="submission-area">
+                        <h2>Submit Your Project</h2>
+                        <div class="submission-form">
+                            <div class="form-group">
+                                <label for="project-title">Project Title</label>
+                                <input type="text" id="project-title" placeholder="e.g., Professional AI Template Portfolio for Marketing Agency">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="project-description">Project Description</label>
+                                <textarea id="project-description" rows="4" placeholder="Describe your template portfolio and its intended use cases..."></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Select Templates to Submit</label>
+                                <div id="template-selection" class="template-selection">
+                                    <!-- Templates will be populated here -->
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="use-case-docs">Use Case Documentation</label>
+                                <textarea id="use-case-docs" rows="6" placeholder="For each template, explain: target audience, expected outcomes, and real-world applications..."></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="testing-results">Testing and Refinement Evidence</label>
+                                <textarea id="testing-results" rows="6" placeholder="Describe how you tested and improved your templates, including before/after examples..."></textarea>
+                            </div>
+                            
+                            <div class="submission-actions">
+                                <button class="btn btn-primary" onclick="submitFinalProject()">🚀 Submit for Assessment</button>
+                                <button class="btn btn-secondary" onclick="saveDraft()">💾 Save Draft</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="assessment-results" class="assessment-results" style="display: none;">
+                        <h2>📊 Assessment Results</h2>
+                        <div class="score-display">
+                            <div class="overall-score">
+                                <span class="score-number" id="overall-score">0</span>
+                                <span class="score-label">Overall Score</span>
+                            </div>
+                            <div class="score-breakdown" id="score-breakdown">
+                                <!-- Detailed scores will be populated here -->
+                            </div>
+                        </div>
+                        <div class="feedback-section" id="detailed-feedback">
+                            <!-- Detailed feedback will be populated here -->
+                        </div>
+                        <div class="certificate-section" id="certificate-section" style="display: none;">
+                            <h3>🏆 Congratulations!</h3>
+                            <p>You've successfully completed the AI Templates & Structured Output Mastery Course!</p>
+                            <button class="btn btn-primary" onclick="generateCertificate()">📜 Generate Certificate</button>
                         </div>
                     </div>
                 </div>
