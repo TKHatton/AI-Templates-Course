@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Templates & Structured Output Mastery</title>
+    <title>AI Templates & Structured Output Mastery Course</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <!-- PDF Export Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
     <div class="app-container">
@@ -823,7 +826,11 @@
                 <div class="content-card">
                     <div class="templates-header">
                         <h2>Saved Templates</h2>
-                        <button class="btn btn-primary" onclick="exportTemplates()">Export All Templates</button>
+                        <div class="export-buttons">
+                            <button class="btn btn-primary" onclick="exportTemplatesAsPDF()">📄 Export as PDF</button>
+                            <button class="btn btn-secondary" onclick="exportTemplatesAsImages()">🖼️ Export as Images</button>
+                            <button class="btn btn-outline" onclick="exportTemplates()">📝 Export as Markdown</button>
+                        </div>
                     </div>
                     
                     <!-- Starter Templates -->
