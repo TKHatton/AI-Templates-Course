@@ -3,20 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Templates & Structured Output Mastery Course | SHE IS AI</title>
-    
-    <!-- Favicon Placeholder - Replace with SHE IS AI favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    
-    <!-- SHE IS AI Brand Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <title>AI Templates & Structured Output Mastery Course</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    
     <!-- PDF Export Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -26,19 +15,10 @@
         <!-- Header -->
         <header class="header">
             <div class="header-content">
-                <div class="brand-section">
-                    <!-- Logo Placeholder - Replace with SHE IS AI logo -->
-                    <div class="logo-placeholder">
-                        <img src="/logo-placeholder.png" alt="SHE IS AI Logo" class="brand-logo">
-                    </div>
-                    <div class="brand-text">
-                        <h1 class="logo">AI Templates & Structured Output Mastery Course</h1>
-                        <p class="brand-tagline">Powered by SHE IS AI</p>
-                    </div>
-                </div>
+                <h1 class="logo">AI Templates & Structured Output Mastery</h1>
                 <div class="header-actions">
                     <button class="btn btn-secondary" onclick="exportProgress()">Export Progress</button>
-                    <button class="btn btn-secondary dev-only" onclick="resetProgress()" style="display: none;">Reset All</button>
+                    <button class="btn btn-secondary" onclick="resetProgress()">Reset All</button>
                 </div>
             </div>
         </header>
@@ -106,8 +86,6 @@
                 </li>
                 <li><a href="#template-builder" onclick="showSection('template-builder')" class="nav-link">Template Builder</a></li>
                 <li><a href="#templates" onclick="showSection('templates')" class="nav-link">My Templates</a></li>
-                <li><a href="#resource-guide" onclick="showSection('resource-guide')" class="nav-link">📚 Resource Guide</a></li>
-                <li><a href="#final-project" onclick="showSection('final-project')" class="nav-link">🎯 Final Project</a></li>
             </ul>
         </nav>
 
@@ -116,15 +94,8 @@
             <!-- Introduction Section -->
             <section id="introduction" class="content-section active">
                 <div class="hero-section">
-                    <div class="hero-brand">
-                        <!-- Hero Image Placeholder - Replace with SHE IS AI branded image -->
-                        <div class="hero-image-placeholder">
-                            <img src="/hero-image-placeholder.png" alt="SHE IS AI Course Hero" class="hero-image">
-                        </div>
-                    </div>
-                    <h1>AI Templates & Structured Output Mastery Course</h1>
+                    <h1>AI Templates & Structured Output Mastery</h1>
                     <p class="hero-subtitle">Master the art of creating templates that consistently deliver high-quality, actionable outputs from AI tools.</p>
-                    <p class="hero-attribution">Created by [Your Name] | Powered by SHE IS AI</p>
                 </div>
                 
                 <div class="content-card">
@@ -887,227 +858,6 @@
                     <div id="templatesList" class="templates-list">
                         <div class="empty-state">
                             <p>You haven't created any custom templates yet. Use the Template Builder or complete exercises to build your library!</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Resource Guide Section -->
-            <section id="resource-guide" class="content-section">
-                <div class="module-header">
-                    <h1>📚 Resource Guide</h1>
-                    <p>Your comprehensive reference for all key concepts, templates, and frameworks from the course.</p>
-                </div>
-                
-                <div class="content-card">
-                    <div class="resource-tabs">
-                        <button class="tab-btn active" onclick="showResourceTab('concepts')">Key Concepts</button>
-                        <button class="tab-btn" onclick="showResourceTab('templates')">Template Library</button>
-                        <button class="tab-btn" onclick="showResourceTab('frameworks')">Frameworks</button>
-                        <button class="tab-btn" onclick="showResourceTab('examples')">Examples</button>
-                    </div>
-                    
-                    <div id="concepts-tab" class="resource-tab-content active">
-                        <h2>Key Concepts by Module</h2>
-                        <div class="concepts-grid">
-                            <div class="concept-card">
-                                <h3>Module 1: Actionable Information</h3>
-                                <ul>
-                                    <li><strong>Decision-First Approach:</strong> Start with the decision you need to make</li>
-                                    <li><strong>Actionable vs. Vague:</strong> Specific, measurable, implementable outputs</li>
-                                    <li><strong>Three Elements:</strong> Specificity, Context, Direction</li>
-                                    <li><strong>Quality Indicators:</strong> Numbers, comparisons, recommendations</li>
-                                </ul>
-                            </div>
-                            <div class="concept-card">
-                                <h3>Module 2: Template Components</h3>
-                                <ul>
-                                    <li><strong>Context:</strong> Your role, situation, and background</li>
-                                    <li><strong>Purpose:</strong> What you want to achieve</li>
-                                    <li><strong>Structure:</strong> How you want the output organized</li>
-                                    <li><strong>Parameters:</strong> Specific data and constraints</li>
-                                </ul>
-                            </div>
-                            <div class="concept-card">
-                                <h3>Module 3: Core Components Deep Dive</h3>
-                                <ul>
-                                    <li><strong>Structured Output:</strong> Organized, consistent formatting</li>
-                                    <li><strong>Thematic Organization:</strong> Logical grouping of information</li>
-                                    <li><strong>Action Frameworks:</strong> Clear next steps with timelines</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <button class="btn btn-primary" onclick="exportResourceGuide()">📄 Export Complete Guide</button>
-                    </div>
-                    
-                    <div id="templates-tab" class="resource-tab-content">
-                        <h2>Professional Template Collection</h2>
-                        <div class="template-library-grid">
-                            <div class="library-category">
-                                <h3>Business Analysis</h3>
-                                <div class="template-preview">
-                                    <h4>Performance Review Template</h4>
-                                    <p>Monthly business performance analysis with actionable insights</p>
-                                    <button class="btn btn-sm btn-outline" onclick="useResourceTemplate('business-performance')">Use Template</button>
-                                </div>
-                                <div class="template-preview">
-                                    <h4>Competitive Analysis Template</h4>
-                                    <p>Comprehensive competitor evaluation framework</p>
-                                    <button class="btn btn-sm btn-outline" onclick="useResourceTemplate('competitive-analysis')">Use Template</button>
-                                </div>
-                            </div>
-                            <div class="library-category">
-                                <h3>Content Strategy</h3>
-                                <div class="template-preview">
-                                    <h4>Content Planning Template</h4>
-                                    <p>Strategic content development and calendar planning</p>
-                                    <button class="btn btn-sm btn-outline" onclick="useResourceTemplate('content-planning')">Use Template</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div id="frameworks-tab" class="resource-tab-content">
-                        <h2>Decision-Making Frameworks</h2>
-                        <div class="framework-list">
-                            <div class="framework-item">
-                                <h3>The 4-Component Template Framework</h3>
-                                <div class="framework-steps">
-                                    <div class="step">1. <strong>Context:</strong> Define your role and situation</div>
-                                    <div class="step">2. <strong>Purpose:</strong> Clarify your objective</div>
-                                    <div class="step">3. <strong>Structure:</strong> Specify output format</div>
-                                    <div class="step">4. <strong>Parameters:</strong> Provide specific data</div>
-                                </div>
-                            </div>
-                            <div class="framework-item">
-                                <h3>Decision-First Approach</h3>
-                                <div class="framework-steps">
-                                    <div class="step">1. <strong>Identify Decision:</strong> What needs to be decided?</div>
-                                    <div class="step">2. <strong>Gather Information:</strong> What data is needed?</div>
-                                    <div class="step">3. <strong>Analyze Options:</strong> What are the alternatives?</div>
-                                    <div class="step">4. <strong>Make Choice:</strong> Select the best option</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div id="examples-tab" class="resource-tab-content">
-                        <h2>Real-World Examples</h2>
-                        <div class="examples-grid">
-                            <div class="example-card">
-                                <h3>Before & After: Business Template</h3>
-                                <div class="comparison">
-                                    <div class="before">
-                                        <h4>❌ Vague Request</h4>
-                                        <p>"Analyze my business performance"</p>
-                                    </div>
-                                    <div class="after">
-                                        <h4>✅ Structured Template</h4>
-                                        <p>"I'm a small business owner who needs to review monthly performance. Analyze revenue trends, customer metrics, and provide 3 specific action items for next month."</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Final Project Section -->
-            <section id="final-project" class="content-section">
-                <div class="module-header">
-                    <h1>🎯 Final Project Submission</h1>
-                    <p>Submit your capstone project to demonstrate mastery of AI template creation and receive automated assessment.</p>
-                </div>
-                
-                <div class="content-card">
-                    <div class="project-requirements">
-                        <h2>Project Requirements</h2>
-                        <div class="requirements-grid">
-                            <div class="requirement-card">
-                                <h3>📋 Template Portfolio</h3>
-                                <p>Submit 3-5 professional templates demonstrating the 4-component framework</p>
-                                <ul>
-                                    <li>At least one business analysis template</li>
-                                    <li>At least one content strategy template</li>
-                                    <li>One template from your industry/specialty</li>
-                                </ul>
-                            </div>
-                            <div class="requirement-card">
-                                <h3>📊 Use Case Documentation</h3>
-                                <p>Explain when and how to use each template</p>
-                                <ul>
-                                    <li>Target audience for each template</li>
-                                    <li>Expected outcomes and benefits</li>
-                                    <li>Real-world application examples</li>
-                                </ul>
-                            </div>
-                            <div class="requirement-card">
-                                <h3>🧪 Testing Results</h3>
-                                <p>Show evidence of template testing and refinement</p>
-                                <ul>
-                                    <li>Before/after examples</li>
-                                    <li>Iteration improvements</li>
-                                    <li>Performance metrics</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="submission-area">
-                        <h2>Submit Your Project</h2>
-                        <div class="submission-form">
-                            <div class="form-group">
-                                <label for="project-title">Project Title</label>
-                                <input type="text" id="project-title" placeholder="e.g., Professional AI Template Portfolio for Marketing Agency">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="project-description">Project Description</label>
-                                <textarea id="project-description" rows="4" placeholder="Describe your template portfolio and its intended use cases..."></textarea>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>Select Templates to Submit</label>
-                                <div id="template-selection" class="template-selection">
-                                    <!-- Templates will be populated here -->
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="use-case-docs">Use Case Documentation</label>
-                                <textarea id="use-case-docs" rows="6" placeholder="For each template, explain: target audience, expected outcomes, and real-world applications..."></textarea>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="testing-results">Testing and Refinement Evidence</label>
-                                <textarea id="testing-results" rows="6" placeholder="Describe how you tested and improved your templates, including before/after examples..."></textarea>
-                            </div>
-                            
-                            <div class="submission-actions">
-                                <button class="btn btn-primary" onclick="submitFinalProject()">🚀 Submit for Assessment</button>
-                                <button class="btn btn-secondary" onclick="saveDraft()">💾 Save Draft</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div id="assessment-results" class="assessment-results" style="display: none;">
-                        <h2>📊 Assessment Results</h2>
-                        <div class="score-display">
-                            <div class="overall-score">
-                                <span class="score-number" id="overall-score">0</span>
-                                <span class="score-label">Overall Score</span>
-                            </div>
-                            <div class="score-breakdown" id="score-breakdown">
-                                <!-- Detailed scores will be populated here -->
-                            </div>
-                        </div>
-                        <div class="feedback-section" id="detailed-feedback">
-                            <!-- Detailed feedback will be populated here -->
-                        </div>
-                        <div class="certificate-section" id="certificate-section" style="display: none;">
-                            <h3>🏆 Congratulations!</h3>
-                            <p>You've successfully completed the AI Templates & Structured Output Mastery Course!</p>
-                            <button class="btn btn-primary" onclick="generateCertificate()">📜 Generate Certificate</button>
                         </div>
                     </div>
                 </div>
