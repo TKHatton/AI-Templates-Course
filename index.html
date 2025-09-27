@@ -32,13 +32,11 @@
                         <img src="/logo-placeholder.png" alt="SHE IS AI Logo" class="brand-logo">
                     </div>
                     <div class="brand-text">
-                        <h1 class="logo">AI Templates & Structured Output Mastery Course</h1>
-                        <p class="brand-tagline">Powered by SHE IS AI</p>
-                    </div>
+                        <h1 class="logo">AI Templates & Structured Output Mastery Course</h                        <div class="brand-tagline">Created by Lenice Kenny</div>                    </div>
                 </div>
                 <div class="header-actions">
-                    <button class="btn btn-secondary" onclick="exportProgress()">Export Progress</button>
-                    <button class="btn btn-secondary dev-only" onclick="resetProgress()" style="display: none;">Reset All</button>
+                    <button class="btn btn-outline" onclick="showSection('resource-guide')">Course Resources</button>
+                    <button class="btn btn-outline" onclick="resetProgress()" id="resetBtn" style="display: none;">Reset All</button>
                 </div>
             </div>
         </header>
@@ -865,10 +863,8 @@
                 <div class="content-card">
                     <div class="templates-header">
                         <h2>Saved Templates</h2>
-                        <div class="export-buttons">
-                            <button class="btn btn-primary" onclick="exportTemplatesAsPDF()">📄 Export as PDF</button>
-                            <button class="btn btn-secondary" onclick="exportTemplatesAsImages()">🖼️ Export as Images</button>
-                            <button class="btn btn-outline" onclick="exportTemplates()">📝 Export as Markdown</button>
+                        <div class="template-info">
+                            <p>Your personal template collection grows as you complete exercises and use the Template Builder.</p>
                         </div>
                     </div>
                     
@@ -919,35 +915,156 @@
                     
                     <div id="concepts-tab" class="resource-tab-content active">
                         <h2>Key Concepts by Module</h2>
-                        <div class="concepts-grid">
-                            <div class="concept-card">
-                                <h3>Module 1: Actionable Information</h3>
-                                <ul>
-                                    <li><strong>Decision-First Approach:</strong> Start with the decision you need to make</li>
-                                    <li><strong>Actionable vs. Vague:</strong> Specific, measurable, implementable outputs</li>
-                                    <li><strong>Three Elements:</strong> Specificity, Context, Direction</li>
-                                    <li><strong>Quality Indicators:</strong> Numbers, comparisons, recommendations</li>
-                                </ul>
+                        <div class="concepts-container">
+                            
+                            <div class="concept-horizontal-card">
+                                <div class="concept-header">
+                                    <span class="concept-number">1</span>
+                                    <h3>Understanding Actionable Information</h3>
+                                </div>
+                                <div class="concept-content">
+                                    <div class="concept-item">
+                                        <h4>Decision-First Approach</h4>
+                                        <p>Always begin by identifying the specific decision you need to make. This approach ensures your AI outputs are focused and immediately useful rather than providing general information that requires further interpretation.</p>
+                                    </div>
+                                    <div class="concept-item">
+                                        <h4>Actionable vs. Vague Information</h4>
+                                        <p>Actionable information is specific, measurable, and implementable. It includes concrete numbers, clear comparisons, and direct recommendations that you can act upon immediately without additional research or clarification.</p>
+                                    </div>
+                                    <div class="concept-item">
+                                        <h4>Three Essential Elements</h4>
+                                        <p>Every actionable output must contain specificity (exact details), context (relevant background), and direction (clear next steps). These elements transform vague suggestions into implementable action plans.</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="concept-card">
-                                <h3>Module 2: Template Components</h3>
-                                <ul>
-                                    <li><strong>Context:</strong> Your role, situation, and background</li>
-                                    <li><strong>Purpose:</strong> What you want to achieve</li>
-                                    <li><strong>Structure:</strong> How you want the output organized</li>
-                                    <li><strong>Parameters:</strong> Specific data and constraints</li>
-                                </ul>
+
+                            <div class="concept-horizontal-card">
+                                <div class="concept-header">
+                                    <span class="concept-number">2</span>
+                                    <h3>Building Your First Templates</h3>
+                                </div>
+                                <div class="concept-content">
+                                    <div class="concept-item">
+                                        <h4>The Four Core Components</h4>
+                                        <p>Every effective template must include Context (your role and situation), Purpose (what you want to achieve), Structure (how you want the output organized), and Parameters (specific data and constraints). These components work together to create consistent, high-quality results.</p>
+                                    </div>
+                                    <div class="concept-item">
+                                        <h4>Template Gap Analysis</h4>
+                                        <p>Systematically identify missing elements in your templates by checking for unclear instructions, missing context, vague objectives, or insufficient parameters. Address each gap to improve template performance and output quality.</p>
+                                    </div>
+                                    <div class="concept-item">
+                                        <h4>Testing Framework</h4>
+                                        <p>Test your templates with multiple scenarios to ensure consistency and reliability. Document variations in output quality and refine your templates based on performance patterns and user feedback.</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="concept-card">
-                                <h3>Module 3: Core Components Deep Dive</h3>
-                                <ul>
-                                    <li><strong>Structured Output:</strong> Organized, consistent formatting</li>
-                                    <li><strong>Thematic Organization:</strong> Logical grouping of information</li>
-                                    <li><strong>Action Frameworks:</strong> Clear next steps with timelines</li>
-                                </ul>
+
+                            <div class="concept-horizontal-card">
+                                <div class="concept-header">
+                                    <span class="concept-number">3</span>
+                                    <h3>The Four Core Components Deep Dive</h3>
+                                </div>
+                                <div class="concept-content">
+                                    <div class="concept-item">
+                                        <h4>Context Mastery</h4>
+                                        <p>Provide comprehensive background including your role, industry, constraints, and relevant circumstances. Rich context enables AI to generate more relevant and appropriate responses tailored to your specific situation.</p>
+                                    </div>
+                                    <div class="concept-item">
+                                        <h4>Purpose Clarity</h4>
+                                        <p>Define your objective with precision, including success criteria and intended use of the output. Clear purpose statements guide AI toward generating exactly what you need rather than generic responses.</p>
+                                    </div>
+                                    <div class="concept-item">
+                                        <h4>Structure Specification</h4>
+                                        <p>Explicitly define how you want information organized, formatted, and presented. Detailed structure requirements ensure consistent output formatting that meets your workflow and presentation needs.</p>
+                                    </div>
+                                </div>
                             </div>
+
+                            <div class="concept-horizontal-card">
+                                <div class="concept-header">
+                                    <span class="concept-number">4</span>
+                                    <h3>Industry-Specific Applications</h3>
+                                </div>
+                                <div class="concept-content">
+                                    <div class="concept-item">
+                                        <h4>Business Performance Templates</h4>
+                                        <p>Create templates that analyze key performance indicators, identify trends, and provide actionable recommendations for business improvement. Focus on metrics that directly impact decision-making and strategic planning.</p>
+                                    </div>
+                                    <div class="concept-item">
+                                        <h4>Content Strategy Templates</h4>
+                                        <p>Develop templates for content planning, audience analysis, and performance evaluation. Include specific metrics for engagement, reach, and conversion to create data-driven content strategies.</p>
+                                    </div>
+                                    <div class="concept-item">
+                                        <h4>Industry Adaptation</h4>
+                                        <p>Customize templates for specific industries by incorporating relevant terminology, compliance requirements, and industry-standard metrics. This ensures outputs are immediately applicable in professional contexts.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="concept-horizontal-card">
+                                <div class="concept-header">
+                                    <span class="concept-number">5</span>
+                                    <h3>Advanced Template Techniques</h3>
+                                </div>
+                                <div class="concept-content">
+                                    <div class="concept-item">
+                                        <h4>Scenario Planning</h4>
+                                        <p>Build templates that evaluate multiple scenarios with different assumptions and outcomes. Include risk assessment, probability analysis, and contingency planning to support robust decision-making processes.</p>
+                                    </div>
+                                    <div class="concept-item">
+                                        <h4>Comparative Analysis</h4>
+                                        <p>Create templates that systematically compare options using consistent criteria and weighting systems. Ensure fair evaluation by defining clear metrics and scoring methodologies for objective decision support.</p>
+                                    </div>
+                                    <div class="concept-item">
+                                        <h4>Multi-Level Categorization</h4>
+                                        <p>Develop sophisticated categorization systems that organize information across multiple dimensions. This enables complex analysis and helps identify patterns that might be missed with simple categorization approaches.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="concept-horizontal-card">
+                                <div class="concept-header">
+                                    <span class="concept-number">6</span>
+                                    <h3>System Design & Integration</h3>
+                                </div>
+                                <div class="concept-content">
+                                    <div class="concept-item">
+                                        <h4>Template System Architecture</h4>
+                                        <p>Design interconnected template systems where outputs from one template can serve as inputs for another. This creates powerful workflows that handle complex, multi-step analysis and decision-making processes.</p>
+                                    </div>
+                                    <div class="concept-item">
+                                        <h4>Integration Points</h4>
+                                        <p>Identify where templates connect with existing tools and workflows. Plan data transformation requirements and ensure seamless integration with your current systems and processes.</p>
+                                    </div>
+                                    <div class="concept-item">
+                                        <h4>Quality Assurance</h4>
+                                        <p>Implement systematic testing and validation processes for template systems. Include error handling, output verification, and performance monitoring to maintain consistent quality at scale.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="concept-horizontal-card">
+                                <div class="concept-header">
+                                    <span class="concept-number">7</span>
+                                    <h3>Polishing and Presenting Your Work</h3>
+                                </div>
+                                <div class="concept-content">
+                                    <div class="concept-item">
+                                        <h4>Documentation Excellence</h4>
+                                        <p>Create comprehensive documentation that includes template purpose, usage instructions, examples, and troubleshooting guides. Good documentation ensures templates can be used effectively by others and maintained over time.</p>
+                                    </div>
+                                    <div class="concept-item">
+                                        <h4>Presentation Strategies</h4>
+                                        <p>Develop effective methods for presenting templates and their outputs to stakeholders. Include visual aids, clear explanations, and demonstration of value to gain buy-in and adoption.</p>
+                                    </div>
+                                    <div class="concept-item">
+                                        <h4>Organization Systems</h4>
+                                        <p>Implement systematic approaches to organizing, categorizing, and maintaining your template library. Include version control, access management, and regular review processes to keep templates current and effective.</p>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
-                        <button class="btn btn-primary" onclick="exportResourceGuide()">📄 Export Complete Guide</button>
                     </div>
                     
                     <div id="templates-tab" class="resource-tab-content">
