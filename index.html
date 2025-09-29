@@ -4,30 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Templates & Structured Output Mastery Course</title>
-    
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="src/favicon.png">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- jsPDF and html2canvas for PDF export -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    
-    <link rel="stylesheet" href="styles-working.css">
+    <link rel="stylesheet" href="styles-final.css">
 </head>
 <body>
     <div class="app-container">
-        <!-- Header -->
         <header class="header">
             <div class="header-content">
                 <div class="logo-section">
-                    <div class="logo-placeholder">
-                        <img src="src/logo-placeholder.png" alt="SHE IS AI Logo" style="width: 100%; height: 100%; object-fit: contain;">
-                    </div>
+                    <img src="src/logo-placeholder.png" alt="SHE IS AI Logo" class="logo">
                     <div class="brand-info">
                         <h1>AI Templates & Structured Output Mastery Course</h1>
                         <div class="brand-tagline">Created by Lenise Kenney</div>
@@ -35,15 +23,13 @@
                 </div>
                 <div class="header-actions">
                     <button class="btn btn-outline" onclick="showSection('resource-guide')">Course Resources</button>
-                    <button class="btn btn-outline dev-only" onclick="resetProgress()" id="resetBtn">Reset All</button>
                 </div>
             </div>
         </header>
 
-        <div class="main-container">
-            <!-- Sidebar -->
+        <div class="main-layout">
             <aside class="sidebar">
-                <div class="progress-overview">
+                <div class="progress-card">
                     <h3>Your Progress</h3>
                     <div class="progress-bar">
                         <div class="progress-fill" id="progressFill"></div>
@@ -51,140 +37,108 @@
                     <div class="progress-text" id="progressText">0% Complete</div>
                 </div>
 
-                <nav>
-                    <ul class="nav-menu">
-                        <li>
-                            <a href="#" class="nav-link active" onclick="showSection('introduction')">
-                                <span class="module-number">📚</span>
-                                <span>Introduction</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link" onclick="showSection('module1')">
-                                <span class="module-number">1</span>
-                                <span>Understanding Actionable Information</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link" onclick="showSection('module2')">
-                                <span class="module-number">2</span>
-                                <span>Building Your First Templates</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link" onclick="showSection('module3')">
-                                <span class="module-number">3</span>
-                                <span>The Four Core Components</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link" onclick="showSection('module4')">
-                                <span class="module-number">4</span>
-                                <span>Industry-Specific Applications</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link" onclick="showSection('module5')">
-                                <span class="module-number">5</span>
-                                <span>Advanced Template Techniques</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link" onclick="showSection('module6')">
-                                <span class="module-number">6</span>
-                                <span>System Design & Integration</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link" onclick="showSection('module7')">
-                                <span class="module-number">7</span>
-                                <span>Polishing and Presenting Your Work</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link" onclick="showSection('template-builder')">
-                                <span class="module-number">🔧</span>
-                                <span>Template Builder</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link" onclick="showSection('my-templates')">
-                                <span class="module-number">📋</span>
-                                <span>My Templates</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link" onclick="showSection('resource-guide')">
-                                <span class="module-number">📚</span>
-                                <span>Resource Guide</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link" onclick="showSection('final-project')">
-                                <span class="module-number">🎯</span>
-                                <span>Final Project</span>
-                            </a>
-                        </li>
-                    </ul>
+                <nav class="nav-menu">
+                    <a href="#" class="nav-item active" onclick="showSection('introduction')">
+                        <span class="nav-icon">📚</span>
+                        <span class="nav-text">Introduction</span>
+                    </a>
+                    <a href="#" class="nav-item" onclick="showSection('module1')">
+                        <span class="nav-icon">1</span>
+                        <span class="nav-text">Understanding Actionable Information</span>
+                    </a>
+                    <a href="#" class="nav-item" onclick="showSection('module2')">
+                        <span class="nav-icon">2</span>
+                        <span class="nav-text">Building Your First Templates</span>
+                    </a>
+                    <a href="#" class="nav-item" onclick="showSection('module3')">
+                        <span class="nav-icon">3</span>
+                        <span class="nav-text">The Four Core Components</span>
+                    </a>
+                    <a href="#" class="nav-item" onclick="showSection('module4')">
+                        <span class="nav-icon">4</span>
+                        <span class="nav-text">Industry-Specific Applications</span>
+                    </a>
+                    <a href="#" class="nav-item" onclick="showSection('module5')">
+                        <span class="nav-icon">5</span>
+                        <span class="nav-text">Advanced Template Techniques</span>
+                    </a>
+                    <a href="#" class="nav-item" onclick="showSection('module6')">
+                        <span class="nav-icon">6</span>
+                        <span class="nav-text">System Design & Integration</span>
+                    </a>
+                    <a href="#" class="nav-item" onclick="showSection('module7')">
+                        <span class="nav-icon">7</span>
+                        <span class="nav-text">Polishing and Presenting Your Work</span>
+                    </a>
+                    <a href="#" class="nav-item" onclick="showSection('template-builder')">
+                        <span class="nav-icon">🔧</span>
+                        <span class="nav-text">Template Builder</span>
+                    </a>
+                    <a href="#" class="nav-item" onclick="showSection('my-templates')">
+                        <span class="nav-icon">📋</span>
+                        <span class="nav-text">My Templates</span>
+                    </a>
+                    <a href="#" class="nav-item" onclick="showSection('resource-guide')">
+                        <span class="nav-icon">📚</span>
+                        <span class="nav-text">Resource Guide</span>
+                    </a>
+                    <a href="#" class="nav-item" onclick="showSection('final-project')">
+                        <span class="nav-icon">🎯</span>
+                        <span class="nav-text">Final Project</span>
+                    </a>
                 </nav>
             </aside>
 
-            <!-- Main Content -->
             <main class="main-content">
-                <!-- Introduction Section -->
+                <!-- Introduction -->
                 <section id="introduction" class="content-section active">
-                    <div class="hero">
-                        <div class="hero-content">
-                            <div class="hero-image-placeholder">
-                                <img src="src/hero-image-placeholder.png" alt="Course Hero" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
-                            </div>
-                            <h1>AI Templates & Structured Output Mastery Course</h1>
-                            <p>Master the art of creating templates that consistently deliver high-quality, actionable outputs from AI tools.</p>
-                            <div class="hero-meta">Created by Lenise Kenney | Powered by SHE IS AI</div>
+                    <div class="hero-section">
+                        <div class="hero-image">
+                            <img src="src/hero-image-placeholder.png" alt="Course Hero">
                         </div>
+                        <h1>AI Templates & Structured Output Mastery Course</h1>
+                        <p class="hero-subtitle">Master the art of creating templates that consistently deliver high-quality, actionable outputs from AI tools.</p>
+                        <p class="hero-meta">Created by Lenise Kenney | Powered by SHE IS AI</p>
                     </div>
 
-                    <div class="content-card">
+                    <div class="intro-content">
                         <h2>Welcome to Your Learning Journey</h2>
                         <p>This comprehensive interactive workbook provides practical exercises, real-world examples, and progressive challenges to build your expertise from fundamental concepts to advanced implementation strategies.</p>
                         
-                        <div class="features-grid">
+                        <div class="feature-grid">
                             <div class="feature-card">
                                 <div class="feature-icon">🎯</div>
                                 <h3>Practical Exercises</h3>
                                 <p>Apply key concepts immediately with hands-on practice that builds real-world skills and confidence.</p>
                             </div>
-                            
                             <div class="feature-card">
                                 <div class="feature-icon">🌍</div>
                                 <h3>Real-World Examples</h3>
                                 <p>See concepts in action across various industries and use cases with detailed walkthroughs.</p>
                             </div>
-                            
                             <div class="feature-card">
                                 <div class="feature-icon">📋</div>
                                 <h3>Template Frameworks</h3>
                                 <p>Ready-to-use structures for your projects and professional contexts that you can customize.</p>
                             </div>
-                            
                             <div class="feature-card">
                                 <div class="feature-icon">📈</div>
                                 <h3>Progressive Challenges</h3>
                                 <p>Build skills systematically from fundamental to advanced levels with guided progression.</p>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="cta-section">
-                        <h2>How to Use This Interactive Workbook</h2>
-                        <ul>
-                            <li>Work through each module sequentially, as concepts build upon each other</li>
-                            <li>Complete all practice exercises before moving to the next section</li>
-                            <li>Your progress is automatically saved as you work</li>
-                            <li>Use the Template Builder to create your own templates</li>
-                            <li>Export your completed templates to build your personal library</li>
-                        </ul>
-                        <button class="btn btn-primary" onclick="showSection('module1')">Start Module 1 →</button>
+                        <div class="cta-section">
+                            <h2>How to Use This Interactive Workbook</h2>
+                            <ul>
+                                <li>Work through each module sequentially, as concepts build upon each other</li>
+                                <li>Complete all practice exercises before moving to the next section</li>
+                                <li>Your progress is automatically saved as you work</li>
+                                <li>Use the Template Builder to create your own templates</li>
+                                <li>Export your completed templates to build your personal library</li>
+                            </ul>
+                            <button class="btn btn-primary" onclick="showSection('module1')">Start Module 1 →</button>
+                        </div>
                     </div>
                 </section>
 
@@ -193,17 +147,19 @@
                     <div class="module-header">
                         <span class="module-badge">Module 1</span>
                         <h1>Understanding Actionable Information</h1>
-                        <p>Learn to distinguish between vague and actionable information, master the Decision-First Approach, and develop systematic methods for transforming AI outputs into clear, implementable insights that drive results.</p>
+                        <p>Learn to distinguish between vague and actionable information, master the Decision-First Approach, and develop systematic methods for transforming AI outputs into clear, implementable insights.</p>
                     </div>
                     
-                    <div class="content-card">
-                        <div class="question-progress" id="module1-progress">Question 1 of 4</div>
+                    <div class="question-container">
+                        <div class="question-progress">Question <span id="m1-current">1</span> of <span id="m1-total">5</span></div>
                         
-                        <!-- Question 1 -->
-                        <div class="question-card active" id="module1-q1">
-                            <div class="question-header">
-                                <h3>Question 1: Decision-First Approach</h3>
-                                <p>What is the key principle behind the Decision-First Approach when creating AI templates?</p>
+                        <div class="question-card active" id="m1q1">
+                            <h3>Exercise 1.1: Identifying Actionable Information</h3>
+                            <p>Read the following business scenarios and identify which provides actionable information:</p>
+                            
+                            <div class="scenario-box">
+                                <p><strong>Scenario A:</strong> "Our website traffic has been declining recently. We should probably do something about our SEO."</p>
+                                <p><strong>Scenario B:</strong> "Website traffic decreased 23% over the past 30 days, with the largest drop in organic search (down 31%). The top 3 declining pages are our product pages for Services A, B, and C. Recommend: 1) Audit these pages for technical SEO issues within 1 week, 2) Update meta descriptions and titles, 3) Create 2 new blog posts targeting our main keywords by month-end."</p>
                             </div>
                             
                             <div class="answer-options">
@@ -211,142 +167,138 @@
                                     <input type="radio" name="m1q1" value="a">
                                     <div class="option-content">
                                         <span class="option-letter">A</span>
-                                        <span class="option-text">Start by collecting as much data as possible before defining objectives</span>
+                                        <span class="option-text">Scenario A provides actionable information</span>
                                     </div>
                                 </label>
-                                
                                 <label class="option-card">
                                     <input type="radio" name="m1q1" value="b">
                                     <div class="option-content">
                                         <span class="option-letter">B</span>
-                                        <span class="option-text">Identify the specific decision you need to make before gathering information</span>
+                                        <span class="option-text">Scenario B provides actionable information</span>
                                     </div>
                                 </label>
-                                
                                 <label class="option-card">
                                     <input type="radio" name="m1q1" value="c">
                                     <div class="option-content">
                                         <span class="option-letter">C</span>
-                                        <span class="option-text">Make quick decisions without thorough analysis to save time</span>
+                                        <span class="option-text">Both scenarios provide equally actionable information</span>
                                     </div>
                                 </label>
-                                
                                 <label class="option-card">
                                     <input type="radio" name="m1q1" value="d">
                                     <div class="option-content">
                                         <span class="option-letter">D</span>
-                                        <span class="option-text">Prioritize speed over accuracy in all decision-making processes</span>
+                                        <span class="option-text">Neither scenario provides actionable information</span>
                                     </div>
                                 </label>
                             </div>
                             
                             <div class="feedback" id="m1q1-feedback"></div>
-                            <button class="btn btn-primary" onclick="checkAnswer('m1q1', 'b')" disabled id="m1q1-next">Check Answer</button>
+                            <button class="btn btn-primary" onclick="checkAnswer('m1q1', 'b')" disabled id="m1q1-btn">Check Answer</button>
                         </div>
 
-                        <!-- Question 2 -->
-                        <div class="question-card" id="module1-q2">
-                            <div class="question-header">
-                                <h3>Question 2: Actionable vs Vague Information</h3>
-                                <p>Which of the following is an example of actionable information?</p>
-                            </div>
+                        <div class="question-card" id="m1q2">
+                            <h3>Exercise 1.2: The Three Elements Test</h3>
+                            <p>Actionable information must contain three key elements. Select all that apply:</p>
                             
                             <div class="answer-options">
-                                <label class="option-card">
-                                    <input type="radio" name="m1q2" value="a">
+                                <label class="option-card checkbox-option">
+                                    <input type="checkbox" name="m1q2" value="specific">
                                     <div class="option-content">
-                                        <span class="option-letter">A</span>
-                                        <span class="option-text">"Sales are down this quarter"</span>
+                                        <span class="option-check">✓</span>
+                                        <span class="option-text">Specific numbers, dates, or measurable details</span>
                                     </div>
                                 </label>
-                                
-                                <label class="option-card">
-                                    <input type="radio" name="m1q2" value="b">
+                                <label class="option-card checkbox-option">
+                                    <input type="checkbox" name="m1q2" value="comparison">
                                     <div class="option-content">
-                                        <span class="option-letter">B</span>
-                                        <span class="option-text">"Sales decreased 15% compared to Q2, primarily in the Northeast region. Recommend increasing marketing spend by $10K in that region and launching a customer retention campaign by month-end."</span>
+                                        <span class="option-check">✓</span>
+                                        <span class="option-text">Context or comparison (vs. previous period, benchmark, goal)</span>
                                     </div>
                                 </label>
-                                
-                                <label class="option-card">
-                                    <input type="radio" name="m1q2" value="c">
+                                <label class="option-card checkbox-option">
+                                    <input type="checkbox" name="m1q2" value="action">
                                     <div class="option-content">
-                                        <span class="option-letter">C</span>
-                                        <span class="option-text">"We need to improve our marketing efforts"</span>
+                                        <span class="option-check">✓</span>
+                                        <span class="option-text">Clear next steps or recommendations</span>
                                     </div>
                                 </label>
-                                
-                                <label class="option-card">
-                                    <input type="radio" name="m1q2" value="d">
+                                <label class="option-card checkbox-option">
+                                    <input type="checkbox" name="m1q2" value="creative">
                                     <div class="option-content">
-                                        <span class="option-letter">D</span>
-                                        <span class="option-text">"Customer satisfaction could be better"</span>
+                                        <span class="option-check">✓</span>
+                                        <span class="option-text">Creative language and engaging storytelling</span>
                                     </div>
                                 </label>
                             </div>
                             
                             <div class="feedback" id="m1q2-feedback"></div>
-                            <button class="btn btn-primary" onclick="checkAnswer('m1q2', 'b')" disabled id="m1q2-next">Check Answer</button>
+                            <button class="btn btn-primary" onclick="checkMultiple('m1q2', ['specific', 'comparison', 'action'])" disabled id="m1q2-btn">Check Answer</button>
                         </div>
 
-                        <!-- Question 3 -->
-                        <div class="question-card" id="module1-q3">
-                            <div class="question-header">
-                                <h3>Question 3: Quality Indicators</h3>
-                                <p>What are the three key elements that make information actionable? (Select all that apply)</p>
-                            </div>
+                        <div class="question-card" id="m1q3">
+                            <h3>Exercise 1.3: Decision-First Approach</h3>
+                            <p>You're analyzing your business performance. Using the Decision-First Approach, write what specific decision you need to make and what information you would request to make that decision.</p>
                             
-                            <div class="answer-options">
-                                <label class="option-card checkbox-option">
-                                    <input type="checkbox" name="m1q3" value="specificity">
-                                    <div class="option-content">
-                                        <span class="option-check">✓</span>
-                                        <span class="option-text">Specificity (concrete details and numbers)</span>
-                                    </div>
-                                </label>
-                                
-                                <label class="option-card checkbox-option">
-                                    <input type="checkbox" name="m1q3" value="context">
-                                    <div class="option-content">
-                                        <span class="option-check">✓</span>
-                                        <span class="option-text">Context (relevant background information)</span>
-                                    </div>
-                                </label>
-                                
-                                <label class="option-card checkbox-option">
-                                    <input type="checkbox" name="m1q3" value="direction">
-                                    <div class="option-content">
-                                        <span class="option-check">✓</span>
-                                        <span class="option-text">Direction (clear next steps or recommendations)</span>
-                                    </div>
-                                </label>
-                                
-                                <label class="option-card checkbox-option">
-                                    <input type="checkbox" name="m1q3" value="complexity">
-                                    <div class="option-content">
-                                        <span class="option-check">✓</span>
-                                        <span class="option-text">Complexity (making information as detailed as possible)</span>
-                                    </div>
-                                </label>
+                            <div class="text-input">
+                                <label for="m1q3-answer">Your Response:</label>
+                                <textarea id="m1q3-answer" placeholder="Example: Decision needed: Should I hire an additional team member for customer service? Information needed: Current response times, customer satisfaction scores, team workload data, revenue projections for next quarter, and budget availability for new hire..." rows="6"></textarea>
                             </div>
                             
                             <div class="feedback" id="m1q3-feedback"></div>
-                            <button class="btn btn-primary" onclick="checkMultipleAnswer('m1q3', ['specificity', 'context', 'direction'])" disabled id="m1q3-next">Check Answer</button>
+                            <button class="btn btn-primary" onclick="checkText('m1q3', ['decision', 'information', 'specific'])" disabled id="m1q3-btn">Check Answer</button>
                         </div>
 
-                        <!-- Question 4 -->
-                        <div class="question-card" id="module1-q4">
-                            <div class="question-header">
-                                <h3>Question 4: Practical Application</h3>
-                                <p>You're analyzing a business problem. Write a brief example of how you would apply the Decision-First Approach. Include what decision you need to make and what specific information you would request.</p>
-                            </div>
+                        <div class="question-card" id="m1q4">
+                            <h3>Exercise 1.4: Transforming Vague Information</h3>
+                            <p>Transform this vague statement into actionable information: "Our social media engagement isn't great and we should improve it."</p>
                             
-                            <div class="text-input-section">
-                                <textarea id="m1q4-answer" placeholder="Example: I need to decide whether to hire a new team member. I would request: current team workload data, revenue projections for next quarter, budget available for new hire, and specific skills gaps that need to be filled..." rows="6"></textarea>
+                            <div class="text-input">
+                                <label for="m1q4-answer">Your Improved Version:</label>
+                                <textarea id="m1q4-answer" placeholder="Rewrite the statement to include specific numbers, context/comparison, and clear next steps..." rows="6"></textarea>
                             </div>
                             
                             <div class="feedback" id="m1q4-feedback"></div>
-                            <button class="btn btn-primary" onclick="checkTextAnswer('m1q4', ['decision', 'specific', 'information'])" disabled id="m1q4-next">Check Answer</button>
+                            <button class="btn btn-primary" onclick="checkText('m1q4', ['specific', 'numbers', 'recommend', 'action'])" disabled id="m1q4-btn">Check Answer</button>
+                        </div>
+
+                        <div class="question-card" id="m1q5">
+                            <h3>Exercise 1.5: The Follow-Up Framework</h3>
+                            <p>When you receive vague information from AI, what three follow-up questions should you ask? Select the best framework:</p>
+                            
+                            <div class="answer-options">
+                                <label class="option-card">
+                                    <input type="radio" name="m1q5" value="a">
+                                    <div class="option-content">
+                                        <span class="option-letter">A</span>
+                                        <span class="option-text">What? When? Where?</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="m1q5" value="b">
+                                    <div class="option-content">
+                                        <span class="option-letter">B</span>
+                                        <span class="option-text">Can you be more specific? What are the exact numbers? What should I do next?</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="m1q5" value="c">
+                                    <div class="option-content">
+                                        <span class="option-letter">C</span>
+                                        <span class="option-text">Why is this important? How does this affect me? What are the alternatives?</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="m1q5" value="d">
+                                    <div class="option-content">
+                                        <span class="option-letter">D</span>
+                                        <span class="option-text">Who is responsible? What's the budget? When is the deadline?</span>
+                                    </div>
+                                </label>
+                            </div>
+                            
+                            <div class="feedback" id="m1q5-feedback"></div>
+                            <button class="btn btn-primary" onclick="checkAnswer('m1q5', 'b')" disabled id="m1q5-btn">Check Answer</button>
                         </div>
                     </div>
                 </section>
@@ -359,15 +311,12 @@
                         <p>Master the four essential components of effective AI templates and learn to identify and fill gaps in existing templates to ensure consistent, high-quality outputs.</p>
                     </div>
                     
-                    <div class="content-card">
-                        <div class="question-progress" id="module2-progress">Question 1 of 3</div>
+                    <div class="question-container">
+                        <div class="question-progress">Question <span id="m2-current">1</span> of <span id="m2-total">4</span></div>
                         
-                        <!-- Question 1 -->
-                        <div class="question-card active" id="module2-q1">
-                            <div class="question-header">
-                                <h3>Question 1: Template Components</h3>
-                                <p>What are the four essential components that every effective AI template must include?</p>
-                            </div>
+                        <div class="question-card active" id="m2q1">
+                            <h3>Exercise 2.1: The Four Template Components</h3>
+                            <p>Every effective AI template must include four essential components. Select all four:</p>
                             
                             <div class="answer-options">
                                 <label class="option-card checkbox-option">
@@ -377,7 +326,6 @@
                                         <span class="option-text">Context (your role, situation, and background)</span>
                                     </div>
                                 </label>
-                                
                                 <label class="option-card checkbox-option">
                                     <input type="checkbox" name="m2q1" value="purpose">
                                     <div class="option-content">
@@ -385,7 +333,6 @@
                                         <span class="option-text">Purpose (what you want to achieve)</span>
                                     </div>
                                 </label>
-                                
                                 <label class="option-card checkbox-option">
                                     <input type="checkbox" name="m2q1" value="structure">
                                     <div class="option-content">
@@ -393,7 +340,6 @@
                                         <span class="option-text">Structure (how you want the output organized)</span>
                                     </div>
                                 </label>
-                                
                                 <label class="option-card checkbox-option">
                                     <input type="checkbox" name="m2q1" value="parameters">
                                     <div class="option-content">
@@ -401,7 +347,6 @@
                                         <span class="option-text">Parameters (specific data and constraints)</span>
                                     </div>
                                 </label>
-                                
                                 <label class="option-card checkbox-option">
                                     <input type="checkbox" name="m2q1" value="creativity">
                                     <div class="option-content">
@@ -409,92 +354,118 @@
                                         <span class="option-text">Creativity (encouraging innovative responses)</span>
                                     </div>
                                 </label>
+                                <label class="option-card checkbox-option">
+                                    <input type="checkbox" name="m2q1" value="tone">
+                                    <div class="option-content">
+                                        <span class="option-check">✓</span>
+                                        <span class="option-text">Tone (specifying the communication style)</span>
+                                    </div>
+                                </label>
                             </div>
                             
                             <div class="feedback" id="m2q1-feedback"></div>
-                            <button class="btn btn-primary" onclick="checkMultipleAnswer('m2q1', ['context', 'purpose', 'structure', 'parameters'])" disabled id="m2q1-next">Check Answer</button>
+                            <button class="btn btn-primary" onclick="checkMultiple('m2q1', ['context', 'purpose', 'structure', 'parameters'])" disabled id="m2q1-btn">Check Answer</button>
                         </div>
 
-                        <!-- Question 2 -->
-                        <div class="question-card" id="module2-q2">
-                            <div class="question-header">
-                                <h3>Question 2: Template Analysis</h3>
-                                <p>Analyze this template and identify what's missing:</p>
-                                <div class="example-template">
-                                    <p><strong>Template:</strong> "I need help with social media content. Please create 5 posts about our new product launch."</p>
-                                </div>
+                        <div class="question-card" id="m2q2">
+                            <h3>Exercise 2.2: Identifying Missing Components</h3>
+                            <p>Analyze this template and identify what's missing:</p>
+                            
+                            <div class="template-example">
+                                <p><strong>Template:</strong> "I need help creating social media content for our product launch. Please create 5 posts that will get people excited about our new software tool."</p>
                             </div>
+                            
+                            <p>What components are missing from this template? (Select all that apply)</p>
                             
                             <div class="answer-options">
                                 <label class="option-card checkbox-option">
                                     <input type="checkbox" name="m2q2" value="context">
                                     <div class="option-content">
                                         <span class="option-check">✓</span>
-                                        <span class="option-text">Context (missing company info, target audience, brand voice)</span>
+                                        <span class="option-text">Context (company info, target audience, brand voice)</span>
                                     </div>
                                 </label>
-                                
                                 <label class="option-card checkbox-option">
                                     <input type="checkbox" name="m2q2" value="structure">
                                     <div class="option-content">
                                         <span class="option-check">✓</span>
-                                        <span class="option-text">Structure (missing format specifications, platform requirements)</span>
+                                        <span class="option-text">Structure (post format, platform specifications, content organization)</span>
                                     </div>
                                 </label>
-                                
                                 <label class="option-card checkbox-option">
                                     <input type="checkbox" name="m2q2" value="parameters">
                                     <div class="option-content">
                                         <span class="option-check">✓</span>
-                                        <span class="option-text">Parameters (missing product details, launch date, key features)</span>
+                                        <span class="option-text">Parameters (product details, launch date, key features, character limits)</span>
                                     </div>
                                 </label>
-                                
                                 <label class="option-card checkbox-option">
-                                    <input type="checkbox" name="m2q2" value="none">
+                                    <input type="checkbox" name="m2q2" value="complete">
                                     <div class="option-content">
                                         <span class="option-check">✓</span>
-                                        <span class="option-text">Nothing is missing - this template is complete</span>
+                                        <span class="option-text">Nothing - this template is complete</span>
                                     </div>
                                 </label>
                             </div>
                             
                             <div class="feedback" id="m2q2-feedback"></div>
-                            <button class="btn btn-primary" onclick="checkMultipleAnswer('m2q2', ['context', 'structure', 'parameters'])" disabled id="m2q2-next">Check Answer</button>
+                            <button class="btn btn-primary" onclick="checkMultiple('m2q2', ['context', 'structure', 'parameters'])" disabled id="m2q2-btn">Check Answer</button>
                         </div>
 
-                        <!-- Question 3 -->
-                        <div class="question-card" id="module2-q3">
-                            <div class="question-header">
-                                <h3>Question 3: Build a Complete Template</h3>
-                                <p>Create a complete template for analyzing monthly business performance. Include all four components (Context, Purpose, Structure, Parameters).</p>
-                            </div>
+                        <div class="question-card" id="m2q3">
+                            <h3>Exercise 2.3: Building a Complete Template</h3>
+                            <p>Create a complete template for analyzing monthly business performance. Include all four components (Context, Purpose, Structure, Parameters).</p>
                             
-                            <div class="text-input-section">
+                            <div class="text-input">
+                                <label for="m2q3-answer">Your Complete Template:</label>
                                 <textarea id="m2q3-answer" placeholder="CONTEXT: I am a [role] at a [business type]...
 PURPOSE: I need to analyze our monthly performance to...
 STRUCTURE: Please organize the analysis into: 1) ... 2) ... 3) ...
-PARAMETERS: Monthly revenue: $[amount], Key metrics: [list]..." rows="8"></textarea>
+PARAMETERS: Monthly revenue: $[amount], Key metrics: [list]..." rows="10"></textarea>
                             </div>
                             
                             <div class="feedback" id="m2q3-feedback"></div>
-                            <button class="btn btn-primary" onclick="checkCompleteTemplate('m2q3')" disabled id="m2q3-next">Check Answer</button>
+                            <button class="btn btn-primary" onclick="checkTemplate('m2q3')" disabled id="m2q3-btn">Check Answer</button>
                         </div>
-                    </div>
-                </section>
 
-                <!-- Additional modules would continue here with similar structure -->
-                <!-- For brevity, I'll add the other sections as placeholders that can be expanded -->
-
-                <!-- Module 3 -->
-                <section id="module3" class="content-section">
-                    <div class="module-header">
-                        <span class="module-badge">Module 3</span>
-                        <h1>The Four Core Components</h1>
-                        <p>Deep dive into each component with advanced techniques for structured output, thematic organization, and action frameworks.</p>
-                    </div>
-                    <div class="content-card">
-                        <p>Module 3 content will be implemented with the same card-based question structure...</p>
+                        <div class="question-card" id="m2q4">
+                            <h3>Exercise 2.4: Template Testing Framework</h3>
+                            <p>What is the best way to test if your template is working effectively?</p>
+                            
+                            <div class="answer-options">
+                                <label class="option-card">
+                                    <input type="radio" name="m2q4" value="a">
+                                    <div class="option-content">
+                                        <span class="option-letter">A</span>
+                                        <span class="option-text">Use it once and assume it works if you get any response</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="m2q4" value="b">
+                                    <div class="option-content">
+                                        <span class="option-letter">B</span>
+                                        <span class="option-text">Test it 3-5 times with the same data to check for consistency, then test with different data to check for adaptability</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="m2q4" value="c">
+                                    <div class="option-content">
+                                        <span class="option-letter">C</span>
+                                        <span class="option-text">Ask colleagues to review the template before using it</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="m2q4" value="d">
+                                    <div class="option-content">
+                                        <span class="option-letter">D</span>
+                                        <span class="option-text">Compare it to templates found online</span>
+                                    </div>
+                                </label>
+                            </div>
+                            
+                            <div class="feedback" id="m2q4-feedback"></div>
+                            <button class="btn btn-primary" onclick="checkAnswer('m2q4', 'b')" disabled id="m2q4-btn">Check Answer</button>
+                        </div>
                     </div>
                 </section>
 
@@ -506,60 +477,59 @@ PARAMETERS: Monthly revenue: $[amount], Key metrics: [list]..." rows="8"></texta
                         <p>Create your own custom templates using our guided wizard. Build professional templates that consistently deliver high-quality results.</p>
                     </div>
                     
-                    <div class="content-card">
-                        <div class="template-builder">
-                            <div class="wizard-steps">
-                                <div class="wizard-step-indicator active" id="step-1">1</div>
-                                <div class="wizard-step-indicator" id="step-2">2</div>
-                                <div class="wizard-step-indicator" id="step-3">3</div>
-                                <div class="wizard-step-indicator" id="step-4">4</div>
+                    <div class="builder-container">
+                        <div class="builder-steps">
+                            <div class="step active" id="step1">
+                                <div class="step-number">1</div>
+                                <div class="step-title">Context</div>
                             </div>
+                            <div class="step" id="step2">
+                                <div class="step-number">2</div>
+                                <div class="step-title">Purpose</div>
+                            </div>
+                            <div class="step" id="step3">
+                                <div class="step-number">3</div>
+                                <div class="step-title">Structure</div>
+                            </div>
+                            <div class="step" id="step4">
+                                <div class="step-number">4</div>
+                                <div class="step-title">Parameters</div>
+                            </div>
+                        </div>
 
-                            <div class="wizard-step active" id="wizard-step-1">
+                        <div class="builder-content">
+                            <div class="step-content active" id="content1">
                                 <h3>Step 1: Define Context</h3>
                                 <p>Describe your role, situation, and relevant background information.</p>
-                                <div class="form-group">
-                                    <label for="template-context">Context</label>
-                                    <textarea id="template-context" placeholder="I am a [role] working in [industry/situation]. My constraints include..." rows="4"></textarea>
-                                </div>
-                                <button class="btn btn-primary" onclick="nextWizardStep(2)">Next: Purpose →</button>
+                                <textarea id="context-input" placeholder="I am a [role] working in [industry/situation]. My constraints include..." rows="4"></textarea>
+                                <button class="btn btn-primary" onclick="nextStep(2)">Next: Purpose →</button>
                             </div>
 
-                            <div class="wizard-step" id="wizard-step-2">
+                            <div class="step-content" id="content2">
                                 <h3>Step 2: Define Purpose</h3>
                                 <p>Clearly state what you want to achieve with this template.</p>
-                                <div class="form-group">
-                                    <label for="template-purpose">Purpose</label>
-                                    <textarea id="template-purpose" placeholder="I need to [specific objective] in order to [desired outcome]..." rows="4"></textarea>
-                                </div>
-                                <button class="btn btn-outline" onclick="nextWizardStep(1)">← Back</button>
-                                <button class="btn btn-primary" onclick="nextWizardStep(3)">Next: Structure →</button>
+                                <textarea id="purpose-input" placeholder="I need to [specific objective] in order to [desired outcome]..." rows="4"></textarea>
+                                <button class="btn btn-outline" onclick="nextStep(1)">← Back</button>
+                                <button class="btn btn-primary" onclick="nextStep(3)">Next: Structure →</button>
                             </div>
 
-                            <div class="wizard-step" id="wizard-step-3">
+                            <div class="step-content" id="content3">
                                 <h3>Step 3: Define Structure</h3>
                                 <p>Specify how you want the output organized and formatted.</p>
-                                <div class="form-group">
-                                    <label for="template-structure">Structure</label>
-                                    <textarea id="template-structure" placeholder="Format the output as: 1. [Section] 2. [Section] 3. [Section]..." rows="4"></textarea>
-                                </div>
-                                <button class="btn btn-outline" onclick="nextWizardStep(2)">← Back</button>
-                                <button class="btn btn-primary" onclick="nextWizardStep(4)">Next: Parameters →</button>
+                                <textarea id="structure-input" placeholder="Format the output as: 1. [Section] 2. [Section] 3. [Section]..." rows="4"></textarea>
+                                <button class="btn btn-outline" onclick="nextStep(2)">← Back</button>
+                                <button class="btn btn-primary" onclick="nextStep(4)">Next: Parameters →</button>
                             </div>
 
-                            <div class="wizard-step" id="wizard-step-4">
+                            <div class="step-content" id="content4">
                                 <h3>Step 4: Define Parameters</h3>
                                 <p>Provide specific data, constraints, and requirements.</p>
-                                <div class="form-group">
-                                    <label for="template-parameters">Parameters</label>
-                                    <textarea id="template-parameters" placeholder="Use the following data: [specific information]. Constraints: [limitations]. Requirements: [specifications]..." rows="4"></textarea>
+                                <textarea id="parameters-input" placeholder="Use the following data: [specific information]. Constraints: [limitations]. Requirements: [specifications]..." rows="4"></textarea>
+                                <input type="text" id="template-name" placeholder="Template Name" style="margin-top: 1rem;">
+                                <div style="margin-top: 1rem;">
+                                    <button class="btn btn-outline" onclick="nextStep(3)">← Back</button>
+                                    <button class="btn btn-primary" onclick="createTemplate()">Create Template</button>
                                 </div>
-                                <div class="form-group">
-                                    <label for="template-name">Template Name</label>
-                                    <input type="text" id="template-name" placeholder="Give your template a descriptive name">
-                                </div>
-                                <button class="btn btn-outline" onclick="nextWizardStep(3)">← Back</button>
-                                <button class="btn btn-primary" onclick="generateTemplate()">Create Template</button>
                             </div>
                         </div>
                     </div>
@@ -573,33 +543,37 @@ PARAMETERS: Monthly revenue: $[amount], Key metrics: [list]..." rows="8"></texta
                         <p>Your personal collection of templates created throughout the course.</p>
                     </div>
                     
-                    <div class="content-card">
-                        <h2>Saved Templates</h2>
-                        <div id="saved-templates">
-                            <!-- Templates will be populated here -->
+                    <div class="templates-container">
+                        <div class="templates-section">
+                            <h2>Your Created Templates</h2>
+                            <div id="user-templates" class="templates-grid">
+                                <div class="empty-state">
+                                    <p>No templates created yet. Use the Template Builder or complete exercises to create your first template.</p>
+                                </div>
+                            </div>
                         </div>
-                        
-                        <h2>Starter Templates</h2>
-                        <div class="features-grid">
-                            <div class="feature-card">
-                                <div class="feature-icon">📊</div>
-                                <h3>Business Performance Review</h3>
-                                <p>Monthly analysis template for small businesses with KPI tracking and actionable insights</p>
-                                <button class="btn btn-sm" onclick="useTemplate('business-review')">USE TEMPLATE</button>
-                            </div>
-                            
-                            <div class="feature-card">
-                                <div class="feature-icon">📝</div>
-                                <h3>Content Strategy Planning</h3>
-                                <p>Plan and organize your content marketing efforts with strategic frameworks</p>
-                                <button class="btn btn-sm" onclick="useTemplate('content-strategy')">USE TEMPLATE</button>
-                            </div>
-                            
-                            <div class="feature-card">
-                                <div class="feature-icon">🔍</div>
-                                <h3>Competitive Analysis</h3>
-                                <p>Analyze competitors and market positioning with structured evaluation criteria</p>
-                                <button class="btn btn-sm" onclick="useTemplate('competitive-analysis')">USE TEMPLATE</button>
+
+                        <div class="templates-section">
+                            <h2>Starter Templates</h2>
+                            <div class="templates-grid">
+                                <div class="template-card">
+                                    <div class="template-icon">📊</div>
+                                    <h3>Business Performance Review</h3>
+                                    <p>Monthly analysis template for small businesses with KPI tracking and actionable insights.</p>
+                                    <button class="btn btn-sm" onclick="useStarterTemplate('business')">Use Template</button>
+                                </div>
+                                <div class="template-card">
+                                    <div class="template-icon">📝</div>
+                                    <h3>Content Strategy Planning</h3>
+                                    <p>Plan and organize your content marketing efforts with strategic frameworks.</p>
+                                    <button class="btn btn-sm" onclick="useStarterTemplate('content')">Use Template</button>
+                                </div>
+                                <div class="template-card">
+                                    <div class="template-icon">🔍</div>
+                                    <h3>Competitive Analysis</h3>
+                                    <p>Analyze competitors and market positioning with structured evaluation criteria.</p>
+                                    <button class="btn btn-sm" onclick="useStarterTemplate('competitive')">Use Template</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -613,64 +587,69 @@ PARAMETERS: Monthly revenue: $[amount], Key metrics: [list]..." rows="8"></texta
                         <p>Comprehensive reference materials, key concepts, and professional templates from the course.</p>
                     </div>
                     
-                    <div class="content-card">
+                    <div class="resource-container">
                         <div class="resource-tabs">
-                            <button class="tab-btn active" onclick="showResourceTab('concepts')">Key Concepts</button>
-                            <button class="tab-btn" onclick="showResourceTab('templates')">Template Library</button>
-                            <button class="tab-btn" onclick="showResourceTab('frameworks')">Frameworks</button>
-                            <button class="tab-btn" onclick="showResourceTab('examples')">Examples</button>
+                            <button class="tab-btn active" onclick="showTab('concepts')">Key Concepts</button>
+                            <button class="tab-btn" onclick="showTab('templates')">Template Examples</button>
+                            <button class="tab-btn" onclick="showTab('frameworks')">Frameworks</button>
                         </div>
                         
-                        <div id="concepts-tab" class="resource-tab-content active">
-                            <h2>Key Concepts by Module</h2>
-                            <div class="features-grid">
-                                <div class="feature-card">
-                                    <div class="feature-icon">1</div>
+                        <div id="concepts-tab" class="tab-content active">
+                            <div class="concept-grid">
+                                <div class="concept-card">
+                                    <div class="concept-number">1</div>
                                     <h3>Actionable Information</h3>
-                                    <p><strong>Decision-First Approach:</strong> Start with the decision you need to make</p>
-                                    <p><strong>Quality Indicators:</strong> Numbers, comparisons, recommendations</p>
+                                    <p><strong>Decision-First Approach:</strong> Start with the specific decision you need to make, then gather the exact information required for that decision.</p>
+                                    <p><strong>Three Elements:</strong> Specific numbers/details, Context/comparison, Clear next steps</p>
                                 </div>
-                                
-                                <div class="feature-card">
-                                    <div class="feature-icon">2</div>
+                                <div class="concept-card">
+                                    <div class="concept-number">2</div>
                                     <h3>Template Components</h3>
-                                    <p><strong>Four Core Elements:</strong> Context, Purpose, Structure, Parameters</p>
-                                    <p><strong>Foundation:</strong> Every effective template must include all four components</p>
+                                    <p><strong>Four Essential Parts:</strong> Context (your role/situation), Purpose (what you want to achieve), Structure (output format), Parameters (specific data/constraints)</p>
+                                    <p><strong>Testing:</strong> Use 3-5 times for consistency, test with different data for adaptability</p>
                                 </div>
-                                
-                                <div class="feature-card">
-                                    <div class="feature-icon">3</div>
-                                    <h3>Core Components Deep Dive</h3>
-                                    <p><strong>Structured Output:</strong> Organized, consistent formatting</p>
-                                    <p><strong>Action Frameworks:</strong> Clear next steps with timelines</p>
+                                <div class="concept-card">
+                                    <div class="concept-number">3</div>
+                                    <h3>Core Components</h3>
+                                    <p><strong>Structured Output:</strong> Organized, consistent formatting that's easy to scan and act upon</p>
+                                    <p><strong>Action Frameworks:</strong> Clear next steps with specific timelines and responsible parties</p>
                                 </div>
-                                
-                                <div class="feature-card">
-                                    <div class="feature-icon">4</div>
-                                    <h3>Industry Applications</h3>
-                                    <p><strong>Business Templates:</strong> KPI analysis and performance metrics</p>
-                                    <p><strong>Industry Adaptation:</strong> Sector-specific terminology and requirements</p>
+                            </div>
+                        </div>
+                        
+                        <div id="templates-tab" class="tab-content">
+                            <div class="template-examples">
+                                <div class="example-card">
+                                    <h3>Business Performance Template</h3>
+                                    <div class="template-code">
+                                        <p><strong>CONTEXT:</strong> I am a small business owner analyzing monthly performance metrics for strategic decision-making.</p>
+                                        <p><strong>PURPOSE:</strong> I need to evaluate our business performance to identify growth opportunities and areas requiring immediate attention.</p>
+                                        <p><strong>STRUCTURE:</strong> Please organize the analysis into: 1) Revenue Analysis 2) KPI Summary 3) Top 3 Strengths and Opportunities 4) Action Items with Timeline</p>
+                                        <p><strong>PARAMETERS:</strong> Monthly Revenue: $[amount], Key Metrics: [list], Industry: [type], Team Size: [number]</p>
+                                    </div>
                                 </div>
-                                
-                                <div class="feature-card">
-                                    <div class="feature-icon">5</div>
-                                    <h3>Advanced Techniques</h3>
-                                    <p><strong>Scenario Planning:</strong> Multiple future scenarios and outcomes</p>
-                                    <p><strong>Comparative Analysis:</strong> Weighted criteria and scoring systems</p>
+                            </div>
+                        </div>
+                        
+                        <div id="frameworks-tab" class="tab-content">
+                            <div class="framework-grid">
+                                <div class="framework-card">
+                                    <h3>Decision-First Framework</h3>
+                                    <ol>
+                                        <li>What specific decision do I need to make?</li>
+                                        <li>What information is required for this decision?</li>
+                                        <li>How will I measure success?</li>
+                                        <li>What are the next steps?</li>
+                                    </ol>
                                 </div>
-                                
-                                <div class="feature-card">
-                                    <div class="feature-icon">6</div>
-                                    <h3>System Design</h3>
-                                    <p><strong>Template Systems:</strong> Interconnected workflow design</p>
-                                    <p><strong>Integration Points:</strong> Connecting with existing tools</p>
-                                </div>
-                                
-                                <div class="feature-card">
-                                    <div class="feature-icon">7</div>
-                                    <h3>Professional Presentation</h3>
-                                    <p><strong>Documentation:</strong> Comprehensive user guides and examples</p>
-                                    <p><strong>Organization:</strong> Library management and version control</p>
+                                <div class="framework-card">
+                                    <h3>Template Testing Framework</h3>
+                                    <ol>
+                                        <li>Consistency Test: Use 3-5 times with same data</li>
+                                        <li>Adaptability Test: Use with different data sets</li>
+                                        <li>Quality Check: Verify all four components present</li>
+                                        <li>Results Review: Evaluate output usefulness</li>
+                                    </ol>
                                 </div>
                             </div>
                         </div>
@@ -685,22 +664,52 @@ PARAMETERS: Monthly revenue: $[amount], Key metrics: [list]..." rows="8"></texta
                         <p>Demonstrate your mastery by creating a comprehensive template system and receive detailed feedback on your work.</p>
                     </div>
                     
-                    <div class="content-card">
-                        <h2>Project Requirements</h2>
-                        <p>Create a professional template system that demonstrates your understanding of all course concepts.</p>
-                        
+                    <div class="project-container">
+                        <div class="project-requirements">
+                            <h2>Project Requirements</h2>
+                            <div class="requirement-grid">
+                                <div class="requirement-card">
+                                    <div class="req-icon">📋</div>
+                                    <h3>Template System</h3>
+                                    <p>Create 3-5 related templates that work together for a specific business process or industry need.</p>
+                                </div>
+                                <div class="requirement-card">
+                                    <div class="req-icon">🔧</div>
+                                    <h3>All Four Components</h3>
+                                    <p>Each template must include Context, Purpose, Structure, and Parameters clearly defined.</p>
+                                </div>
+                                <div class="requirement-card">
+                                    <div class="req-icon">📊</div>
+                                    <h3>Testing Documentation</h3>
+                                    <p>Provide evidence of testing your templates for consistency and adaptability.</p>
+                                </div>
+                                <div class="requirement-card">
+                                    <div class="req-icon">📝</div>
+                                    <h3>Use Case Examples</h3>
+                                    <p>Include real examples showing how your templates solve specific business problems.</p>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="project-form">
+                            <h2>Submit Your Project</h2>
                             <div class="form-group">
                                 <label for="project-title">Project Title</label>
                                 <input type="text" id="project-title" placeholder="Enter your project title">
                             </div>
-                            
                             <div class="form-group">
                                 <label for="project-description">Project Description</label>
                                 <textarea id="project-description" rows="4" placeholder="Describe your template system and its intended use case"></textarea>
                             </div>
-                            
-                            <button class="btn btn-primary" onclick="submitFinalProject()">Submit Project</button>
+                            <div class="form-group">
+                                <label for="project-templates">Your Templates</label>
+                                <textarea id="project-templates" rows="10" placeholder="Paste your complete templates here, including all four components for each template"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="project-testing">Testing Results</label>
+                                <textarea id="project-testing" rows="6" placeholder="Describe how you tested your templates and what results you achieved"></textarea>
+                            </div>
+                            <button class="btn btn-primary" onclick="submitProject()">Submit Final Project</button>
                         </div>
                     </div>
                 </section>
@@ -708,6 +717,6 @@ PARAMETERS: Monthly revenue: $[amount], Key metrics: [list]..." rows="8"></texta
         </div>
     </div>
 
-    <script src="script-working.js"></script>
+    <script src="script-final.js"></script>
 </body>
 </html>

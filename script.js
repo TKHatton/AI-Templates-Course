@@ -1,64 +1,29 @@
-// Development Mode Toggle
-const DEVELOPMENT_MODE = true; // Set to false for production
-
-// Initialize the application
-document.addEventListener('DOMContentLoaded', function() {
-    initializeApp();
-    loadProgress();
-    updateProgressDisplay();
-    
-    // Show/hide development features
-    if (DEVELOPMENT_MODE) {
-        document.body.classList.add('development-mode');
-    }
-    
-    // Enable radio button listeners
-    setupQuestionListeners();
-});
-
 // Application State
 let courseProgress = {
-    module1: { completed: false, currentQuestion: 1, answers: {} },
-    module2: { completed: false, currentQuestion: 1, answers: {} },
-    module3: { completed: false, currentQuestion: 1, answers: {} },
-    module4: { completed: false, currentQuestion: 1, answers: {} },
-    module5: { completed: false, currentQuestion: 1, answers: {} },
-    module6: { completed: false, currentQuestion: 1, answers: {} },
-    module7: { completed: false, currentQuestion: 1, answers: {} }
+    module1: { completed: false, currentQuestion: 1, totalQuestions: 5, answers: {} },
+    module2: { completed: false, currentQuestion: 1, totalQuestions: 4, answers: {} }
 };
 
 let userTemplates = [];
+let currentStep = 1;
 
 // Initialize Application
-function initializeApp() {
-    // Load starter templates
-    loadStarterTemplates();
-    
-    // Set up event listeners
+document.addEventListener('DOMContentLoaded', function() {
+    loadProgress();
+    updateProgressDisplay();
     setupEventListeners();
+    loadStarterTemplates();
+    showSection('introduction');
     
     console.log('AI Templates Course initialized');
-}
+});
 
-// Setup Event Listeners
+// Event Listeners
 function setupEventListeners() {
-    // Navigation links
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const section = this.getAttribute('onclick').match(/'([^']+)'/)[1];
-            showSection(section);
-        });
-    });
-}
-
-// Setup Question Listeners
-function setupQuestionListeners() {
     // Radio button listeners
     document.querySelectorAll('input[type="radio"]').forEach(radio => {
         radio.addEventListener('change', function() {
-            const questionId = this.name;
-            const button = document.getElementById(questionId + '-next');
+            const button = document.getElementById(this.name + '-btn');
             if (button) {
                 button.disabled = false;
             }
@@ -70,7 +35,7 @@ function setupQuestionListeners() {
         checkbox.addEventListener('change', function() {
             const questionName = this.name;
             const checkedBoxes = document.querySelectorAll(`input[name="${questionName}"]:checked`);
-            const button = document.getElementById(questionName + '-next');
+            const button = document.getElementById(questionName + '-btn');
             if (button) {
                 button.disabled = checkedBoxes.length === 0;
             }
@@ -81,7 +46,7 @@ function setupQuestionListeners() {
     document.querySelectorAll('textarea').forEach(textarea => {
         textarea.addEventListener('input', function() {
             const questionId = this.id.replace('-answer', '');
-            const button = document.getElementById(questionId + '-next');
+            const button = document.getElementById(questionId + '-btn');
             if (button) {
                 button.disabled = this.value.trim().length < 50;
             }
@@ -89,7 +54,7 @@ function setupQuestionListeners() {
     });
 }
 
-// Navigation Functions
+// Navigation
 function showSection(sectionId) {
     // Hide all sections
     document.querySelectorAll('.content-section').forEach(section => {
@@ -103,52 +68,49 @@ function showSection(sectionId) {
     }
     
     // Update navigation
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.remove('active');
+    document.querySelectorAll('.nav-item').forEach(item => {
+        item.classList.remove('active');
     });
     
-    // Find and activate the corresponding nav link
-    document.querySelectorAll('.nav-link').forEach(link => {
-        const onclick = link.getAttribute('onclick');
-        if (onclick && onclick.includes(sectionId)) {
-            link.classList.add('active');
-        }
-    });
+    // Find and activate corresponding nav item
+    const navItem = document.querySelector(`[onclick="showSection('${sectionId}')"]`);
+    if (navItem) {
+        navItem.classList.add('active');
+    }
     
-    // Special handling for modules
+    // Update question display for modules
     if (sectionId.startsWith('module')) {
-        showCurrentQuestion(sectionId);
+        updateQuestionDisplay(sectionId);
     }
 }
 
-function showCurrentQuestion(moduleId) {
-    const moduleNum = moduleId.replace('module', '');
-    const currentQ = courseProgress[moduleId]?.currentQuestion || 1;
-    
-    // Hide all questions in this module
-    document.querySelectorAll(`#${moduleId} .question-card`).forEach(q => {
-        q.classList.remove('active');
-    });
-    
-    // Show current question
-    const currentQuestion = document.getElementById(`${moduleId}-q${currentQ}`);
-    if (currentQuestion) {
-        currentQuestion.classList.add('active');
-    }
+function updateQuestionDisplay(moduleId) {
+    const moduleData = courseProgress[moduleId];
+    if (!moduleData) return;
     
     // Update progress text
-    const progressElement = document.getElementById(`${moduleId}-progress`);
-    if (progressElement) {
-        const totalQuestions = document.querySelectorAll(`#${moduleId} .question-card`).length;
-        progressElement.textContent = `Question ${currentQ} of ${totalQuestions}`;
+    const currentSpan = document.getElementById(`${moduleId.replace('module', 'm')}-current`);
+    const totalSpan = document.getElementById(`${moduleId.replace('module', 'm')}-total`);
+    
+    if (currentSpan) currentSpan.textContent = moduleData.currentQuestion;
+    if (totalSpan) totalSpan.textContent = moduleData.totalQuestions;
+    
+    // Show current question
+    document.querySelectorAll(`#${moduleId} .question-card`).forEach(card => {
+        card.classList.remove('active');
+    });
+    
+    const currentCard = document.getElementById(`${moduleId.replace('module', 'm')}q${moduleData.currentQuestion}`);
+    if (currentCard) {
+        currentCard.classList.add('active');
     }
 }
 
-// Answer Checking Functions
+// Answer Checking
 function checkAnswer(questionId, correctAnswer) {
     const selectedAnswer = document.querySelector(`input[name="${questionId}"]:checked`);
     const feedbackElement = document.getElementById(`${questionId}-feedback`);
-    const nextButton = document.getElementById(`${questionId}-next`);
+    const button = document.getElementById(`${questionId}-btn`);
     
     if (!selectedAnswer) {
         showFeedback(feedbackElement, 'Please select an answer.', 'error');
@@ -159,33 +121,28 @@ function checkAnswer(questionId, correctAnswer) {
     
     if (isCorrect) {
         showFeedback(feedbackElement, '✅ Correct! Well done.', 'success');
-        nextButton.textContent = 'Next Question →';
-        nextButton.onclick = () => nextQuestion(questionId);
+        button.textContent = 'Next Question →';
+        button.onclick = () => nextQuestion(questionId);
         
         // Save answer
-        const moduleId = questionId.substring(0, questionId.length - 2);
-        if (!courseProgress[moduleId]) {
-            courseProgress[moduleId] = { completed: false, currentQuestion: 1, answers: {} };
-        }
-        courseProgress[moduleId].answers[questionId] = selectedAnswer.value;
-        saveProgress();
+        saveAnswer(questionId, selectedAnswer.value);
         
     } else {
         showFeedback(feedbackElement, '❌ Not quite right. Please try again.', 'error');
-        nextButton.disabled = true;
+        button.disabled = true;
         
-        // Reset radio buttons
+        // Reset selection
         document.querySelectorAll(`input[name="${questionId}"]`).forEach(radio => {
             radio.checked = false;
         });
     }
 }
 
-function checkMultipleAnswer(questionId, correctAnswers) {
+function checkMultiple(questionId, correctAnswers) {
     const selectedAnswers = Array.from(document.querySelectorAll(`input[name="${questionId}"]:checked`))
         .map(input => input.value);
     const feedbackElement = document.getElementById(`${questionId}-feedback`);
-    const nextButton = document.getElementById(`${questionId}-next`);
+    const button = document.getElementById(`${questionId}-btn`);
     
     if (selectedAnswers.length === 0) {
         showFeedback(feedbackElement, 'Please select at least one answer.', 'error');
@@ -197,45 +154,28 @@ function checkMultipleAnswer(questionId, correctAnswers) {
     
     if (isCorrect) {
         showFeedback(feedbackElement, '✅ Excellent! You identified all the correct components.', 'success');
-        nextButton.textContent = 'Next Question →';
-        nextButton.onclick = () => nextQuestion(questionId);
+        button.textContent = 'Next Question →';
+        button.onclick = () => nextQuestion(questionId);
         
         // Save answer
-        const moduleId = questionId.substring(0, questionId.length - 2);
-        if (!courseProgress[moduleId]) {
-            courseProgress[moduleId] = { completed: false, currentQuestion: 1, answers: {} };
-        }
-        courseProgress[moduleId].answers[questionId] = selectedAnswers;
-        saveProgress();
+        saveAnswer(questionId, selectedAnswers);
         
     } else {
-        const missing = correctAnswers.filter(answer => !selectedAnswers.includes(answer));
-        const extra = selectedAnswers.filter(answer => !correctAnswers.includes(answer));
+        showFeedback(feedbackElement, '⚠️ Not quite complete. Please review and try again.', 'warning');
+        button.disabled = true;
         
-        let feedback = '⚠️ Not quite complete. ';
-        if (missing.length > 0) {
-            feedback += `You're missing some key elements. `;
-        }
-        if (extra.length > 0) {
-            feedback += `Some selections are not essential components. `;
-        }
-        feedback += 'Please review and try again.';
-        
-        showFeedback(feedbackElement, feedback, 'warning');
-        nextButton.disabled = true;
-        
-        // Reset checkboxes
+        // Reset selections
         document.querySelectorAll(`input[name="${questionId}"]`).forEach(checkbox => {
             checkbox.checked = false;
         });
     }
 }
 
-function checkTextAnswer(questionId, requiredKeywords) {
+function checkText(questionId, requiredKeywords) {
     const textarea = document.getElementById(`${questionId}-answer`);
     const answer = textarea.value.trim();
     const feedbackElement = document.getElementById(`${questionId}-feedback`);
-    const nextButton = document.getElementById(`${questionId}-next`);
+    const button = document.getElementById(`${questionId}-btn`);
     
     if (answer.length < 50) {
         showFeedback(feedbackElement, 'Please provide a more detailed response (at least 50 characters).', 'error');
@@ -249,23 +189,11 @@ function checkTextAnswer(questionId, requiredKeywords) {
     
     if (foundKeywords.length >= Math.ceil(requiredKeywords.length * 0.6)) {
         showFeedback(feedbackElement, '✅ Great response! You demonstrate understanding of the key concepts.', 'success');
-        nextButton.textContent = 'Next Question →';
-        nextButton.onclick = () => nextQuestion(questionId);
+        button.textContent = 'Next Question →';
+        button.onclick = () => nextQuestion(questionId);
         
-        // Save answer and potentially as template
-        const moduleId = questionId.substring(0, questionId.length - 2);
-        if (!courseProgress[moduleId]) {
-            courseProgress[moduleId] = { completed: false, currentQuestion: 1, answers: {} };
-        }
-        courseProgress[moduleId].answers[questionId] = answer;
-        
-        // Save as template if it's a template-building exercise
-        if (questionId.includes('template') || answer.toLowerCase().includes('context') && 
-            answer.toLowerCase().includes('purpose')) {
-            saveAsTemplate(answer, `Template from ${questionId}`);
-        }
-        
-        saveProgress();
+        // Save answer
+        saveAnswer(questionId, answer);
         
     } else {
         const missingConcepts = requiredKeywords.filter(keyword => 
@@ -274,15 +202,14 @@ function checkTextAnswer(questionId, requiredKeywords) {
         showFeedback(feedbackElement, 
             `⚠️ Good start! Try to include more specific elements like: ${missingConcepts.join(', ')}`, 
             'warning');
-        nextButton.disabled = true;
     }
 }
 
-function checkCompleteTemplate(questionId) {
+function checkTemplate(questionId) {
     const textarea = document.getElementById(`${questionId}-answer`);
     const template = textarea.value.trim();
     const feedbackElement = document.getElementById(`${questionId}-feedback`);
-    const nextButton = document.getElementById(`${questionId}-next`);
+    const button = document.getElementById(`${questionId}-btn`);
     
     if (template.length < 100) {
         showFeedback(feedbackElement, 'Please provide a more complete template (at least 100 characters).', 'error');
@@ -296,50 +223,52 @@ function checkCompleteTemplate(questionId) {
     
     if (foundComponents.length >= 3) {
         showFeedback(feedbackElement, '✅ Excellent template! All key components are included.', 'success');
-        nextButton.textContent = 'Next Question →';
-        nextButton.onclick = () => nextQuestion(questionId);
+        button.textContent = 'Next Question →';
+        button.onclick = () => nextQuestion(questionId);
         
         // Save as template
-        saveAsTemplate(template, `Complete Template from ${questionId}`);
+        saveAsTemplate(template, `Template from ${questionId}`);
         
-        // Save progress
-        const moduleId = questionId.substring(0, questionId.length - 2);
-        if (!courseProgress[moduleId]) {
-            courseProgress[moduleId] = { completed: false, currentQuestion: 1, answers: {} };
-        }
-        courseProgress[moduleId].answers[questionId] = template;
-        saveProgress();
+        // Save answer
+        saveAnswer(questionId, template);
         
     } else {
         showFeedback(feedbackElement, 
             '⚠️ Good progress! Make sure to include all four components: Context, Purpose, Structure, and Parameters.', 
             'warning');
-        nextButton.disabled = true;
     }
 }
 
 function nextQuestion(questionId) {
-    const moduleId = questionId.substring(0, questionId.length - 2);
+    const moduleId = questionId.substring(0, questionId.length - 2).replace('m', 'module');
     const currentQ = parseInt(questionId.slice(-1));
-    const totalQuestions = document.querySelectorAll(`#${moduleId} .question-card`).length;
+    const moduleData = courseProgress[moduleId];
     
-    if (currentQ < totalQuestions) {
+    if (!moduleData) return;
+    
+    if (currentQ < moduleData.totalQuestions) {
         // Move to next question
-        courseProgress[moduleId].currentQuestion = currentQ + 1;
-        showCurrentQuestion(moduleId);
+        moduleData.currentQuestion = currentQ + 1;
+        updateQuestionDisplay(moduleId);
     } else {
         // Module completed
-        courseProgress[moduleId].completed = true;
-        courseProgress[moduleId].currentQuestion = 1; // Reset for review
-        
+        moduleData.completed = true;
         showFeedback(
             document.getElementById(`${questionId}-feedback`),
             '🎉 Module completed! Great work. You can now move to the next module.',
             'success'
         );
         
-        // Update navigation to show completion
-        updateModuleCompletion(moduleId);
+        // Update navigation
+        const navItem = document.querySelector(`[onclick="showSection('${moduleId}')"]`);
+        if (navItem) {
+            const icon = navItem.querySelector('.nav-icon');
+            if (icon) {
+                icon.textContent = '✓';
+                icon.style.background = 'var(--accent-teal)';
+                icon.style.color = 'var(--white)';
+            }
+        }
     }
     
     saveProgress();
@@ -373,11 +302,28 @@ function updateProgressDisplay() {
     }
 }
 
-function updateModuleCompletion(moduleId) {
-    const indicator = document.getElementById(`${moduleId}-indicator`);
-    if (indicator) {
-        indicator.textContent = '✓';
-        indicator.style.background = 'var(--accent-teal)';
+function saveAnswer(questionId, answer) {
+    const moduleId = questionId.substring(0, questionId.length - 2).replace('m', 'module');
+    if (courseProgress[moduleId]) {
+        courseProgress[moduleId].answers[questionId] = answer;
+    }
+}
+
+function saveProgress() {
+    localStorage.setItem('courseProgress', JSON.stringify(courseProgress));
+    localStorage.setItem('userTemplates', JSON.stringify(userTemplates));
+}
+
+function loadProgress() {
+    const saved = localStorage.getItem('courseProgress');
+    if (saved) {
+        courseProgress = { ...courseProgress, ...JSON.parse(saved) };
+    }
+    
+    const savedTemplates = localStorage.getItem('userTemplates');
+    if (savedTemplates) {
+        userTemplates = JSON.parse(savedTemplates);
+        updateTemplateDisplay();
     }
 }
 
@@ -392,94 +338,25 @@ function saveAsTemplate(content, name) {
     };
     
     userTemplates.push(template);
-    localStorage.setItem('userTemplates', JSON.stringify(userTemplates));
     updateTemplateDisplay();
-}
-
-function loadStarterTemplates() {
-    const starterTemplates = [
-        {
-            id: 'business-review',
-            name: 'Business Performance Review',
-            content: `CONTEXT: I am a small business owner analyzing monthly performance metrics for strategic decision-making.
-
-PURPOSE: I need to evaluate our business performance to identify growth opportunities and areas requiring immediate attention.
-
-STRUCTURE: Please organize the analysis into:
-1. Revenue Analysis (current vs. target vs. previous month)
-2. Key Performance Indicators Summary
-3. Top 3 Strengths and Opportunities
-4. Specific Action Items with Timeline
-
-PARAMETERS: 
-- Monthly Revenue: $[amount]
-- Key Metrics: [customer acquisition, retention rate, average order value]
-- Industry: [your industry]
-- Team Size: [number] employees`,
-            category: 'Business'
-        },
-        {
-            id: 'content-strategy',
-            name: 'Content Strategy Planning',
-            content: `CONTEXT: I am a content creator/marketer developing a strategic content plan for audience engagement and growth.
-
-PURPOSE: I need to create a comprehensive content strategy that aligns with business goals and audience needs.
-
-STRUCTURE: Format the strategy as:
-1. Audience Analysis and Personas
-2. Content Pillars and Themes
-3. Content Calendar Framework
-4. Distribution and Promotion Strategy
-5. Success Metrics and KPIs
-
-PARAMETERS:
-- Target Audience: [demographics and interests]
-- Business Goals: [awareness, leads, sales, engagement]
-- Content Types: [blog, video, social, email]
-- Resources Available: [team size, budget, tools]`,
-            category: 'Marketing'
-        },
-        {
-            id: 'competitive-analysis',
-            name: 'Competitive Analysis',
-            content: `CONTEXT: I am conducting competitive research to understand market positioning and identify strategic opportunities.
-
-PURPOSE: I need to analyze competitors to inform strategic decisions and identify competitive advantages.
-
-STRUCTURE: Organize the analysis into:
-1. Competitor Overview and Market Position
-2. Strengths and Weaknesses Analysis
-3. Pricing and Value Proposition Comparison
-4. Marketing and Customer Acquisition Strategies
-5. Opportunities and Threats Assessment
-
-PARAMETERS:
-- Industry: [your industry]
-- Competitors: [list 3-5 main competitors]
-- Analysis Focus: [pricing, features, marketing, customer service]
-- Business Context: [startup, established business, expansion]`,
-            category: 'Strategy'
-        }
-    ];
-    
-    // Store starter templates separately
-    localStorage.setItem('starterTemplates', JSON.stringify(starterTemplates));
+    saveProgress();
 }
 
 function updateTemplateDisplay() {
-    const savedTemplatesContainer = document.getElementById('saved-templates');
-    if (!savedTemplatesContainer) return;
+    const container = document.getElementById('user-templates');
+    if (!container) return;
     
     if (userTemplates.length === 0) {
-        savedTemplatesContainer.innerHTML = '<p style="color: var(--secondary-gray); font-style: italic;">No templates created yet. Complete exercises or use the Template Builder to create your first template.</p>';
+        container.innerHTML = '<div class="empty-state"><p>No templates created yet. Use the Template Builder or complete exercises to create your first template.</p></div>';
         return;
     }
     
-    savedTemplatesContainer.innerHTML = userTemplates.map(template => `
-        <div class="template-item">
-            <h4>${template.name}</h4>
-            <p class="template-preview">${template.content.substring(0, 150)}...</p>
-            <div class="template-actions">
+    container.innerHTML = userTemplates.map(template => `
+        <div class="template-card">
+            <div class="template-icon">📝</div>
+            <h3>${template.name}</h3>
+            <p>${template.content.substring(0, 150)}...</p>
+            <div style="margin-top: 1rem;">
                 <button class="btn btn-sm" onclick="viewTemplate(${template.id})">View</button>
                 <button class="btn btn-sm btn-outline" onclick="exportTemplatePDF(${template.id})">Export PDF</button>
             </div>
@@ -487,26 +364,31 @@ function updateTemplateDisplay() {
     `).join('');
 }
 
-// Template Builder Functions
-let currentWizardStep = 1;
-
-function nextWizardStep(step) {
-    // Hide current step
-    document.querySelectorAll('.wizard-step').forEach(s => s.classList.remove('active'));
-    document.querySelectorAll('.wizard-step-indicator').forEach(s => s.classList.remove('active'));
-    
-    // Show target step
-    document.getElementById(`wizard-step-${step}`).classList.add('active');
-    document.getElementById(`step-${step}`).classList.add('active');
-    
-    currentWizardStep = step;
+function viewTemplate(templateId) {
+    const template = userTemplates.find(t => t.id === templateId);
+    if (template) {
+        alert(`${template.name}\n\n${template.content}`);
+    }
 }
 
-function generateTemplate() {
-    const context = document.getElementById('template-context').value.trim();
-    const purpose = document.getElementById('template-purpose').value.trim();
-    const structure = document.getElementById('template-structure').value.trim();
-    const parameters = document.getElementById('template-parameters').value.trim();
+// Template Builder
+function nextStep(step) {
+    // Hide current step
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.step-content').forEach(s => s.classList.remove('active'));
+    
+    // Show target step
+    document.getElementById(`step${step}`).classList.add('active');
+    document.getElementById(`content${step}`).classList.add('active');
+    
+    currentStep = step;
+}
+
+function createTemplate() {
+    const context = document.getElementById('context-input').value.trim();
+    const purpose = document.getElementById('purpose-input').value.trim();
+    const structure = document.getElementById('structure-input').value.trim();
+    const parameters = document.getElementById('parameters-input').value.trim();
     const name = document.getElementById('template-name').value.trim();
     
     if (!context || !purpose || !structure || !parameters || !name) {
@@ -524,21 +406,96 @@ PARAMETERS: ${parameters}`;
     
     saveAsTemplate(template, name);
     
-    // Reset wizard
-    document.querySelectorAll('#template-context, #template-purpose, #template-structure, #template-parameters, #template-name').forEach(input => {
-        input.value = '';
-    });
+    // Reset form
+    document.getElementById('context-input').value = '';
+    document.getElementById('purpose-input').value = '';
+    document.getElementById('structure-input').value = '';
+    document.getElementById('parameters-input').value = '';
+    document.getElementById('template-name').value = '';
     
-    nextWizardStep(1);
+    nextStep(1);
     
     alert(`Template "${name}" created successfully! You can find it in your Template Library.`);
     showSection('my-templates');
 }
 
-// Resource Guide Functions
-function showResourceTab(tabName) {
+// Starter Templates
+function loadStarterTemplates() {
+    // Templates are already in the HTML
+}
+
+function useStarterTemplate(type) {
+    const templates = {
+        business: {
+            name: 'Business Performance Review',
+            content: `CONTEXT: I am a small business owner analyzing monthly performance metrics for strategic decision-making.
+
+PURPOSE: I need to evaluate our business performance to identify growth opportunities and areas requiring immediate attention.
+
+STRUCTURE: Please organize the analysis into:
+1. Revenue Analysis (current vs. target vs. previous month)
+2. Key Performance Indicators Summary
+3. Top 3 Strengths and Opportunities
+4. Specific Action Items with Timeline
+
+PARAMETERS: 
+- Monthly Revenue: $[amount]
+- Key Metrics: [customer acquisition, retention rate, average order value]
+- Industry: [your industry]
+- Team Size: [number] employees`
+        },
+        content: {
+            name: 'Content Strategy Planning',
+            content: `CONTEXT: I am a content creator/marketer developing a strategic content plan for audience engagement and growth.
+
+PURPOSE: I need to create a comprehensive content strategy that aligns with business goals and audience needs.
+
+STRUCTURE: Format the strategy as:
+1. Audience Analysis and Personas
+2. Content Pillars and Themes
+3. Content Calendar Framework
+4. Distribution and Promotion Strategy
+5. Success Metrics and KPIs
+
+PARAMETERS:
+- Target Audience: [demographics and interests]
+- Business Goals: [awareness, leads, sales, engagement]
+- Content Types: [blog, video, social, email]
+- Resources Available: [team size, budget, tools]`
+        },
+        competitive: {
+            name: 'Competitive Analysis',
+            content: `CONTEXT: I am conducting competitive research to understand market positioning and identify strategic opportunities.
+
+PURPOSE: I need to analyze competitors to inform strategic decisions and identify competitive advantages.
+
+STRUCTURE: Organize the analysis into:
+1. Competitor Overview and Market Position
+2. Strengths and Weaknesses Analysis
+3. Pricing and Value Proposition Comparison
+4. Marketing and Customer Acquisition Strategies
+5. Opportunities and Threats Assessment
+
+PARAMETERS:
+- Industry: [your industry]
+- Competitors: [list 3-5 main competitors]
+- Analysis Focus: [pricing, features, marketing, customer service]
+- Business Context: [startup, established business, expansion]`
+        }
+    };
+    
+    const template = templates[type];
+    if (template) {
+        saveAsTemplate(template.content, `${template.name} (Copy)`);
+        alert(`Template "${template.name}" copied to your library! You can now customize it.`);
+        showSection('my-templates');
+    }
+}
+
+// Resource Guide
+function showTab(tabName) {
     // Hide all tabs
-    document.querySelectorAll('.resource-tab-content').forEach(tab => {
+    document.querySelectorAll('.tab-content').forEach(tab => {
         tab.classList.remove('active');
     });
     
@@ -551,12 +508,12 @@ function showResourceTab(tabName) {
     event.target.classList.add('active');
 }
 
-// PDF Export Functions
+// PDF Export
 function exportTemplatePDF(templateId) {
     const template = userTemplates.find(t => t.id === templateId);
     if (!template) return;
     
-    // Create a temporary div for PDF generation
+    // Create temporary div for PDF generation
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = `
         <div style="padding: 40px; font-family: Arial, sans-serif; max-width: 800px;">
@@ -575,6 +532,7 @@ function exportTemplatePDF(templateId) {
     
     html2canvas(tempDiv).then(canvas => {
         const imgData = canvas.toDataURL('image/png');
+        const { jsPDF } = window.jspdf;
         const pdf = new jsPDF();
         const imgWidth = 210;
         const pageHeight = 295;
@@ -598,85 +556,24 @@ function exportTemplatePDF(templateId) {
     });
 }
 
-// Progress Management
-function saveProgress() {
-    localStorage.setItem('courseProgress', JSON.stringify(courseProgress));
-}
-
-function loadProgress() {
-    const saved = localStorage.getItem('courseProgress');
-    if (saved) {
-        courseProgress = { ...courseProgress, ...JSON.parse(saved) };
-    }
-    
-    const savedTemplates = localStorage.getItem('userTemplates');
-    if (savedTemplates) {
-        userTemplates = JSON.parse(savedTemplates);
-    }
-}
-
-function resetProgress() {
-    if (confirm('Are you sure you want to reset all progress? This will delete all your answers and created templates.')) {
-        localStorage.removeItem('courseProgress');
-        localStorage.removeItem('userTemplates');
-        
-        // Reset state
-        courseProgress = {
-            module1: { completed: false, currentQuestion: 1, answers: {} },
-            module2: { completed: false, currentQuestion: 1, answers: {} },
-            module3: { completed: false, currentQuestion: 1, answers: {} },
-            module4: { completed: false, currentQuestion: 1, answers: {} },
-            module5: { completed: false, currentQuestion: 1, answers: {} },
-            module6: { completed: false, currentQuestion: 1, answers: {} },
-            module7: { completed: false, currentQuestion: 1, answers: {} }
-        };
-        userTemplates = [];
-        
-        // Reset UI
-        updateProgressDisplay();
-        updateTemplateDisplay();
-        
-        // Reset all form inputs
-        document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(input => {
-            input.checked = false;
-        });
-        
-        document.querySelectorAll('textarea').forEach(textarea => {
-            textarea.value = '';
-        });
-        
-        document.querySelectorAll('.feedback').forEach(feedback => {
-            feedback.style.display = 'none';
-        });
-        
-        // Reset all questions to first question
-        Object.keys(courseProgress).forEach(moduleId => {
-            showCurrentQuestion(moduleId);
-        });
-        
-        // Go back to introduction
-        showSection('introduction');
-        
-        alert('Progress reset successfully!');
-    }
-}
-
-// Final Project Functions
-function submitFinalProject() {
+// Final Project
+function submitProject() {
     const title = document.getElementById('project-title').value.trim();
     const description = document.getElementById('project-description').value.trim();
+    const templates = document.getElementById('project-templates').value.trim();
+    const testing = document.getElementById('project-testing').value.trim();
     
-    if (!title || !description) {
+    if (!title || !description || !templates || !testing) {
         alert('Please fill in all project fields before submitting.');
         return;
     }
     
-    // Simulate project submission
     const project = {
         title: title,
         description: description,
-        submitted: new Date().toISOString(),
-        templates: userTemplates.length
+        templates: templates,
+        testing: testing,
+        submitted: new Date().toISOString()
     };
     
     localStorage.setItem('finalProject', JSON.stringify(project));
@@ -686,24 +583,6 @@ function submitFinalProject() {
     // Clear form
     document.getElementById('project-title').value = '';
     document.getElementById('project-description').value = '';
-}
-
-// Utility Functions
-function useTemplate(templateId) {
-    const starterTemplates = JSON.parse(localStorage.getItem('starterTemplates') || '[]');
-    const template = starterTemplates.find(t => t.id === templateId);
-    
-    if (template) {
-        // Copy to user templates
-        saveAsTemplate(template.content, `${template.name} (Copy)`);
-        alert(`Template "${template.name}" copied to your library! You can now customize it.`);
-        showSection('my-templates');
-    }
-}
-
-function viewTemplate(templateId) {
-    const template = userTemplates.find(t => t.id === templateId);
-    if (template) {
-        alert(`Template: ${template.name}\n\n${template.content}`);
-    }
+    document.getElementById('project-templates').value = '';
+    document.getElementById('project-testing').value = '';
 }
